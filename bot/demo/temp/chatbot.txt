@@ -1,0 +1,59 @@
+> object start javascript
+	loadBotString(args[0]);
+< object
+
+> object mark javascript
+  markDivide("iDEW ChatBot");
+< object
+
+> object list javascript
+  var str = "";
+  for (var i=0; i<chatbotData.length; i++) {
+    str = str + "<a class = '"+chatbotData[i][dataSchool]+"' href='' onclick='event.preventDefault(); loadBotString("+ i + ");'>" + chatbotData[i][dataName] + "</a>";
+    if (i < chatbotData.length-1) str = str + " ";
+  }
+  return str;
+< object
+
++ start
+- Hello. I can connect you with student bots in development. Would you like a list to choose from?
+
++ (y|yes)[*]
+% hello[*]
+- Okay, here you go. Click on any bot. \n{@ list bots}
+
++ (n|no)*
+% hello[*]
+- Are you sure that you don't want to see the list?
+
++ (y|yes)[*]
+% are you sure[*]
+- Well, that is upsetting...take a look anyway. \n{@ list bots}
+
++ (y|yes)[*]
+- I am a little confused. You may be answering an earlier question. Type "let's start over" to restart our conversation.
+
++ [*]start over[*]
+@ start
+
++ (n|no)[*]
+% are you sure[*]
+- Excellent, in that case, here you go. \n{@ list bots}
+
++ [*]list bots[*]
+- <call>list</call>
+
++ *
+- I don't understand <strong>"<star>"</stong>
+
++ (who|how|why|where|when|what)*
+- I am not sure. Try Google.
+
++ bye
+- Sorry, but you are stuck with me, iDEW ChatBot.
+
++ (hello|hi)[*]
+- Hi. I am glad you are visiting and I hope you try some of the student bots. Type "list bots" if you want to see the choices.
+
++ help[*]
+- I may respond to other things, but at the moment I understand the following direct commands: "start", "list bots", "hi", and "bye". But if I am asking you a question, I may be a bit single-minded.
