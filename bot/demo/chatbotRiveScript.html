@@ -9,7 +9,9 @@
 + *
 - I don't understand <strong>"<star>"</stong>
 
-  
+
++ what is your name? 
+@ var name  
   
   
 ! version = 2.0
@@ -61,50 +63,4 @@
 ! person mine = yours
 ! person yours = mine
 
-+ *
-- <call>watson <star></call>
 
-+ [ ?]say *
-- <person>
-
-+ [ ?](javascript|js|code) *
-- <call>jsREPL <star2></call>
-
-+ [ ?](who is|tell me about|what is|what do you know about) [a|an|the] *{weight=20}
-- <call>searchWikipedia <star2></call>
-
-+ [ ?](Tell|tell) [*] about [a|an|the] *
-- <call>searchWikipedia <star2></call>
-
-+ [ ?](What does|what does) * [mean]{weight=10}
-- <call>searchWikipedia <star2></call>
-
-+ [ ?]how do you feel about *{weight=10}
-- <call>searchTwitter <star></call>
-
-+ [ ?](what|who|how) do you think [about|of] *{weight=60}
-- <call>searchTwitter <star2></call>
-
-+ [ ?]where is *{weight=60}
-- <call>searchPlaces <star></call>
-
-+ [ ?]show [*] * [video]
-- <call>youtube <star></call>
-
-+ [ ?] * on codepen
-- <call>codePen <star></call>
-
-+ [ ?] (Browser|browser) support [for] *
-- <call>canIuse <star2></call>
-
-+ [ ?] (Convert|convert) *
-- <call>convert <star2></call>
-
-+ [ ?]mdn *
-- <call>mdn <star></call>
-
-+ [ ?]movie info [for] * [movie]
-- <call>movies <star></call>
-
-+ [*] translate *{weight=20}
-- <call>translate <star></call>  
