@@ -6,7 +6,7 @@ window.onload = setup;
 function setup() {
   pop = new Audio("sounds/pop.mp3");
   rs = new RiveScript();
-  rs.load_directory(["https://kyran88.github.io/bot/demo/brain/begin.rive"], on_load_success, on_load_error);
+  rs.load_directory(["https://kyran88.github.io/bot/demo/brain/begin.html"], on_load_success, on_load_error);
 }
 
 function on_load_success() {
