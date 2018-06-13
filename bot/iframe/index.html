@@ -15,7 +15,14 @@
   <iframe src="https://kyran88.github.io/App/index.html">Test</iframe>
 </div>
 
-<script src="https://kyran88.github.io/bot/iframe/script.js"></script>
+<script>
+$(function () {
+    $('.chat-launcher').on('click', function () {
+        $('.chat-launcher').toggleClass('active');
+        $('.chat-wrapper').toggleClass('is-open');
+    });
+});    
+</script>
 <script src="https://code.jquery.com/jquery-latest.min.js"></script>    
   </body>
 </html>
