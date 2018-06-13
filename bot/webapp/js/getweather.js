@@ -1,43 +1,74 @@
-// Docs at http://simpleweatherjs.com
+(function($) {
 
-/* Does your browser support geolocation? */
-if ("geolocation" in navigator) {
-  $('.js-geolocation').show(); 
-} else {
-  $('.js-geolocation').hide();
-}
+  // Following script makes use of following services:
+  // http://ipinfo.io/ (geo data)
+  // http://openweathermap.org/ (weather data)
 
-/* Where in the world are you? */
-$('.js-geolocation').on('click', function() {
-  navigator.geolocation.getCurrentPosition(function(position) {
-    loadWeather(position.coords.latitude+','+position.coords.longitude); //load weather using your lat/lng coordinates
+  $(document).ready(function() {
+
+    var $city             = $('.js-city'),
+        $country          = $('.js-country'),
+        $temperature      = $('.js-temp'),
+        $temperatureUnit  = $('.js-temp-unit'),
+        $weather          = $('.js-weather'),
+        $weatherIcon      = $('.js-weather-icon');
+
+    // Get geo data
+    $.getJSON('https://ipinfo.io', function() {
+    }).done(function(geoJSON) {
+
+      var city              = geoJSON.city,
+          country           = geoJSON.country,
+          openWeatherAPPID  = '57d6d3575458519af4e1386b34a7ac48', // :(
+          openWeatherURL    = '//api.openweathermap.org/data/2.5/weather?q=' + city + ',' + country + '&appid=' + openWeatherAPPID;
+
+      // Fill in city and country
+      $city.text(city);
+      $country.text(country);
+
+      // Get weather data
+      $.getJSON(openWeatherURL, function() {
+      }).done(function(weatherJSON) {
+
+        var kelvin    = weatherJSON.main.temp,
+            farenheit = kelvinToFarenheit(kelvin),
+            celcius   = kelvinToCelcius(kelvin),
+            weather   = weatherJSON.weather[0].main,
+            icon      = weatherJSON.weather[0].icon;
+
+        // Fill in temperature and weather info
+        $temperature.text(celcius); // Default to celcius
+        $weather.text(weather);
+        $weatherIcon.html(function() {
+          return '<img src="http://openweathermap.org/img/w/' + icon + '.png" alt="Weather Icon">';
+        });
+
+        // Fahrenheit / Celcius Toggle
+        $temperatureUnit.on('click', function(e) {
+          e.preventDefault();
+          var $this = $(this);
+          if ($this.text() === 'F') {
+            // Convert to Celcius
+            $this.text('C');
+            $temperature.text(celcius);
+          } else {
+            // Convert to Farenheit
+            $this.text('F');
+            $temperature.text(farenheit);
+          }
+        });
+
+      });
+    });
+
   });
-});
+  
+  function kelvinToFarenheit(kelvin) {
+    return parseInt((kelvin - 273.15) * (9 / 5) + 32, 10);
+  }
+  
+  function kelvinToCelcius(kelvin) {
+    return parseInt(kelvin - 273.15, 10);
+  }
 
-/* 
-* Test Locations
-* Perth lat/long: 56.3950,3.4308
-* Perth WOEID: 27760678
-*/
-$(document).ready(function() {
-  loadWeather('Perth scotland',''); //@params location, woeid
-});
-
-function loadWeather(location, woeid) {
-  $.simpleWeather({
-    location: location,
-    woeid: woeid,
-    unit: 'C',
-    success: function(weather) {
-      html = '<h2><i class="icon-'+weather.code+'"></i> '+weather.temp+'&deg;'+weather.units.temp+'</h2>';
-      html += '<ul><li>'+weather.city+', '+weather.region+'</li>';
-      html += '<li class="currently">'+weather.currently+'</li>';
-      html += '<li>'+weather.alt.temp+'&deg;f</li></ul>';  
-      
-      $("#weather").html(html);
-    },
-    error: function(error) {
-      $("#weather").html('<p>'+error+'</p>');
-    }
-  });
-}
+})(jQuery);
