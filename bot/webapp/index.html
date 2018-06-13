@@ -9,6 +9,8 @@
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
     <meta name="robots" content="noindex">
     <link rel="stylesheet" href="https://kyran88.github.io/bot/webapp/css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/weather-icons/2.0.9/css/weather-icons.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-alpha.6/css/bootstrap.min.css">    
   </head>
   <body>
     <div class="container">
@@ -25,10 +27,8 @@
         <article id="projects-p1">
           <h3>Weather ☀️</h3>
           <p>Weather forecast</p>
-          <h3><span class="js-city"></span>, <span class="js-country"></span></h3>
-    <h3 class="display-4"><span class="js-temp"></span> &deg;<a href="#" class="js-temp-unit">C</a></h3>
-    <h3><span class="js-weather-icon"></span></h3>
-    <h3><span class="js-weather"></span></h3>
+          <h1 class="text-center">If you're living in <b><span id="js-city"></span></b>, then it's <b><span id="js-celsius"></span></b> outside and <b><span id="js-weather-type"></span></b>.<span id="js-weather-icon"></span></h1>
+  <p id="js-temp-swap-button" class="preference-button text-center">Click if you prefer <span id="js-temp-change"></span>.</p>
         </article>
         <article id="projects-p2">
           <h3>Project 2</h3>
@@ -62,7 +62,6 @@
     </div>
     <script src="https://kyran88.github.io/bot/webapp/js/app.min.js"></script>
     <script src="https://kyran88.github.io/bot/webapp/js/getweather.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-color/2.1.2/jquery.color.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
   </body>
 </html>
