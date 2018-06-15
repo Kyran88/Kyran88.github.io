@@ -110,9 +110,9 @@
     newMessage(randomReply(idleReplies), 'bot');
     setTimeout(() => {
       let helpReplies = [
-        'Don\'t like this conversation? Send an email to <a href="mailto:mike@redvolume.com">mike@redvolume.com</a> if you want a real one. &#x1F680;',
-        'Not finding what you\'re looking for? Send an email to <a href="mailto:mike@redvolume.com">mike@redvolume.com</a> with any questions...',
-        'Wanna talk to a real person? &#x1F4AC; Fire off an email to <a href="mailto:mike@redvolume.com">mike@redvolume.com</a>. &#x1F525;'
+        'Don\'t like this conversation? Send an email to <a href="sip:mcmanuk@avivaworld.com">kyran</a> if you want a real one. &#x1F680;',
+        'Not finding what you\'re looking for? Send an email to <a href="sip:mcmanuk@avivaworld.comm">kyran</a> with any questions...',
+        'Wanna talk to a real person? &#x1F4AC; Fire off an email to <a href="sip:mcmanuk@avivaworld.com">kyran</a>. &#x1F525;'
       ];
       newMessage(randomReply(helpReplies), 'bot');
       setTimeout(() => {
@@ -133,7 +133,7 @@
 
   const init = () => {
     let welcomeReplies = [
-      'Hello! &#x1F44B; I\'m Mike, a medical librarian working at Karolinska Institutet. I try to create the best user experiences possible, both physical and virtual, using humour, friendliness, web technologies and good design.'
+      'Hello! &#x1F44B; I\'m Kyran, I try to create the best user experiences possible, both physical and virtual, using humour, friendliness, web technologies and good design.'
     ];
     idle = window.setInterval(() => {
       window.clearInterval(idle);
@@ -285,7 +285,7 @@
             'Ok, thanks! &#x1F44C;'
           ];
         setTimeout(() => {
-          newMessage(`${randomReply(infoReplies)} <a target="_new" href="https://librarian.codes">https://librarian.codes</a>`, 'bot');
+          newMessage(`${randomReply(infoReplies)} <a target="_new" href="#">My website</a>`, 'bot');
           setTimeout(() => {
             newMessage(`<button class="choice newmenu showmenu">${randomReply(okReplies)}</button>`);
           }, 300);
