@@ -1,0 +1,42 @@
+body {
+  margin:0;
+  padding:0;
+  background-image: url("cover_image.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  position: relative;
+}
+.container {
+  background-color: white;
+  opacity: .9;
+  border-radius: 10px;
+  width: 30%;
+  padding: 20px 0 20px 0;
+  position: absolute;
+  margin-top: 175px;
+  margin-left: 35%;
+}
+h1 {
+  text-align: center;
+  color: black;
+  font-family: 'Righteous', cursive;
+  font-size: 2.4em;
+}
+#input_fields {
+  width: 100%;
+  text-align: center;
+}
+#input_fields > p, button, input {
+  margin: 5px;
+  font-size: 1.1em;
+}
+input:hover, button:hover {
+  background-color: lightgray;
+}
+button {
+  border-radius: 4px;
+  margin-top: 15px;
+}
+input {
+  border-radius: 4px;
+}
