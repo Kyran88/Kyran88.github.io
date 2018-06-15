@@ -1,0 +1,111 @@
+body {
+  background: url('http://res.cloudinary.com/jamesriall/image/upload/v1467645340/imageedit_3_9909081336_e0vyas.jpg') no-repeat center center fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  min-height: 100vh;
+}
+
+table.tableizer-table {
+  font-size: 12px;
+  font-family: Arial, Helvetica, sans-serif;
+  margin: 20px 0px 20px 0px;
+}
+
+.tableizer-table td {
+  padding: 0px 5px 0px 5px;
+  border: 3px solid black;
+  text-align: center;
+  font-size: 10px;
+}
+
+.tableizer-table th {
+  background-color: #104E8B;
+  color: #FFF;
+  font-weight: bold;
+  border: 3px solid black;
+  padding: 4px;
+}
+
+.col-md-4,
+.col-md-6,
+.col-md-2 {
+  text-align: center;
+}
+
+#header {
+  font-family: Lobster, calibri;
+  color: white;
+  font-size: 40px;
+}
+
+.genders {
+  margin-top: 30px;
+}
+
+.submit {
+  margin-top: 15px;
+  color: black;
+}
+
+input[type="text"] {
+  color: black;
+}
+
+#rider-info {
+  background-color: #104E8B;
+  color: white;
+  padding: 0px 10px 15px 10px;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  text-align: center;
+  border: 3px solid black;
+}
+
+h3 {
+  font-family: Lobster, calibri;
+  padding-bottom: 15px;
+}
+
+#results {
+  background-color: #104E8B;
+  color: white;
+  padding: 0px 10px 15px 10px;
+  text-align: center;
+  margin-bottom: 20px;
+  border: 3px solid black;
+}
+
+ul {
+  list-style-type: none;
+  margin-left: -35px;
+  font-size: 14px;
+}
+
+.male-5s,
+.male-60s,
+.male-5m,
+.male-60m,
+.male-header {
+  background: lightblue;
+}
+
+.female-5s,
+.female-60s,
+.female-5m,
+.female-60m,
+.female-header {
+  background: lightpink;
+}
+
+.row-header {
+  background-color: #104E8B;
+  color: #FFF;
+  font-weight: bold;
+}
+
+/* changes to the background of the relevant boxes when conditional statement met */
+.greenBg {
+  background: green;
+}
