@@ -7,7 +7,7 @@
           'id': 'projects',
           'submenu': [
             {
-              'title': 'Project 1',
+              'title': 'Weather',
               'id': 'p1'
             },
             {
