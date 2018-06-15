@@ -1,0 +1,491 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Power Zone Calculator</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+  <link href='https://fonts.googleapis.com/css?family=Lobster' rel='stylesheet' type='text/css'>
+  <link rel="stylesheet" type="text/css" href="css/power.css">
+</head>
+
+<body>
+  <div class="container" id="background">
+    <div class="row">
+      <!-- information -->
+      <div class="col-md-4">
+        <!-- rider info -->
+        <h1 id="header">Interactive Power<br>Zone Table</h1>
+        <div id="rider-info">
+          <h3>Rider Vitals</h3>
+          <form id="submitInfo"><b>
+          Weight (kgs):</b>
+            <br>
+            <input id="weight" type="text" onkeypress="return event.charCode >= 48 && event.charCode <= 57 || event.charCode == 46" name="weight">
+            <br>
+            <label for="gender"><b>Gender: </b></label>
+            <input type="radio" name="gender" value="Male" id="male-button" checked="checked"> <b>Male</b></input>
+            <input type="radio" name="gender" value="Female" id="male-button"> <b>Female</b></input>
+            <br><b>5 Second Power:</b>
+            <br>
+            <input id="fiveSecPower" type="text" onkeypress="return event.charCode >= 48 && event.charCode <= 57 || event.charCode == 46" name="5-sec-power">
+            <br><b>60 Second Power:</b>
+            <br>
+            <input id="sixtySecPower" type="text" onkeypress="return event.charCode >= 48 && event.charCode <= 57 || event.charCode == 46" name="60-sec-power">
+            <br><b>5 Minute Power:</b>
+            <br>
+            <input id="fiveMinPower" type="text" onkeypress="return event.charCode >= 48 && event.charCode <= 57 || event.charCode == 46" name="5-min-power">
+            <br><b>60 Minute Power:</b>
+            <br>
+            <input id="sixtyMinPower" type="text" onkeypress="return event.charCode >= 48 && event.charCode <= 57 || event.charCode == 46" name="60-min-power">
+            <br>
+            <input class="submit" type="submit" value="Submit">
+          </form>
+        </div>
+        <div id="results">
+          <h3>Rider w/kg</h3>
+          <ul>
+            <li id="fiveSecRatio"></li>
+            <li id="sixtySecRatio"></li>
+            <li id="fiveMinRatio"></li>
+            <li id="sixtyMinRatio"></li>
+          </ul>
+        </div>
+      </div>
+      <!-- table -->
+      <div class="col-md-6">
+        <table class="tableizer-table">
+          <thead>
+            <tr class="tableizer-firstrow">
+              <th>Ranking</th>
+              <th colspan="8">Maximal Power Output (In Watts/Kilogram)</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td rowspan="2" class="row-header">
+                <td colspan="4" class="male-header">Men</td>
+                <td colspan="9" class="female-header">Women</td>
+            </tr>
+            <tr>
+              <td class="male-header">5 sec</td>
+              <td class="male-header">1 min</td>
+              <td class="male-header">5 min</td>
+              <td class="male-header">60 min</td>
+              <td class="female-header">5 sec</td>
+              <td class="female-header">1 min</td>
+              <td class="female-header">5 min</td>
+              <td class="female-header">60 min</td>
+            </tr>
+            <tr>
+              <td rowspan="7" class="row-header">World Class (e.g. International Pro)</td>
+              <td class="male-5s" id="male-5s-1">24.04</td>
+              <td class="male-60s" id="male-60s-1">11.5</td>
+              <td class="male-5m" id="male-5m-1">7.6</td>
+              <td class="male-60m" id="male-60m-1">6.4</td>
+              <td class="female-5s" id="female-5s-1">19.42</td>
+              <td class="female-60s" id="female-60s-1">9.29</td>
+              <td class="female-5m" id="female-5m-1">6.61</td>
+              <td class="female-60m" id="female-60m-1">5.69</td>
+            </tr>
+            <tr>
+              <td class="male-5s" id="male-5s-2">23.77</td>
+              <td class="male-60s" id="male-60s-2">11.39</td>
+              <td class="male-5m" id="male-5m-2">7.5</td>
+              <td class="male-60m" id="male-60m-2">6.31</td>
+              <td class="female-5s" id="female-5s-2">19.2</td>
+              <td class="female-60s" id="female-60s-2">9.2</td>
+              <td class="female-5m" id="female-5m-2">6.52</td>
+              <td class="female-60m" id="female-60m-2">5.61</td>
+            </tr>
+            <tr>
+              <td class="male-5s" id="male-5s-3">23.5</td>
+              <td class="male-60s" id="male-60s-3">11.27</td>
+              <td class="male-5m" id="male-5m-3">7.39</td>
+              <td class="male-60m" id="male-60m-3">6.22</td>
+              <td class="female-5s" id="female-5s-3">18.99</td>
+              <td class="female-60s" id="female-60s-3">9.11</td>
+              <td class="female-5m" id="female-5m-3">6.42</td>
+              <td class="female-60m" id="female-60m-3">5.53</td>
+            </tr>
+            <tr>
+              <td class="male-5s" id="male-5s-4">23.22</td>
+              <td class="male-60s" id="male-60s-4">11.16</td>
+              <td class="male-5m" id="male-5m-4">7.29</td>
+              <td class="male-60m" id="male-60m-4">6.13</td>
+              <td class="female-5s" id="female-5s-4">18.77</td>
+              <td class="female-60s" id="female-60s-4">9.02</td>
+              <td class="female-5m" id="female-5m-4">6.33</td>
+              <td class="female-60m" id="female-60m-4">5.44</td>
+            </tr>
+            <tr>
+              <td class="male-5s" id="male-5s-5">22.95</td>
+              <td class="male-60s" id="male-60s-5">11.04</td>
+              <td class="male-5m" id="male-5m-5">7.19</td>
+              <td class="male-60m" id="male-60m-5">6.04</td>
+              <td class="female-5s" id="female-5s-5">18.56</td>
+              <td class="female-60s" id="female-60s-5">8.93</td>
+              <td class="female-5m" id="female-5m-5">6.24</td>
+              <td class="female-60m" id="female-60m-5">5.36</td>
+            </tr>
+            <tr>
+              <td class="male-5s" id="male-5s-6">22.68</td>
+              <td class="male-60s" id="male-60s-6">10.93</td>
+              <td class="male-5m" id="male-5m-6">7.08</td>
+              <td class="male-60m" id="male-60m-6">5.96</td>
+              <td class="female-5s" id="female-5s-6">18.34</td>
+              <td class="female-60s" id="female-60s-6">8.84</td>
+              <td class="female-5m" id="female-5m-6">6.15</td>
+              <td class="female-60m" id="female-60m-6">5.28</td>
+            </tr>
+            <tr>
+              <td class="male-5s" id="male-5s-7">22.41</td>
+              <td class="male-60s" id="male-60s-7">10.81</td>
+              <td class="male-5m" id="male-5m-7">6.98</td>
+              <td class="male-60m" id="male-60m-7">5.87</td>
+              <td class="female-5s" id="female-5s-7">18.13</td>
+              <td class="female-60s" id="female-60s-7">8.75</td>
+              <td class="female-5m" id="female-5m-7">6.05</td>
+              <td class="female-60m" id="female-60m-7">5.2</td>
+            </tr>
+            <tr>
+              <td rowspan="7" class="row-header">Exceptional (e.g. Domestic Pro)</td>
+              <td class="male-5s" id="male-5s-8">22.14</td>
+              <td class="male-60s" id="male-60s-8">10.7</td>
+              <td class="male-5m" id="male-5m-8">6.88</td>
+              <td class="male-60m" id="male-60m-8">5.78</td>
+              <td class="female-5s" id="female-5s-8">17.91</td>
+              <td class="female-60s" id="female-60s-8">8.66</td>
+              <td class="female-5m" id="female-5m-8">5.96</td>
+              <td class="female-60m" id="female-60m-8">5.12</td>
+            </tr>
+            <tr>
+              <td class="male-5s" id="male-5s-9">21.86</td>
+              <td class="male-60s" id="male-60s-9">10.58</td>
+              <td class="male-5m" id="male-5m-9">6.77</td>
+              <td class="male-60m" id="male-60m-9">5.69</td>
+              <td class="female-5s" id="female-5s-9">17.7</td>
+              <td class="female-60s" id="female-60s-9">8.56</td>
+              <td class="female-5m" id="female-5m-9">5.87</td>
+              <td class="female-60m" id="female-60m-9">5.03</td>
+            </tr>
+            <tr>
+              <td class="male-5s" id="male-5s-10">21.59</td>
+              <td class="male-60s" id="male-60s-10">10.47</td>
+              <td class="male-5m" id="male-5m-10">6.67</td>
+              <td class="male-60m" id="male-60m-10">5.6</td>
+              <td class="female-5s" id="female-5s-10">17.48</td>
+              <td class="female-60s" id="female-60s-10">8.47</td>
+              <td class="female-5m" id="female-5m-10">5.78</td>
+              <td class="female-60m" id="female-60m-10">4.95</td>
+            </tr>
+            <tr>
+              <td class="male-5s" id="male-5s-11">21.32</td>
+              <td class="male-60s" id="male-60s-11">10.35</td>
+              <td class="male-5m" id="male-5m-11">6.57</td>
+              <td class="male-60m" id="male-60m-11">5.51</td>
+              <td class="female-5s" id="female-5s-11">17.26</td>
+              <td class="female-60s" id="female-60s-11">8.38</td>
+              <td class="female-5m" id="female-5m-11">5.68</td>
+              <td class="female-60m" id="female-60m-11">4.87</td>
+            </tr>
+            <tr>
+              <td class="male-5s" id="male-5s-12">21.05</td>
+              <td class="male-60s" id="male-60s-12">10.24</td>
+              <td class="male-5m" id="male-5m-12">6.46</td>
+              <td class="male-60m" id="male-60m-12">5.42</td>
+              <td class="female-5s" id="female-5s-12">17.05</td>
+              <td class="female-60s" id="female-60s-12">8.29</td>
+              <td class="female-5m" id="female-5m-12">5.59</td>
+              <td class="female-60m" id="female-60m-12">4.79</td>
+            </tr>
+            <tr>
+              <td class="male-5s" id="male-5s-13">20.78</td>
+              <td class="male-60s" id="male-60s-13">10.12</td>
+              <td class="male-5m" id="male-5m-13">6.36</td>
+              <td class="male-60m" id="male-60m-13">5.33</td>
+              <td class="female-5s" id="female-5s-13">16.83</td>
+              <td class="female-60s" id="female-60s-13">8.2</td>
+              <td class="female-5m" id="female-5m-13">5.5</td>
+              <td class="female-60m" id="female-60m-13">4.7</td>
+            </tr>
+            <tr>
+              <td class="male-5s" id="male-5s-14">20.51</td>
+              <td class="male-60s" id="male-60s-14">10.01</td>
+              <td class="male-5m" id="male-5m-14">6.26</td>
+              <td class="male-60m" id="male-60m-14">5.24</td>
+              <td class="female-5s" id="female-5s-14">16.62</td>
+              <td class="female-60s" id="female-60s-14">8.11</td>
+              <td class="female-5m" id="female-5m-14">5.41</td>
+              <td class="female-60m" id="female-60m-14">4.62</td>
+            </tr>
+            <tr>
+              <td rowspan="6" class="row-header">Excellent (e.g. Cat 1)</td>
+              <td class="male-5s" id="male-5s-15">20.23</td>
+              <td class="male-60s" id="male-60s-15">9.89</td>
+              <td class="male-5m" id="male-5m-15">6.15</td>
+              <td class="male-60m" id="male-60m-15">5.15</td>
+              <td class="female-5s" id="female-5s-15">16.4</td>
+              <td class="female-60s" id="female-60s-15">8.02</td>
+              <td class="female-5m" id="female-5m-15">5.31</td>
+              <td class="female-60m" id="female-60m-15">4.54</td>
+            </tr>
+            <tr>
+              <td class="male-5s" id="male-5s-16">19.96</td>
+              <td class="male-60s" id="male-60s-16">9.78</td>
+              <td class="male-5m" id="male-5m-16">6.05</td>
+              <td class="male-60m" id="male-60m-16">5.07</td>
+              <td class="female-5s" id="female-5s-16">16.19</td>
+              <td class="female-60s" id="female-60s-16">7.93</td>
+              <td class="female-5m" id="female-5m-16">5.22</td>
+              <td class="female-60m" id="female-60m-16">4.46</td>
+            </tr>
+            <tr>
+              <td class="male-5s" id="male-5s-17">19.69</td>
+              <td class="male-60s" id="male-60s-17">9.66</td>
+              <td class="male-5m" id="male-5m-17">5.95</td>
+              <td class="male-60m" id="male-60m-17">4.98</td>
+              <td class="female-5s" id="female-5s-17">15.97</td>
+              <td class="female-60s" id="female-60s-17">7.84</td>
+              <td class="female-5m" id="female-5m-17">5.13</td>
+              <td class="female-60m" id="female-60m-17">4.38</td>
+            </tr>
+            <tr>
+              <td class="male-5s" id="male-5s-18">19.42</td>
+              <td class="male-60s" id="male-60s-18">9.55</td>
+              <td class="male-5m" id="male-5m-18">5.84</td>
+              <td class="male-60m" id="male-60m-18">4.89</td>
+              <td class="female-5s" id="female-5s-18">15.76</td>
+              <td class="female-60s" id="female-60s-18">7.75</td>
+              <td class="female-5m" id="female-5m-18">5.04</td>
+              <td class="female-60m" id="female-60m-18">4.29</td>
+            </tr>
+            <tr>
+              <td class="male-5s" id="male-5s-19">19.15</td>
+              <td class="male-60s" id="male-60s-19">9.43</td>
+              <td class="male-5m" id="male-5m-19">5.74</td>
+              <td class="male-60m" id="male-60m-19">4.8</td>
+              <td class="female-5s" id="female-5s-19">15.54</td>
+              <td class="female-60s" id="female-60s-19">7.66</td>
+              <td class="female-5m" id="female-5m-19">4.94</td>
+              <td class="female-60m" id="female-60m-19">4.21</td>
+            </tr>
+            <tr>
+              <td class="male-5s" id="male-5s-20">18.87</td>
+              <td class="male-60s" id="male-60s-20">9.32</td>
+              <td class="male-5m" id="male-5m-20">5.64</td>
+              <td class="male-60m" id="male-60m-20">4.71</td>
+              <td class="female-5s" id="female-5s-20">15.32</td>
+              <td class="female-60s" id="female-60s-20">7.57</td>
+              <td class="female-5m" id="female-5m-20">4.85</td>
+              <td class="female-60m" id="female-60m-20">4.13</td>
+            </tr>
+            <tr>
+              <td rowspan="7" class="row-header">Very good (e.g. Cat 2)</td>
+              <td class="male-5s" id="male-5s-21">18.6</td>
+              <td class="male-60s" id="male-60s-21">9.2</td>
+              <td class="male-5m" id="male-5m-21">5.53</td>
+              <td class="male-60m" id="male-60m-21">4.62</td>
+              <td class="female-5s" id="female-5s-21">15.11</td>
+              <td class="female-60s" id="female-60s-21">7.48</td>
+              <td class="female-5m" id="female-5m-21">4.76</td>
+              <td class="female-60m" id="female-60m-21">4.05</td>
+            </tr>
+            <tr>
+              <td class="male-5s" id="male-5s-22">18.33</td>
+              <td class="male-60s" id="male-60s-22">9.09</td>
+              <td class="male-5m" id="male-5m-22">5.43</td>
+              <td class="male-60m" id="male-60m-22">4.53</td>
+              <td class="female-5s" id="female-5s-22">14.89</td>
+              <td class="female-60s" id="female-60s-22">7.39</td>
+              <td class="female-5m" id="female-5m-22">4.67</td>
+              <td class="female-60m" id="female-60m-22">3.97</td>
+            </tr>
+            <tr>
+              <td class="male-5s" id="male-5s-23">18.06</td>
+              <td class="male-60s" id="male-60s-23">8.97</td>
+              <td class="male-5m" id="male-5m-23">5.33</td>
+              <td class="male-60m" id="male-60m-23">4.44</td>
+              <td class="female-5s" id="female-5s-23">14.68</td>
+              <td class="female-60s" id="female-60s-23">7.3</td>
+              <td class="female-5m" id="female-5m-23">4.57</td>
+              <td class="female-60m" id="female-60m-23">3.88</td>
+            </tr>
+            <tr>
+              <td class="male-5s" id="male-5s-24">17.79</td>
+              <td class="male-60s" id="male-60s-24">8.86</td>
+              <td class="male-5m" id="male-5m-24">5.22</td>
+              <td class="male-60m" id="male-60m-24">4.35</td>
+              <td class="female-5s" id="female-5s-24">14.46</td>
+              <td class="female-60s" id="female-60s-24">7.21</td>
+              <td class="female-5m" id="female-5m-24">4.48</td>
+              <td class="female-60m" id="female-60m-24">3.8</td>
+            </tr>
+            <tr>
+              <td class="male-5s" id="male-5s-25">17.51</td>
+              <td class="male-60s" id="male-60s-25">8.74</td>
+              <td class="male-5m" id="male-5m-25">5.12</td>
+              <td class="male-60m" id="male-60m-25">4.27</td>
+              <td class="female-5s" id="female-5s-25">14.25</td>
+              <td class="female-60s" id="female-60s-25">7.11</td>
+              <td class="female-5m" id="female-5m-25">4.39</td>
+              <td class="female-60m" id="female-60m-25">3.72</td>
+            </tr>
+            <tr>
+              <td class="male-5s" id="male-5s-26">17.24</td>
+              <td class="male-60s" id="male-60s-26">8.63</td>
+              <td class="male-5m" id="male-5m-26">5.01</td>
+              <td class="male-60m" id="male-60m-26">4.18</td>
+              <td class="female-5s" id="female-5s-26">14.03</td>
+              <td class="female-60s" id="female-60s-26">7.02</td>
+              <td class="female-5m" id="female-5m-26">4.3</td>
+              <td class="female-60m" id="female-60m-26">3.64</td>
+            </tr>
+            <tr>
+              <td class="male-5s" id="male-5s-27">16.97</td>
+              <td class="male-60s" id="male-60s-27">8.51</td>
+              <td class="male-5m" id="male-5m-27">4.91</td>
+              <td class="male-60m" id="male-60m-27">4.09</td>
+              <td class="female-5s" id="female-5s-27">13.82</td>
+              <td class="female-60s" id="female-60s-27">6.93</td>
+              <td class="female-5m" id="female-5m-27">4.2</td>
+              <td class="female-60m" id="female-60m-27">3.55</td>
+            </tr>
+            <tr>
+              <td rowspan="6" class="row-header">Good (e.g. Cat 3)</td>
+              <td class="male-5s" id="male-5s-28">16.7</td>
+              <td class="male-60s" id="male-60s-28">8.4</td>
+              <td class="male-5m" id="male-5m-28">4.81</td>
+              <td class="male-60m" id="male-60m-28">4</td>
+              <td class="female-5s" id="female-5s-28">13.6</td>
+              <td class="female-60s" id="female-60s-28">6.84</td>
+              <td class="female-5m" id="female-5m-28">4.11</td>
+              <td class="female-60m" id="female-60m-28">3.47</td>
+            </tr>
+            <tr>
+              <td class="male-5s" id="male-5s-29">16.43</td>
+              <td class="male-60s" id="male-60s-29">8.28</td>
+              <td class="male-5m" id="male-5m-29">4.7</td>
+              <td class="male-60m" id="male-60m-29">3.91</td>
+              <td class="female-5s" id="female-5s-29">13.39</td>
+              <td class="female-60s" id="female-60s-29">6.75</td>
+              <td class="female-5m" id="female-5m-29">4.02</td>
+              <td class="female-60m" id="female-60m-29">3.39</td>
+            </tr>
+            <tr>
+              <td class="male-5s" id="male-5s-30">16.15</td>
+              <td class="male-60s" id="male-60s-30">8.17</td>
+              <td class="male-5m" id="male-5m-30">4.6</td>
+              <td class="male-60m" id="male-60m-30">3.82</td>
+              <td class="female-5s" id="female-5s-30">13.17</td>
+              <td class="female-60s" id="female-60s-30">6.66</td>
+              <td class="female-5m" id="female-5m-30">3.93</td>
+              <td class="female-60m" id="female-60m-30">3.31</td>
+            </tr>
+            <tr>
+              <td class="male-5s" id="male-5s-31">15.88</td>
+              <td class="male-60s" id="male-60s-31">8.05</td>
+              <td class="male-5m" id="male-5m-31">4.5</td>
+              <td class="male-60m" id="male-60m-31">3.73</td>
+              <td class="female-5s" id="female-5s-31">12.95</td>
+              <td class="female-60s" id="female-60s-31">6.57</td>
+              <td class="female-5m" id="female-5m-31">3.83</td>
+              <td class="female-60m" id="female-60m-31">3.23</td>
+            </tr>
+            <tr>
+              <td class="male-5s" id="male-5s-32">15.61</td>
+              <td class="male-60s" id="male-60s-32">7.94</td>
+              <td class="male-5m" id="male-5m-32">4.39</td>
+              <td class="male-60m" id="male-60m-32">3.64</td>
+              <td class="female-5s" id="female-5s-32">12.74</td>
+              <td class="female-60s" id="female-60s-32">6.48</td>
+              <td class="female-5m" id="female-5m-32">3.74</td>
+              <td class="female-60m" id="female-60m-32">3.14</td>
+            </tr>
+            <tr>
+              <td class="male-5s" id="male-5s-33">15.34</td>
+              <td class="male-60s" id="male-60s-33">7.82</td>
+              <td class="male-5m" id="male-5m-33">4.29</td>
+              <td class="male-60m" id="male-60m-33">3.55</td>
+              <td class="female-5s" id="female-5s-33">12.52</td>
+              <td class="female-60s" id="female-60s-33">6.39</td>
+              <td class="female-5m" id="female-5m-33">3.65</td>
+              <td class="female-60m" id="female-60m-33">3.06</td>
+            </tr>
+            <tr>
+              <td rowspan="6" class="row-header">Moderate (e.g. Cat 4)</td>
+              <td class="male-5s" id="male-5s-34">15.07</td>
+              <td class="male-60s" id="male-60s-34">7.71</td>
+              <td class="male-5m" id="male-5m-34">4.19</td>
+              <td class="male-60m" id="male-60m-34">3.47</td>
+              <td class="female-5s" id="female-5s-34">12.31</td>
+              <td class="female-60s" id="female-60s-34">6.3</td>
+              <td class="female-5m" id="female-5m-34">3.56</td>
+              <td class="female-60m" id="female-60m-34">2.98</td>
+            </tr>
+            <tr>
+              <td class="male-5s" id="male-5s-35">14.79</td>
+              <td class="male-60s" id="male-60s-35">7.59</td>
+              <td class="male-5m" id="male-5m-35">4.08</td>
+              <td class="male-60m" id="male-60m-35">3.38</td>
+              <td class="female-5s" id="female-5s-35">12.09</td>
+              <td class="female-60s" id="female-60s-35">6.21</td>
+              <td class="female-5m" id="female-5m-35">3.46</td>
+              <td class="female-60m" id="female-60m-35">2.9</td>
+            </tr>
+            <tr>
+              <td class="male-5s" id="male-5s-36">14.52</td>
+              <td class="male-60s" id="male-60s-36">7.48</td>
+              <td class="male-5m" id="male-5m-36">3.98</td>
+              <td class="male-60m" id="male-60m-36">3.29</td>
+              <td class="female-5s" id="female-5s-36">11.88</td>
+              <td class="female-60s" id="female-60s-36">6.12</td>
+              <td class="female-5m" id="female-5m-36">3.37</td>
+              <td class="female-60m" id="female-60m-36">2.82</td>
+            </tr>
+            <tr>
+              <td class="male-5s" id="male-5s-37">14.25</td>
+              <td class="male-60s" id="male-60s-37">7.36</td>
+              <td class="male-5m" id="male-5m-37">3.88</td>
+              <td class="male-60m" id="male-60m-37">3.2</td>
+              <td class="female-5s" id="female-5s-37">11.66</td>
+              <td class="female-60s" id="female-60s-37">6.03</td>
+              <td class="female-5m" id="female-5m-37">3.28</td>
+              <td class="female-60m" id="female-60m-37">2.73</td>
+            </tr>
+            <tr>
+              <td class="male-5s" id="male-5s-38">13.98</td>
+              <td class="male-60s" id="male-60s-38">7.25</td>
+              <td class="male-5m" id="male-5m-38">3.77</td>
+              <td class="male-60m" id="male-60m-38">3.11</td>
+              <td class="female-5s" id="female-5s-38">11.45</td>
+              <td class="female-60s" id="female-60s-38">5.94</td>
+              <td class="female-5m" id="female-5m-38">3.19</td>
+              <td class="female-60m" id="female-60m-38">2.65</td>
+            </tr>
+            <tr>
+              <td class="male-5s" id="male-5s-39">13.71</td>
+              <td class="male-60s" id="male-60s-39">7.13</td>
+              <td class="male-5m" id="male-5m-39">3.67</td>
+              <td class="male-60m" id="male-60m-39">3.02</td>
+              <td class="female-5s" id="female-5s-39">11.23</td>
+              <td class="female-60s" id="female-60s-39">5.85</td>
+              <td class="female-5m" id="female-5m-39">3.09</td>
+              <td class="female-60m" id="female-60m-39">2.57</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="col-md-2">
+      </div>
+    </div>
+  </div>
+  <script src="https://use.fontawesome.com/3708dac087.js" type="text/javascript"></script>
+  <script type="text/javascript" src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
+  <script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+  <script src="js/power.js"></script>
+</body>
+
+</html>
