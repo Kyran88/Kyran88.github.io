@@ -1,0 +1,25 @@
+{
+  "name": "apiwebchat",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "env": {
+    "NODE_ENV": "development"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@material/theme": "^0.1.5",
+    "angular": "^1.6.5",
+    "angular-animate": "^1.6.5",
+    "angular-aria": "^1.6.5",
+    "angular-material": "^1.1.4",
+    "body-parser": "^1.17.2",
+    "cookie-parser": "^1.4.3",
+    "express": "^4.15.3",
+    "node-fetch": "^1.7.1"
+  }
+}
