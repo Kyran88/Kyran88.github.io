@@ -37,7 +37,7 @@ body {
   transform: rotate(-30deg);
 }
 .chat-launcher:hover {
-  background: #ffb329;
+  background: #D10084;
 }
 .chat-launcher.active:before {
   opacity: 0;
