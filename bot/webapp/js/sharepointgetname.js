@@ -24,7 +24,7 @@ function init(){
     title = currentUser.get_title();
     trimmed = title.replace(/^\s+|\s+$/g, '');
     titleAry = trimmed.split(" ");
-    document.getElementById('userTitle').innerHTML = greeting + ", " + titleAry[0] + "." + " Please select which library you would like to access below.";
+    document.getElementById('userTitle').innerHTML = greeting + ", " + titleAry[0] + ".";
 }
 
  function onQueryFailed(sender, args) {
