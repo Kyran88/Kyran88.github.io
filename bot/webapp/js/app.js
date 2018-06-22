@@ -133,7 +133,7 @@
 
   const init = () => {
     let welcomeReplies = [
-      'Hello! &#x1F44B; I\'m Kyran, I try to create the best user experiences possible, both physical and virtual, using humour, friendliness, web technologies and good design.'
+      '<span id="userTitle"></span> &#x1F44B; I\'m Kyran, I try to create the best user experiences possible, both physical and virtual, using humour, friendliness, web technologies and good design.'
     ];
     idle = window.setInterval(() => {
       window.clearInterval(idle);
