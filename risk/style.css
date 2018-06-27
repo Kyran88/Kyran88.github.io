@@ -1,13 +1,13 @@
 body {
 	margin: 0px 0px 0px 0px;
-	background-image: url('risk_board.jpg');
+	background-image: url('https://kyran88.github.io/risk/risk_board.jpg');
 	background-repeat: no-repeat;
 	background-size: cover;
 }
 .header {
 	color: red;
 	text-align: center;
-	background-image: url('risk_logo.png');
+	background-image: url('https://kyran88.github.io/risk/risk_logo.png');
 	background-repeat: no-repeat;
 	background-color: #FFEBCD;
 	width: 100%;
