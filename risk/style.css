@@ -1,6 +1,6 @@
 body {
 	margin: 0px 0px 0px 0px;
-	background-image: url('https://kyran88.github.io/risk/risk_board.jpg');
+	background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('https://kyran88.github.io/risk/risk_board.jpg');
 	background-repeat: no-repeat;
 	background-size: cover;
 }
