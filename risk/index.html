@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <link type="html/css" rel="stylesheet" href="style.css"/>
+    </head>
+    <title>Risk Battle Calculator</title>
+    <body>
+        <div class="container">
+            <div class="header">
+                <div class="inputs">
+                    <span class="label">Attacking Armies</span>
+                    <input type="number" class="num_entry" id="attackers" max="3" min="1">
+                    <span class="label">Defending Armies</span>
+                    <input type="number" class="num_entry" name="defenders" id="defenders" max="2" min="1">
+                </div>
+            </div>
+            <div class="jumbotron">
+                <a class="button" name="battle" onclick="main()">Battle</a>
+                <br />
+                <br />
+                <div id="result"></div>
+                <div id="die_view"></div>
+            </div>
+        </div>
+    </body>
+    <script>
+	
+	// calculates a random integer between 1 and 6 to simulate a single die roll
+    function getRandomInt(min, max) {
+        return Math.floor(Math.random() * (max - min + 1)) + min;
+    };
+	
+	/* 
+	Class to generate an army used to simulate the battle
+	Takes one parameter: units
+	*/
+    function Army(units) {
+        this.units = units;	// number of units used in a battle 
+        this.rolls = []; // array holding the numerical values of each die roll
+        this.victories = 0; // number of die rolls the army wins in a battle
+        this.calculateRolls = function() { // populates the rolls array with a random number of rolls for each unit
+            for (i = 0; i < this.units; i++) {
+                this.rolls.push(getRandomInt(1, 6));
+            }
+            this.rolls.sort();
+            this.rolls.reverse();
+        };
+    };
+	
+	/*
+	Calls each Army to generate its dice rolls, compares them, and calls each army to increment its victories
+	Takes two parameters: an instance of the Army class designated as an attacker, and an instance of the Army class designated as a defender
+	*/
+    function playRisk(attacker, defender) {
+		
+		// declare a total number of times to compare dice rolls
+        var totalBattles = 0
+		
+		// the total battles will be equal to whichever army has fewer units
+        if (attacker.units > defender.units) {
+            totalBattles = defender.units } else {
+            totalBattles = attacker.units
+        };
+		
+		// call on each Army to calculate its rolls
+        attacker.calculateRolls();
+        defender.calculateRolls();
+        for (i = 0; i < totalBattles; i++) { // loop through a range of indices for each battle
+            if (defender.rolls[i] >= attacker.rolls[i]) { // compare the die values at each index; defenders always win ties
+                defender.victories++ } else { // call on the winning Army to increment its victories
+                attacker.victories++
+            }
+        };
+    };
+	/*
+	Calls on each Army to compare their victories, and returns a string with HTML based on the Army with the greater victories
+	Takes two parameters: an instance of the Army class designated as an attacker, and an instance of the Army class designated as a defender
+	*/
+    function displayVictories(attacker, defender) {
+		
+		// declare the result to be returned
+		var result = ''
+		
+		// set result to an appropriate string, depending on which Army has greater victories; defenders always win ties
+        if (defender.victories >= attacker.victories) {
+            result = '<div class="result-box">' +
+            'The defending armies stand their ground!' +
+            '<p>Casualties for the attackers: ' +
+            defender.victories.toString() +
+            '</p><p>Casualties for the defenders: ' +
+            attacker.victories.toString() +
+            '</p></div>'
+        } else {
+            result = '<div class="result-box">' +
+            'The attacking armies are victorious!    ' +
+            '<p id=>Casualties for the defenders: ' +
+            attacker.victories.toString() +
+            '</p><p>Casualties for the attackers: '  +
+            defender.victories.toString() +
+            '</p></div>'
+        };
+        return result
+    };
+	/*
+	Calls on each Army to collect their dice rolls, and returns a string with HTML containing the values of the dice rolls
+	Takes two parameters: an instance of the Army class designated as an attacker, and an instance of the Army class designated as a defender
+	*/
+    function displayDice(attacker, defender) {
+        var dice = ""
+        for (i = 0; i < attacker.rolls.length; i++) {
+            dice = dice + "<div class='red_die'>" +	// the attacker traditionally rolls red dice
+            attacker.rolls[i].toString() +
+            "</div>"
+        };
+        dice = dice + ("<br /><br /><br /><br />")
+        for (i = 0; i < defender.rolls.length; i++) {
+            dice = dice + "<div class='white_die'>" + // the defender traditionally rolls white dice
+            defender.rolls[i].toString() +
+            "</div>"
+        };
+        return dice
+    };
+    function main() {
+        var attacker = new Army(document.getElementById('attackers').value)	// create the attacking army using the value from the attackers entry field
+        var defender = new Army(document.getElementById('defenders').value)	// create the defending army using the value from the defenders entry field
+        playRisk(attacker, defender) // compare each army's dice rolls, and set victories for each army
+        document.getElementById('result').innerHTML = displayVictories(attacker, defender) // display the victor & casualties based on each army's victories in the document
+        document.getElementById('die_view').innerHTML = displayDice(attacker, defender)	// display the dice rolls in the document
+    };
+    </script>
+</html>
