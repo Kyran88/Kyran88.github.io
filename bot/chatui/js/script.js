@@ -1,117 +1,137 @@
 /*   Chatbot Assistant Prototype using dialogflow
  */
 
-var accessToken = '32b97368f168447cb5017b64713a9b23';
-var baseUrl = 'https://api.api.ai/api/query?v=20150910';
-var sessionId = '1234567890';
-var loadingMarkups = '<span class=\'loader\'><span class=\'loader__dot\'></span><span class=\'loader__dot\'></span><span class=\'loader__dot\'></span></span>';
-var errorMessage = 'My apologies, I\'m not available at the moment. =^.^=';
-var urlPattern = /(\b(https?|ftp):\/\/[-A-Z0-9+&@#\/%?=~_|!:,.;]*[-A-Z0-9+&@#\/%=~_|])/gim;
-var loadingDelay = 700;
-var aiReplyDelay = 1800;
+const accessToken = '32b97368f168447cb5017b64713a9b23'
+const baseUrl = 'https://api.api.ai/api/query?v=20150910'
+const sessionId = '1234567890'
+const loadingMarkups = `<span class='loader'><span class='loader__dot'></span><span class='loader__dot'></span><span class='loader__dot'></span></span>`
+const errorMessage = 'My apologies, I\'m not available at the moment. =^.^='
+const urlPattern = /(\b(https?|ftp):\/\/[-A-Z0-9+&@#\/%?=~_|!:,.;]*[-A-Z0-9+&@#\/%=~_|])/gim
+const loadingDelay = 700
+const aiReplyDelay = 1800
 
-var $document = document;
-var $chatbot = $document.querySelector('.chatbot');
-var $chatbotMessageWindow = $document.querySelector('.chatbot__message-window');
-var $chatbotHeader = $document.querySelector('.chatbot__header');
-var $chatbotMessages = $document.querySelector('.chatbot__messages');
-var $chatbotInput = $document.querySelector('.chatbot__input');
-var $chatbotSubmit = $document.querySelector('.chatbot__submit');
+const $document = document
+const $chatbot = $document.querySelector('.chatbot')
+const $chatbotMessageWindow = $document.querySelector('.chatbot__message-window')
+const $chatbotHeader = $document.querySelector('.chatbot__header')
+const $chatbotMessages = $document.querySelector('.chatbot__messages')
+const $chatbotInput = $document.querySelector('.chatbot__input')
+const $chatbotSubmit = $document.querySelector('.chatbot__submit')
 
-document.addEventListener('keypress', function (event) {
+document.addEventListener('keypress', event => {
   if (event.which == 13) {
-    validateMessage();
+    validateMessage()
   }
-}, false);
+}, false)
 
-$chatbotHeader.addEventListener('click', function () {
-  toggle($chatbot, 'chatbot--closed');
-  $chatbotInput.focus();
-}, false);
+$chatbotHeader.addEventListener('click', () => {
+  toggle($chatbot, 'chatbot--closed')
+  $chatbotInput.focus()
+}, false)
 
-$chatbotSubmit.addEventListener('click', function () {
-  validateMessage();
-}, false);
+$chatbotSubmit.addEventListener('click', () => {
+  validateMessage()
+}, false)
 
-var toggle = function toggle(element, klass) {
-  var classes = element.className.match(/\S+/g) || [],
-      index = classes.indexOf(klass);
-  index >= 0 ? classes.splice(index, 1) : classes.push(klass);
-  element.className = classes.join(' ');
-};
+let toggle = (element, klass) => {
+  let classes = element.className.match(/\S+/g) || [],
+    index = classes.indexOf(klass)
+  index >= 0 ? classes.splice(index, 1) : classes.push(klass)
+  element.className = classes.join(' ')
+}
 
-var userMessage = function userMessage(content) {
-  $chatbotMessages.innerHTML += '<li class=\'is-user animation\'>\n      <p class=\'chatbot__message\'>\n        ' + content + '\n      </p>\n      <span class=\'chatbot__arrow chatbot__arrow--right\'></span>\n    </li>';
-};
+let userMessage = content => {
+  $chatbotMessages.innerHTML += `<li class='is-user animation'>
+      <p class='chatbot__message'>
+        ${content}
+      </p>
+      <span class='chatbot__arrow chatbot__arrow--right'></span>
+    </li>`
+}
 
-var aiMessage = function aiMessage(content) {
-  var isLoading = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : false;
-  var delay = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : 0;
+let aiMessage = (content, isLoading = false, delay = 0) => {
+  setTimeout(() => {
+    removeLoader()
+    $chatbotMessages.innerHTML += `<li 
+      class='is-ai animation' 
+      id='${isLoading ? "is-loading" : ""}'>
+        <div class="is-ai__profile-picture">
+          <svg class="icon-avatar" viewBox="0 0 32 32">
+            <use xlink:href="#avatar" />
+          </svg>
+        </div>
+        <span class='chatbot__arrow chatbot__arrow--left'></span>
+        <div class='chatbot__message'>
+          ${content}
+        </div>
+      </li>`
+    scrollDown()
+  }, delay)
+}
 
-  setTimeout(function () {
-    removeLoader();
-    $chatbotMessages.innerHTML += '<li \n      class=\'is-ai animation\' \n      id=\'' + (isLoading ? "is-loading" : "") + '\'>\n        <div class="is-ai__profile-picture">\n          <svg class="icon-avatar" viewBox="0 0 32 32">\n            <use xlink:href="#avatar" />\n          </svg>\n        </div>\n        <span class=\'chatbot__arrow chatbot__arrow--left\'></span>\n        <div class=\'chatbot__message\'>\n          ' + content + '\n        </div>\n      </li>';
-    scrollDown();
-  }, delay);
-};
-
-var removeLoader = function removeLoader() {
-  var loadingElem = document.getElementById('is-loading');
+let removeLoader = () => {
+  let loadingElem = document.getElementById('is-loading')
   if (loadingElem) {
-    $chatbotMessages.removeChild(loadingElem);
+    $chatbotMessages.removeChild(loadingElem)
   }
-};
+}
 
-var escapeScript = function escapeScript(unsafe) {
-  var safeString = unsafe.replace(/</g, ' ').replace(/>/g, ' ').replace(/&/g, ' ').replace(/"/g, ' ').replace(/\\/, ' ').replace(/\s+/g, ' ');
-  return safeString.trim();
-};
+let escapeScript = unsafe => {
+  let safeString = unsafe
+    .replace(/</g, ' ')
+    .replace(/>/g, ' ')
+    .replace(/&/g, ' ')
+    .replace(/"/g, ' ')
+    .replace(/\\/, ' ')
+    .replace(/\s+/g, ' ')
+  return safeString.trim()
+}
 
-var linkify = function linkify(inputText) {
-  return inputText.replace(urlPattern, '<a href=\'$1\' target=\'_blank\'>$1</a>');
-};
+let linkify = inputText => {
+  return inputText.replace(urlPattern, `<a href='$1' target='_blank'>$1</a>`)
+}
 
-var validateMessage = function validateMessage() {
-  var text = $chatbotInput.value;
-  var safeText = text ? escapeScript(text) : '';
+let validateMessage = () => {
+  let text = $chatbotInput.value
+  let safeText = text ? escapeScript(text) : ''
   if (safeText.length && safeText !== ' ') {
-    resetInputField();
-    userMessage(safeText);
-    send(safeText);
+    resetInputField()
+    userMessage(safeText)
+    send(safeText)
   }
-  scrollDown();
-  return;
-};
+  scrollDown()
+  return
+}
 
-var multiChoiceAnswer = function multiChoiceAnswer(text) {
-  var decodedText = text.replace(/zzz/g, "'");
-  userMessage(decodedText);
-  send(decodedText);
-  scrollDown();
-  return;
-};
+let multiChoiceAnswer = text => {
+  let decodedText = text.replace(/zzz/g, "'")
+  userMessage(decodedText)
+  send(decodedText)
+  scrollDown()
+  return
+}
 
-var processResponse = function processResponse(val) {
+let processResponse = val => {
 
-  removeLoader();
+  removeLoader()
 
   if (val.fulfillment) {
 
-    var output = '';
-    var messagesLength = val.fulfillment.messages.length;
+    let output = ''
+    let messagesLength = val.fulfillment.messages.length
 
-    for (var i = 0; i < messagesLength; i++) {if (window.CP.shouldStopExecution(2)){break;}
+    for (let i = 0; i < messagesLength; i++) {
 
-      var message = val.fulfillment.messages[i];
-      var type = message.type;
+      let message = val.fulfillment.messages[i]
+      let type = message.type
 
       switch (type) {
 
         // 0 fulfillment is text
         case 0:
-          var parsedText = linkify(message.speech);
-          output += '<p>' + parsedText + '</p>';
-          break;
+          let parsedText = linkify(message.speech)
+          output += `<p>${parsedText}</p>`
+          break
 
         // 1 fulfillment is card
         case 1:
@@ -119,83 +139,81 @@ var processResponse = function processResponse(val) {
           // let imageTitle = message.title
           // let imageSubtitle = message.subtitle
           // output += `<img src='${imageUrl}' alt='${imageTitle}${imageSubtitle}' />`
-          break;
+          break
 
         // 2 fulfillment is button list
         case 2:
-          var title = message.title;
-          var replies = message.replies;
-          var repliesLength = replies.length;
-          output += '<p>' + title + '</p>';
+          let title = message.title
+          let replies = message.replies
+          let repliesLength = replies.length
+          output += `<p>${title}</p>`
 
-          for (var _i = 0; _i < repliesLength; _i++) {if (window.CP.shouldStopExecution(1)){break;}
-            var reply = replies[_i];
-            var encodedText = reply.replace(/'/g, 'zzz');
-            output += '<button onclick=\'multiChoiceAnswer("' + encodedText + '")\'>' + reply + '</button>';
+          for (let i = 0; i < repliesLength; i++) {
+            let reply = replies[i]
+            let encodedText = reply.replace(/'/g, 'zzz')
+            output += `<button onclick='multiChoiceAnswer("${encodedText}")'>${reply}</button>`
           }
-window.CP.exitedLoop(1);
 
-
-          break;
+          break
 
         // 3 fulfillment is image
         case 3:
           // console.log('Fulfillment is image - TODO')
-          break;
+          break
       }
+
     }
-window.CP.exitedLoop(2);
 
+    return output
 
-    return output;
   } else {
-    return val;
+    return val
   }
-};
+}
 
-var setResponse = function setResponse(val) {
-  var delay = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 0;
+let setResponse = (val, delay = 0) => {
+  setTimeout(() => {
+    aiMessage(processResponse(val))
+  }, delay)
+}
 
-  setTimeout(function () {
-    aiMessage(processResponse(val));
-  }, delay);
-};
+let resetInputField = () => {
+  $chatbotInput.value = ''
+}
 
-var resetInputField = function resetInputField() {
-  $chatbotInput.value = '';
-};
+let scrollDown = () => {
+  let distanceToScroll =
+    $chatbotMessageWindow.scrollHeight -
+    ($chatbotMessages.lastChild.offsetHeight + 60)
+  $chatbotMessageWindow.scrollTop = distanceToScroll
+  return false
+}
 
-var scrollDown = function scrollDown() {
-  var distanceToScroll = $chatbotMessageWindow.scrollHeight - ($chatbotMessages.lastChild.offsetHeight + 60);
-  $chatbotMessageWindow.scrollTop = distanceToScroll;
-  return false;
-};
-
-var send = function send() {
-  var text = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : '';
-
-  fetch(baseUrl + '&query=' + text + '&lang=en&sessionId=' + sessionId, {
+let send = (text = '') => {
+  fetch(`${baseUrl}&query=${text}&lang=en&sessionId=${sessionId}`, {
     method: 'GET',
     dataType: 'json',
     headers: {
       Authorization: 'Bearer ' + accessToken,
       'Content-Type': 'application/json; charset=utf-8'
     }
-  }).then(function (response) {
-    return response.json();
-  }).then(function (res) {
+  })
+  .then(response => response.json())
+  .then(res => {
     if (res.status < 200 || res.status >= 300) {
-      var error = new Error(res.statusText);
-      throw error;
+      let error = new Error(res.statusText)
+      throw error
     }
-    return res;
-  }).then(function (res) {
-    setResponse(res.result, loadingDelay + aiReplyDelay);
-  }).catch(function (error) {
-    setResponse(errorMessage, loadingDelay + aiReplyDelay);
-    resetInputField();
-    console.log(error);
-  });
+    return res
+  })
+  .then(res => {
+    setResponse(res.result, loadingDelay + aiReplyDelay)
+  })
+  .catch(error => {
+    setResponse(errorMessage, loadingDelay + aiReplyDelay)
+    resetInputField()
+    console.log(error)
+  })
 
-  aiMessage(loadingMarkups, true, loadingDelay);
-};
+  aiMessage(loadingMarkups, true, loadingDelay)
+}
