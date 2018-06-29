@@ -302,7 +302,7 @@
 
 body {
   background: url("https://kyran88.github.io/bot/swim/icon/ai%20image.jpg") no-repeat center center;
-  background-size: cover;
+  background-size: auto;
   height: 100%;
   font-family: 'Open Sans', sans-serif;
   font-size: 16px;
