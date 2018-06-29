@@ -301,9 +301,10 @@
 }
 
 body {
-  background: url("https://kyran88.github.io/bot/swim/icon/a5d6b68e2f957dbe261995255d3b2fa0.png") no-repeat center center;
-  background-size: auto;
-  height: 100%;
+  background-image: url('https://kyran88.github.io/bot/swim/icon/a5d6b68e2f957dbe261995255d3b2fa0.png');    
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-position: center;
   font-family: 'Open Sans', sans-serif;
   font-size: 16px;
 }
