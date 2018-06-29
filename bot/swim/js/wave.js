@@ -1,50 +1,98 @@
-var canvas = document.getElementById("canvas");
-var ctx = canvas.getContext("2d");
-var freq = 0.01;
-var timer = 0;
-canvas.width = window.innerWidth;
-canvas.height = window.innerHeight;
-ctx.fillStyle="#000000";
-ctx.fillRect(0, 0, canvas.width, canvas.height);
-window.addEventListener('resize',resize,false);
-render()
+/* ---- particles.js config ---- */
 
-function drawSine(amp,color,pha,lineWeight){
-  var gradient;
-  ctx.beginPath();
-  ctx.moveTo(0,window.innerHeight/2);
-  for(var i = 0; i<window.innerWidth ;i++){
-    var a = 1 - Math.abs(i - window.innerWidth/2) / (window.innerWidth/2);
-    var o = a*amp;
-    ctx.lineTo(i, (window.innerHeight/2 + 120*o*Math.sin(freq*i+timer+pha)));
-  }
-  
-  if(lineWeight==1){
-    ctx.lineWidth = 2;
-  }else{
-    ctx.lineWidth = 0.5;
-  }
-  gradient = ctx.createLinearGradient(0,0,window.innerWidth,0);
-    gradient.addColorStop(0,"rgba(25, 255, 255, 0)");
-    gradient.addColorStop(0.5,"rgba(255, 25, 255, 0.75)");
-    gradient.addColorStop(1,"rgba(255, 255, 25, 0");
-  ctx.strokeStyle = gradient;
-  ctx.stroke();
-}
-
-function render(){
-  ctx.clearRect(0, 0, canvas.width, canvas.height);
-  ctx.fillStyle="#000000";
-  ctx.fillRect(0, 0, canvas.width, canvas.height);
-  drawSine(1,"#ffffff",0,1);
-  drawSine(-0.5,"#ffffff",0.5,0);
-  drawSine(0.5,"#ffffff",1,0);
-  drawSine(-0.3,"#ffffff",1.2,0);
-  drawSine(0.3,"#ffffff",2,0);
-  timer += 0.08;
-  requestAnimationFrame(render)
-}
-function resize(){
-  canvas.width = window.innerWidth;
-  canvas.height = window.innerHeight;
-}
+particlesJS("particles-js", {
+  "particles": {
+    "number": {
+      "value": 100,
+      "density": {
+        "enable": true,
+        "value_area":1000
+      }
+    },
+    "color": {
+      "value": ["#aa73ff", "#f8c210", "#83d238", "#33b1f8"]
+    },
+    
+    "shape": {
+      "type": "circle",
+      "stroke": {
+        "width": 0,
+        "color": "#fff"
+      },
+      "polygon": {
+        "nb_sides": 5
+      },
+      "image": {
+        "src": "img/github.svg",
+        "width": 100,
+        "height": 100
+      }
+    },
+    "opacity": {
+      "value": 0.6,
+      "random": false,
+      "anim": {
+        "enable": false,
+        "speed": 1,
+        "opacity_min": 0.1,
+        "sync": false
+      }
+    },
+    "size": {
+      "value": 2,
+      "random": true,
+      "anim": {
+        "enable": false,
+        "speed": 40,
+        "size_min": 0.1,
+        "sync": false
+      }
+    },
+    "line_linked": {
+      "enable": true,
+      "distance": 120,
+      "color": "#ffffff",
+      "opacity": 0.4,
+      "width": 1
+    },
+  },
+  "interactivity": {
+    "detect_on": "canvas",
+    "events": {
+      "onhover": {
+        "enable": true,
+        "mode": "grab"
+      },
+      "onclick": {
+        "enable": false
+      },
+      "resize": true
+    },
+    "modes": {
+      "grab": {
+        "distance": 140,
+        "line_linked": {
+          "opacity": 1
+        }
+      },
+      "bubble": {
+        "distance": 400,
+        "size": 40,
+        "duration": 2,
+        "opacity": 8,
+        "speed": 3
+      },
+      "repulse": {
+        "distance": 200,
+        "duration": 0.4
+      },
+      "push": {
+        "particles_nb": 4
+      },
+      "remove": {
+        "particles_nb": 2
+      }
+    }
+  },
+  "retina_detect": true
+});
