@@ -1,47 +1,105 @@
-@import url(https://fonts.googleapis.com/css?family=Roboto:100);
+body{
+	margin: 0;
+	padding: 0;
+}
 
-body
-{
-    background: #212121;
-    font-family: Roboto, Arial;
+#stripes{
+width:100%;
+height: 100%;
+overflow: hidden;
+transform-origin: 0;
+transform: skewY(-12deg);
+background: -webkit-linear-gradient(300deg,#53f 15%,#05d5ff 70%,#a6ffcb 94%);
+background: linear-gradient(150deg,#53f 15%,#05d5ff 70%,#a6ffcb 94%);
+
 }
-.colors
-{
+
+#stripes, #stripes span{
   position: absolute;
-  left:5em;
-  top:10%;
-  z-index: 1;
 }
-.colors li
-{
-  float: left;
-  margin: 0 10px 0 0;
-  width:30px;
-  height:30px;
+
+#stripes span{
+  height: 40px;
 }
-.c1 { background-color: rgb(0, 77, 100);}
-.c2 { background-color: rgb(165, 143, 118);}
-.c3 { background-color: rgb(235, 91, 57);}
-.hero
-{
-    height: 40em;
-    background: url(http://wallpoper.com/images/00/34/14/30/mountains-clouds_00341430.jpg) no-repeat center;
-    background-size: cover;
-    position: relative;
+
+#stripes :nth-child(1){
+  width: 50%;
+  left: 50%;
+  top:40px;
+  background:#4c29ff;
 }
-.tint
-{
-    content: '';
-    position: absolute;
-    left: 0; top: 0; right: 0; bottom: 0;
-    background: rgba(0, 77, 100, .6);
+
+#stripes :nth-child(2){
+  width: 14%;
+  right: 0;
+  bottom:40px;
+  background: #2be7ff;
 }
-.claim
-{
-  color:#dbdbdb;
-  font-size:2.5em;
-  padding: 22% 7em 0 2em;
-  position: relative;
- 
+
+#stripes :nth-child(3){
+  width: 25%;
+  bottom: 0;
+  right: 0;
+  background: #a1ffc8;
+}
+
+@media (min-width:670px){
+  #stripes span{
+    height:150px;
+  }
+  #stripes :nth-child(1){
+    top: 0;
+  }
+  #stripes :nth-child(2){
+    width: 16.66667%;
+    top: 300px;
+    bottom: auto;
+    background: #0dcfff;
+  }
+  #stripes :nth-child(3){
+    width: 33.33333%;
+    right: auto;
+    background: #11bdff;
+  }
+}
+
+@media (min-width: 880px){
+  #stripes span{
+    height: 190px;
+  }
+
+  #stripes :nth-child(1){
+    width: 33.33333%;
+    left: -16.66666%;
+    background: #53f;
+  }
+
+  #stripes :nth-child(2){
+    width: 33.33333%;
+    top: 0;
+    left: 16.66666%;
+    right: auto;
+    background: #4553ff;
+  }
+
+  #stripes :nth-child(3){
+    width: 33.33333%;
+    left: 49.99999%;
+    bottom: auto;
+    background: #4f40ff;
+  }
+
+  #stripes :nth-child(4){
+    width: 33.33333%;
+    top: 380px;
+    right: -16.66666%;
+    background: #25ddf5;
+  }
+
+  #stripes :nth-child(5){
+    width: 33.33333%;
+    bottom: 0;
+    background: #1fa2ff;
+  }
 }
 
