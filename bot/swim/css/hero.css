@@ -1,111 +1,47 @@
-html, body {
-  height: 100%;
-}
+@import url(https://fonts.googleapis.com/css?family=Roboto:100);
 
-body {
-  font-family: 'Roboto';
-  text-align: center;
-  color: #f5f5f5;
+body
+{
+    background: #212121;
+    font-family: Roboto, Arial;
 }
-
-.hero {
-  background: url("https://upload.wikimedia.org/wikipedia/commons/c/c5/Moraine_Lake_17092005.jpg") no-repeat center;
-  background-size: cover;
-  background-color: rgba(0, 0, 0, 0.75);
-  background-blend-mode: multiply;
-  height: 100%;
-  width: 100%;
+.colors
+{
+  position: absolute;
+  left:5em;
+  top:10%;
+  z-index: 1;
 }
-
-.inner-text {
-  position: relative;
-  top: 50%;
-  -webkit-transform: translateY(-50%);
-          transform: translateY(-50%);
-  font-size: 50px;
+.colors li
+{
+  float: left;
+  margin: 0 10px 0 0;
+  width:30px;
+  height:30px;
 }
-@media only screen and (min-width: 320px) {
-  .inner-text {
-    padding-left: 15px;
-    padding-right: 15px;
-  }
-}
-@media only screen and (min-width: 400px) {
-  .inner-text {
-    padding-left: 40px;
-    padding-right: 40px;
-  }
-}
-@media only screen and (min-width: 680px) {
-  .inner-text {
-    font-size: 75px;
-  }
-}
-@media only screen and (min-width: 950px) {
-  .inner-text {
-    font-size: 100px;
-  }
-}
-
-.p1 {
-  display: inline-block;
-  font-size: 1em;
-  font-weight: 900;
-  marign: 0;
-  line-height: 1;
-}
-@media only screen and (max-width: 465px) {
-  .p1 {
-    display: block;
-    position: absolute;
-    top: -25%;
-    left: 50%;
-    -webkit-transform: translateX(-50%);
-            transform: translateX(-50%);
-  }
-}
-
-.p2 {
-  display: inline-block;
-  font-size: 1em;
-  font-weight: 100;
-  marign: 0;
-  line-height: 1;
-  color: #4FC3F7;
-}
-@media only screen and (max-width: 465px) {
-  .p2 {
+.c1 { background-color: rgb(0, 77, 100);}
+.c2 { background-color: rgb(165, 143, 118);}
+.c3 { background-color: rgb(235, 91, 57);}
+.hero
+{
+    height: 40em;
+    background: url(http://wallpoper.com/images/00/34/14/30/mountains-clouds_00341430.jpg) no-repeat center;
+    background-size: cover;
     position: relative;
-    top: 0.6em;
-  }
 }
-
-.hero-down {
-  position: absolute;
-  bottom: 0;
-  font-size: 2em;
-  width: 2em;
-  height: 2em;
-  color: #f5f5f5;
-  border-radius: 100%;
+.tint
+{
+    content: '';
+    position: absolute;
+    left: 0; top: 0; right: 0; bottom: 0;
+    background: rgba(0, 77, 100, .6);
 }
-.hero-down:hover, .hero-down:focus {
-  color: #ccc;
-}
-.hero-down:active {
-  color: #f5f5f5;
-}
-.hero-down .btn-react {
-  background-color: #f5f5f5;
-  height: 100%;
-  width: 100%;
-  border-radius: 100%;
-  opacity: 0;
-  position: absolute;
-}
-.hero-down i {
-  vertical-align: bottom;
+.claim
+{
+  color:#dbdbdb;
+  font-size:2.5em;
+  padding: 22% 7em 0 2em;
   position: relative;
-  top: 0.1em;
+ 
 }
 
