@@ -14,12 +14,7 @@
 
 <meta name="mobile-web-app-capable" content="yes">
 <meta name="application-name" content="Meet Ava">
-<script type="text/javascript">
-//<![CDATA[
-window.__cfRocketOptions = {byc:0,p:0,petok:"e910714230aada42ce42f93dea210469c4382ba8-1524850370-1800"};
-//]]>
-</script>
-<script type="text/javascript" src="https://ajax.cloudflare.com/cdn-cgi/scripts/935cb224/cloudflare-static/rocket.min.js"></script>
+
 <link rel="icon" href="https://kyran88.github.io/App/images/Ava%20Ai.png">
 <link rel="manifest" href="https://kyran88.github.io/App/js/manifest.json">
 
@@ -43,8 +38,9 @@ window.__cfRocketOptions = {byc:0,p:0,petok:"e910714230aada42ce42f93dea210469c43
 
 <meta name="theme-color" content="#ffffff">
 
-<link rel="stylesheet" href="https://unpkg.com/material-components-web@0.20.0/dist/material-components-web.min.css">
-<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+        <!-- Stylesheets -->
+        <link rel="stylesheet" href="https://unpkg.com/material-components-web@0.26.0/dist/material-components-web.min.css">
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 <script type="application/ld+json">
         {
             "@context": "https://schema.org",
@@ -66,22 +62,28 @@ window.__cfRocketOptions = {byc:0,p:0,petok:"e910714230aada42ce42f93dea210469c43
                 "@type": "WebPage",
                 "@id": "#"
             },
-            "description": "Hey, I'm Ava your AI insurance assistant just ask me what you would like to know more about."
+            "description": "Hey, I'm Ava your AI insurance assistant just ask me what you would like to know more about.",
+                        "potentialAction": {
+                "@type": "SearchAction",
+                "target": "https://example.com?q={search_term_string}",
+                "query-input": "required name=search_term_string"
+            }
         }
         </script>
 </head>
 <body>
-<div id="app"></div>
-<script data-rocketsrc="https://kyran88.github.io/App/js/dist/build.js" type="text/rocketscript"></script>
-<script type="text/rocketscript">
+        <div id="app"></div>
+        <script src="https://kyran88.github.io/App/js/dist/build.js"></script>
+        <script>
             if ('serviceWorker' in navigator) {
                 window.addEventListener('load', function() {
                     navigator.serviceWorker.register('/worker.js')
                 })
             }
         </script>
- <noscript>
-            <h1>:{</h1>
+
+        <noscript>
+            <h1>:(</h1>
             <p>Hello, it looks like your JavaScript is disabled, please enable it, since the page can't render without it</p>
         </noscript>
 </body>
