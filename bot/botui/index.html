@@ -8,10 +8,11 @@
     <link rel="stylesheet" href="https://kyran88.github.io/bot/botui/build/botui-theme-default.css" />
   </head>
   <body>
-
     <div class="botui-app-container" id="botui-app">
   <bot-ui></bot-ui>
 </div>
+    <script src="https://cdn.jsdelivr.net/vue/latest/vue.min.js"></script>
+    <script src="https://kyran88.github.io/bot/botui/build/botui.min.js"></script>
     <script>
       var botui = new BotUI('botui-app'); // give it the id of container
 
@@ -44,7 +45,5 @@ botui.message.bot({ // show first message
   });
 });
     </script>
-    <script src="https://cdn.jsdelivr.net/vue/latest/vue.min.js"></script>
-    <script src="https://kyran88.github.io/bot/botui/build/botui.min.js"></script>
   </body>
 </html>
