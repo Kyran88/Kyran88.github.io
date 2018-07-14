@@ -1,0 +1,135 @@
+*, *:after, *:before {
+  box-sizing: border-box;
+}
+
+body {
+  background: #222;
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+
+.wrapper {
+  padding: 5px;
+  margin: 0 auto;
+  max-width: 80em;
+}
+
+@media (min-width: 40em) {
+  .wrapper {
+    padding: 10px;
+  }
+}
+.article {
+  float: left;
+  height: 300px;
+  padding: 5px;
+  width: 100%;
+}
+
+@media (min-width: 40em) {
+  .article {
+    height: 500px;
+    padding: 10px;
+  }
+
+  .article.half {
+    width: 50%;
+  }
+}
+.inner {
+  background: black;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center center;
+  color: #fff;
+  height: 100%;
+  overflow: hidden;
+  padding: 30px 20px 10px;
+  position: relative;
+  text-decoration: none;
+  text-shadow: 0 0 2px rgba(0, 0, 0, 0.25);
+  width: 100%;
+}
+.inner:after {
+  background: linear-gradient(35deg, rgba(0, 0, 0, 0.6) 50%, #3891c9 100%);
+  content: '';
+  height: 100%;
+  position: absolute;
+  right: 0;
+  top: 0;
+  width: 100%;
+  z-index: 1;
+}
+
+@media (min-width: 40em) {
+  .inner:after {
+    background: linear-gradient(35deg, rgba(56, 145, 201, 0) 50%, #3891c9 100%);
+  }
+}
+.inner h2 {
+  color: #fff;
+  font-size: 3em;
+  margin: 0;
+  position: relative;
+  text-shadow: 0 0 3px rgba(0, 0, 0, 0.25);
+  text-transform: uppercase;
+  z-index: 2;
+}
+
+.inner h4 {
+  color: #9cc8e4;
+  position: relative;
+  margin: 0;
+  z-index: 2;
+}
+
+.excerpt {
+  bottom: -100%;
+  color: #fff;
+  height: 100%;
+  padding: 20px 10px 30px;
+  position: absolute;
+  transition: 0.4s;
+  z-index: 2;
+}
+.inner:hover .excerpt {
+  bottom: 0;
+}
+.excerpt:before {
+  background: rgba(0, 0, 0, 0.8);
+  content: '';
+  height: 100%;
+  left: 0;
+  position: absolute;
+  top: 0;
+  transform: scale(1.35, 1);
+  width: 100%;
+  z-index: 1;
+}
+
+@media (min-width: 40em) {
+  .excerpt {
+    height: auto;
+    padding: 0 10px 100px;
+  }
+  .excerpt:before {
+    transform: scale(1.35) rotate(3deg);
+  }
+}
+.excerpt p {
+  margin: 20px 0 30px;
+  position: relative;
+  z-index: 3;
+}
+
+.excerpt a {
+  background: #3891c9;
+  color: inherit;
+  padding: 5px 10px;
+  position: relative;
+  text-decoration: none;
+  transition: 0.3s;
+  z-index: 3;
+}
+.excerpt a:hover {
+  background: #2c74a2;
+}
