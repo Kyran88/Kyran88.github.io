@@ -1,363 +1,89 @@
-<html>
+<!DOCTYPE html>
+<html lang="en">
 <head>
-<meta name="theme-color" content="#0fb8ad" />
-  <script type="text/javascript" src="http://kyran88.github.io/Nutrition/index.js"></script>
-<script type="text/javascript" src="http://kyran88.github.io/app/app.js"></script>
-<link rel="stylesheet" href="https://unpkg.com/onsenui/css/onsenui.css">
-<link rel="stylesheet" href="https://unpkg.com/onsenui/css/onsen-css-components.min.css">
-  <link rel="stylesheet" href="http://Kyran88.github.io/Nutrition/index.css">
-   <link rel="stylesheet" href="http://Kyran88.github.io/app/blog.css">
-     <link rel="stylesheet" href="http://Kyran88.github.io/app/contact.css">
-<script src="https://unpkg.com/onsenui/js/onsenui.min.js"></script>
-  
-  
-<title>App Framework</title>
+<meta charset="utf-8">
+<meta name="theme-color" content="#76D7C4" />        
+<title>Meet Ana | Your AI Swimming Assistant</title>
+<meta name="description" content="Hey, I'm Ana your AI Swimming assistant just ask me what you would like to know more about.">
+<meta name="yandex-verification" content="e5acf73236e4b71c" />
+
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="msapplication-tap-highlight" content="no">
+
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="application-name" content="Meet Ana">
+
+<link rel="icon" href="https://kyran88.github.io/App/images/Ava%20Ai.png">
+<link rel="manifest" href="https://kyran88.github.io/App/js/manifest.json">
+
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<meta name="apple-mobile-web-app-title" content="Meet Ana">
+<link rel="apple-touch-icon" href="https://kyran88.github.io/App/images/Ava%20Main.jpg">
+
+<meta property="og:title" content="Meet Ava">
+<meta property="og:image" content="https://kyran88.github.io/App/images/Ava%20Ai.png">
+<meta property="og:description" content="Hey, I'm Ana your AI Swimming assistant just ask me what you would like to know more about.">
+<meta property="og:url" content="#">
+<meta property="og:type" content="website" />
+<meta name="twitter:card" content="summary" />
+<meta name="twitter:description" content="Hey, I'm Ana your AI Swimming assistant just ask me what you would like to know more about." />
+<meta name="twitter:title" content="Meet Ava" />
+<meta name="twitter:image" content="https://kyran88.github.io/App/images/Ava%20Ai.png" />
+
+<meta name="msapplication-TileImage" content="https://kyran88.github.io/App/images/Ava%20Ai.png">
+<meta name="msapplication-TileColor" content="#ffffff">
+
+<meta name="theme-color" content="#ffffff">
+
+        <!-- Stylesheets -->
+        <link rel="stylesheet" href="https://unpkg.com/material-components-web@0.26.0/dist/material-components-web.min.css">
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+<script type="application/ld+json">
+        {
+            "@context": "https://schema.org",
+            "@type": "Website",
+            "publisher": {
+                "@type": "Bot",
+                "name": "Meet Ana",
+                "jobTitle": "#",
+                "nationality": "#",
+                "netWorth": "#",
+                "image": "#",
+                "sameAs": [
+                    "#",
+                    "#"
+                ]
+            },
+            "url": "#",
+            "mainEntityOfPage": {
+                "@type": "WebPage",
+                "@id": "#"
+            },
+            "description": "Hey, I'm Ana your AI Swimming assistant just ask me what you would like to know more about.",
+                        "potentialAction": {
+                "@type": "SearchAction",
+                "target": "https://example.com?q={search_term_string}",
+                "query-input": "required name=search_term_string"
+            }
+        }
+        </script>
 </head>
 <body>
+        <div id="app"></div>
+        <script src="https://kyran88.github.io/App/js/dist/build.js"></script>
+        <script>
+            if ('serviceWorker' in navigator) {
+                window.addEventListener('load', function() {
+                    navigator.serviceWorker.register('/worker.js')
+                })
+            }
+        </script>
 
-
-<ons-splitter>
-  <ons-splitter-side id="menu" side="left" width="220px" collapse swipeable>
-    <ons-page>
-      <ons-list>
-        <ons-list-item onclick="fn.load('home.html')" tappable>
-          Home
-        </ons-list-item>
-        <ons-list-item onclick="fn.load('calculator.html')" tappable>
-          Nutrition Calculator
-        </ons-list-item>
-        <ons-list-item onclick="fn.load('blog.html')" tappable>
-          Blog
-        </ons-list-item>
-        <ons-list-item onclick="fn.load('contact.html')" tappable>
-          Contact
-        </ons-list-item>
-      </ons-list>
-    </ons-page>
-  </ons-splitter-side>
-  <ons-splitter-content>
-    <ons-navigator id="navi" page="home.html"></ons-navigator>
-  </ons-splitter-content>
-</ons-splitter>
-
-<template id="home.html">
-  <ons-page>
-    <ons-toolbar>
-      <div class="left">
-        <ons-toolbar-button onclick="fn.open()">
-          <ons-icon icon="md-menu"></ons-icon>
-        </ons-toolbar-button>
-      </div>
-      <div class="center">
-        Home
-      </div>
-    </ons-toolbar>
-    <p style="text-align: center; opacity: 0.6; padding-top: 20px;">
-      Swipe right to open the menu!
-    </p>
-  </ons-page>
-</template>
-
-<template id="calculator.html">
-  <ons-page>
-    <ons-toolbar>
-      <div class="left">
-        <ons-toolbar-button onclick="fn.open()">
-          <ons-icon icon="md-menu"></ons-icon>
-        </ons-toolbar-button>
-      </div>
-      <div class="center">
-        Nutrition Calculator
-      </div>
-    </ons-toolbar>
-    <div class="line"></div>
-            	<div id="input-fields">
-                <div style="margin-bottom:20px;"><h3>Input</h3></div>
-            	<form name="userInput">
-                	<div id="input-labels">
-                        <label for="riderWeight" class="nc-var-label">Rider Weight (kg):</label>
-                        <label for="averagePower" class="nc-var-label">Average Power (watts):</label>
-                    </div>
-                    <div id="input-var">
-                        <input type="text" name="riderWeight" id="riderWeight" onKeyDown="validateNumber(event);" onKeypress="{if (event.keyCode == 13) validateInputs();}"/>                   
-                        <input type="text" name="averagePower" id="averagePower" onKeyDown="validateNumber(event);" onKeypress="{if (event.keyCode == 13) validateInputs();}" />                    
-                    </div>
-                    <div id="button">
-                    	<input class="button" type="button" value="Calculate" name="calculate" onclick="validateInputs();"/>
-                    </div>
-                    <div style="clear:both; overflow:hidden; height:1px;"></div>
-                </form>
-                </div>
-                <div class="line"></div>
-        		<div id="choose-product">
-                <div style="margin-bottom:20px;"><h3>Choose a product</h3></div>
-                <form name="select-product">                	
-                    <input name="product" type="radio" value="Power bar gel" onclick="productController();"/>
-                    <label for="power-bar-gel">Power bar gel</label><br/>
-                    <input name="product" type="radio" value="Power bar hydro gel" onclick="productController();"/>
-					<label for="power-bar-hydro-gel">Power bar hydro gel</label><br/>
-                    <input name="product" type="radio" value="High 5" onclick="productController();"/>                    
-                    <label for="high-5">High 5</label><br/>
-                    <input name="product" type="radio" value="High 5 Isotonic" onclick="productController();"/>
-                    <label for="high-5-isotonic">High 5 Isotonic</label><br/>
-                    <input name="product" type="radio" value="SIS go gel" onclick="productController();"/>
-                    <label for="sis-go-gel">SIS go gel</label><br/>
-                    <input name="product" type="radio" value="Torq gel" onclick="productController();"/>
-                    <label for="torq-gel">Torq gel</label><br/>
-                    <input name="product" type="radio" value="Honey stinger gel" onclick="productController();"/>
-                    <label for="honey-stringer-gel">Honey stinger gel</label><br/>
-                    <input name="product" type="radio" value="Gu Gel" onclick="productController();"/>
-                    <label for="gu-gel">Gu Gel</label><br/>
-                    <input name="product" type="radio" value="Hammer Gel" onclick="productController();"/>
-                    <label for="hammer-gel">Hammer Gel</label>                    
-                </form>
-                </div>    
-                <div class="line"></div> 
-                
-                <div id="output-fields">                        
-                    <div style="margin-bottom:20px;"><h3>Output</h3></div>
-                        <div id="output-text">			
-                            <div class="output">Watts per kg</div> 
-                            <div class="output">kCal per hour</div> 
-                            <div class="output">Min Intake 35%</div> 
-                            <div class="output"  style="margin-right:0px;">Max Intake 60%</div>
-                        </div>
-                    <div id="output-result">
-                        <div class="result-number"><div id="watts-per-kg"></div></div>
-                        <div class="result-number"><div id="kCal-per-hour"></div></div> 
-                        <div class="result-number"><div id="min-intake"></div></div>
-                        <div class="result-number" style="margin-right:0px;"><div id="max-intake"></div></div>
-                    </div>
-                    <div id="result-explanation">
-                        Using <span id="product-of-choice" style="color:red; font-weight:bold"></span> you will be need to consume 1 gel every <span id="low-time" style="color:red; font-weight:bold"></span> minutes to every <span id="high-time" style="color:red; font-weight:bold;"></span> minutes in order to cover your nutrition needs. I don't recommend taking this product more than every <span id="max-rec" style="color:red; font-weight:bold"></span> minutes. If this is not within the required range you may find better results with another product.
-                    </div>
-                </div>
-                <div class="line"></div>                
-                <div id="products-table">
-                <div style="margin-bottom:20px;"><h3>Table</h3></div>
-                <table>
-                	<tr>
-                    	<th class="product">Product</th>
-                        <th>kCal</th>
-                        <th>CHO type</th>
-                        <th>Min per hr</th>
-                        <th>Max per hr</th>
-                        <th class="maxrec">Max recommended</th>
-                	</tr>
-                    <tr style="height:10px;">
-                    	<td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                    </tr>
-                    <tr>
-                    	<td class="product">Power bar gel</td>
-                        <td>110</td>
-                        <td>glucose+fructose</td>
-                        <td id="min-intake0" class="min"></td>
-                        <td id="max-intake0" class="max"></td>
-                        <td id="max-rec0" class="rec"></td>
-                    </tr>
-                    <tr>
-                    	<td class="product">Power bar hydr</td>
-                        <td>109</td>
-                        <td>glucose+fructose</td>
-                        <td id="min-intake1" class="min"></td>
-                        <td id="max-intake1" class="max"></td>
-                        <td id="max-rec1" class="rec"></td>
-                    </tr>
-                    <tr>
-                    	<td class="product">High 5</td>
-                        <td>92</td>
-                        <td>glucose+fructose</td>
-                        <td id="min-intake2" class="min"></td>
-                        <td id="max-intake2" class="max"></td>
-                        <td id="max-rec2" class="rec"></td>
-                    </tr>
-                    <tr>
-                    	<td class="product">High 5 isotonic</td>
-                        <td>104</td>
-                        <td>glucose+fructose</td>
-                        <td id="min-intake3" class="min"></td>
-                        <td id="max-intake3" class="max"></td>
-                        <td id="max-rec3" class="rec"></td>
-                    </tr>
-                    <tr>
-                    	<td class="product">SIS go gel</td>
-                        <td>86</td>
-                        <td>glucose</td>
-                        <td id="min-intake4" class="min"></td>
-                        <td id="max-intake4" class="max"></td>
-                        <td id="max-rec4" class="rec"></td>
-                    </tr>
-                    <tr>
-                    	<td class="product">Torq gel</td>
-                        <td>115</td>
-                        <td>glucose+fructose</td>
-                        <td id="min-intake5" class="min"></td>
-                        <td id="max-intake5" class="max"></td>
-                        <td id="max-rec5" class="rec"></td>
-                    </tr>
-                    <tr>
-                    	<td class="product">Honey stinger gel</td>
-                        <td>120</td>
-                        <td>glucose</td>
-                        <td id="min-intake6" class="min"></td>
-                        <td id="max-intake6" class="max"></td>
-                        <td id="max-rec6" class="rec"></td>
-                    </tr>
-                    <tr>
-                    	<td class="product">Gu gel</td>
-                        <td>100</td>
-                        <td>glucose+fructose</td>
-                        <td id="min-intake7" class="min"></td>
-                        <td id="max-intake7" class="max"></td>
-                        <td id="max-rec7" class="rec"></td>
-                    </tr>
-                    <tr>
-                    	<td class="product">Hammer Gel</td>
-                        <td>90</td>
-                        <td>glucose</td>
-                        <td id="min-intake8" class="min"></td>
-                        <td id="max-intake8" class="max"></td>
-                        <td id="max-rec8" class="rec"></td>
-                    </tr>        
-                </table>
-                </div>
-
-			</div>
-					</div>
-	</div>
-    </div>
-  </ons-page>
-</template>
-
-<template id="blog.html">
-  <ons-page>
-    <ons-toolbar>
-      <div class="left">
-        <ons-toolbar-button onclick="fn.open()">
-          <ons-icon icon="md-menu"></ons-icon>
-        </ons-toolbar-button>
-      </div>
-      <div class="center">
-        Blog
-      </div>
-    </ons-toolbar>
-    <div class="wrapper">
-
-  <article class="article half">
-    <div href="#" class="inner" style="background-image: url('https://projectcoaching.uk/wp-content/uploads/2017/05/1000-square-swimming-workout-olympics.jpg')">
-      <h2>8 Week Swim Plan</h2>
-      <h4>by Project Coaching</h4>
-      
-      <div class="excerpt">
-        <p>
-        Download our 8 week swim plan, the plan is a total of 24 sessions over the 8 weeks. each session lasting 1 hour.
-these sessions will help you progressively develop strength and stamina over the 8 week period.
-          </p>
-        <a href="https://projectcoaching.uk/2017/07/09/8-week-swim-plan/">Read More</a>
-      </div>
-    </div>
-  </article>
-  
-  <article class="article half">
-    <div href="#" class="inner" style="background-image: url('https://projectcoaching.uk/wp-content/uploads/2017/08/Run2.png')">
-      <h2>Running interval sessions for every level</h2>
-      <h4>by Project Coaching</h4>
-      
-      <div class="excerpt">
-        <p>
-Most of us can come up with plenty of reasons to avoid speedwork: we might say it hurts; it increases our chances of picking up an injury; it makes us too tired for our other runs… the list is endless. The thing is, they’re all unnecessary fears. What’s more, whether you want to beat an ancient 800m PB set on the grass track at school, or outkick the runner who always sprints past you in local 10Ks, adding speed will be immensely rewarding.
-          </p>
-        <a href="https://projectcoaching.uk/2017/08/10/running-interval-sessions-every-level/">Read More</a>
-      </div>
-    </div>
-  </article>
-
-    <article class="article half">
-    <div href="#" class="inner" style="background-image: url('https://projectcoaching.uk/wp-content/uploads/2017/05/cycling.png')">
-      <h2>Turbo Training Over The Winter</h2>
-      <h4>by Project Coaching</h4>
-      
-      <div class="excerpt">
-        <p>
-Winter is the time of year when you’re most likely to wind up in the garage with your woolly hat on avoiding the ice and cursing the British weather. Here’s some top tips to make sure you enjoy your time on the turbo and emerge in the spring a faster stronger athlete.
-          </p>
-        <a href="https://projectcoaching.uk/2017/05/04/turbo-training-over-the-winter/">Read More</a>
-      </div>
-    </div>
-  </article>
-  
-      <article class="article half">
-    <div href="#" class="inner" style="background-image: url('https://projectcoaching.uk/wp-content/uploads/2017/07/Project-Coaching-Squats.png')">
-      <h2>30 Day Squat Challenge</h2>
-      <h4>by Project Coaching</h4>
-      
-      <div class="excerpt">
-        <p>
-The 30 day squat challenge is one of the smartest options you can do to help improve your overall leg power, Or if you are just getting back into fitness a great first choice for your fitness kick. First, because it just involves one bodyweight exercise so you can do it anywhere and anytime, and second, because the bodyweight exercise involved is the squat – Which is just about the best bodyweight exercise there is.
-          </p>
-        <a href="https://projectcoaching.uk/2017/07/28/30-day-squat-challenge/">Read More</a>
-      </div>
-    </div>
-  </article>
-
-
-</div>
-  </ons-page>
-</template>
-  
-  <template id="contact.html">
-  <ons-page>
-    <ons-toolbar>
-      <div class="left">
-        <ons-toolbar-button onclick="fn.open()">
-          <ons-icon icon="md-menu"></ons-icon>
-        </ons-toolbar-button>
-      </div>
-      <div class="center">
-        Contact
-      </div>
-    </ons-toolbar>
-    <div class="container">
-  <div class="card">
-    
-    <div class="front side">
-      <h1 class="logo">Kyran McManus</h1>
-    </div>
-    
-    <div class="back side">
-      <h3 class="name">Kyran McManus</h3>
-      <div>Front-end developer</div>      
-      <div class="info">
-        <p><span class="property">Email: </span>info@projectcoaching.uk</p>
-        <p><span class="property">Website: </span>projectcoaching.uk</p>
-      </div>
-    </div>
-    
-  </div>
-</div>
-  </ons-page>
-</template>
-
-  <ons-speed-dial position="bottom right" direction="up">
-    <ons-fab>
-      <ons-icon icon="md-settings"></ons-icon>
-    </ons-fab>
-    <ons-speed-dial-item>
-      <ons-icon icon="ion-social-github-outline"></ons-icon>
-    </ons-speed-dial-item>
-    <ons-speed-dial-item>
-      <ons-icon icon="ion-social-wordpress-outline"></ons-icon>
-    </ons-speed-dial-item>
-    <ons-speed-dial-item>
-      <ons-icon icon="ion-social-linkedin-outline"></ons-icon>
-    </ons-speed-dial-item>
-  </ons-speed-dial>
-
-
+        <noscript>
+            <h1>:(</h1>
+            <p>Hello, it looks like your JavaScript is disabled, please enable it, since the page can't render without it</p>
+        </noscript>
 </body>
 </html>
