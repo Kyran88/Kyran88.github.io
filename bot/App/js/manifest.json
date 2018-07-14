@@ -1,41 +1,41 @@
 {
-    "short_name": "Ava",
-    "name": "Meet Ava",
+    "short_name": "Ana",
+    "name": "Meet Ana",
     "icons": [
       {
-        "src": "http://kyran88.github.io/App/images/Ava%20Ai.png",
+        "src": "https://kyran88.github.io/bot/swim/icon/Swim.png",
         "type": "image/png",
         "sizes": "48x48"
       },
       {
-        "src": "http://kyran88.github.io/App/images/Ava%20Ai.png",
+        "src": "https://kyran88.github.io/bot/swim/icon/Swim.png",
         "type": "image/png",
         "sizes": "72x72"
       },
       {
-        "src": "http://kyran88.github.io/App/images/Ava%20Ai.png",
+        "src": "https://kyran88.github.io/bot/swim/icon/Swim.png",
         "type": "image/png",
         "sizes": "96x96"
       },
       {
-        "src": "http://kyran88.github.io/App/images/Ava%20Ai.png",
+        "src": "https://kyran88.github.io/bot/swim/icon/Swim.png",
         "type": "image/png",
         "sizes": "144x144"
       },
       {
-        "src": "http://kyran88.github.io/App/images/Ava%20Ai.png",
+        "src": "https://kyran88.github.io/bot/swim/icon/Swim.png",
         "type": "image/png",
         "sizes": "192x192"
       },
       {
-        "src": "http://kyran88.github.io/App/images/Ava%20Main.jpg",
+        "src": "https://kyran88.github.io/bot/swim/icon/Swim.png",
         "type": "image/png",
         "sizes": "512x512"
       }
     ],
     "start_url": "index.html",
     "background_color": "#FFFFFF",
-    "theme_color": "#FFFFFF",
+    "theme_color": "#5F04B4",
     "display": "standalone",
     "orientation": "portrait",
     "permissions": {
