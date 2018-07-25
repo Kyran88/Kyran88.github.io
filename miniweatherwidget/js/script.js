@@ -1,5 +1,5 @@
 /*
-get geolocation from google geolocation api and javascript promise
+get geolocation from google geolocation api and js promise
 then send latitude and longitude to openweather api with js promise
 */
 
