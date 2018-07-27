@@ -1,7 +1,7 @@
 var chatz = [{
         "path": "intro",
         "messages": [{
-                "text": "What’s up fam!",
+                "text": "Hey, How you doing!",
                 "author": "ConvoJs"
             },
             {
