@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+<head>
+<link rel="stylesheet" href="https://Kyran88.github.io/June/style.css"/>
+</head>
+<body>
+
+<div class="box">
+
+  <link href="https://imgur.com/a/43PAH">
+
+  <script src='https://code.responsivevoice.org/responsivevoice.js'></script>
+  <link href='https://fonts.googleapis.com/css?family=Lato:400,300,700' rel='stylesheet' type='text/css'>
+  <img src="http://i67.tinypic.com/2505k6f.png" class="logo">
+
+
+  <div class="stuff">
+
+    <img onclick="startDictation();" style="width:50px; height:50px;" src="http://iconshow.me/media/images/ui/ios7-icons/png/512/mic-outline.png" class="mic"></img>
+    <input id="transcript" placeholder="Talk Here.">
+    </input>
+    <p id="response">Hi There!</p>
+  </div>
+  </center>
+
+
+  <!--leftover code from June v2 -->
+  <script src='https://code.responsivevoice.org/responsivevoice.js'></script>
+
+
+  <!DOCTYPE html>
+  <html>
+
+  <body>
+
+
+    <script>
+      function Speakback() {
+        document.getElementById("response").innerHTML = "Paragraph changed!";
+      }
+    </script>
+
+  </body>
+
+  </html>
+  <!DOCTYPE html>
+  <html>
+
+  <head>
+    <script>
+      function startTime() {
+        var today = new Date();
+        var h = today.getHours();
+        var m = today.getMinutes();
+        var s = today.getSeconds();
+        m = checkTime(m);
+        s = checkTime(s);
+        document.getElementById('txt').innerHTML =
+          h + ":" + m + "";
+        var t = setTimeout(startTime, 500);
+      }
+
+      function checkTime(i) {
+        if (i < 10) {
+          i = "0" + i
+        }; // add zero in front of numbers < 10
+        return i;
+      }
+    </script>
+  </head>
+
+
+  <div id="txt"></div>
+  <div id="weather"></div>
+</div>
+</body>
+
+</html>
+
+
+
+<script src='https://cdn.rawgit.com/monkeecreate/jquery.simpleWeather/master/jquery.simpleWeather.min.js'></script> 
+<script src='https://kyran88.github.io/June/script.js'></script> 
+</body>
+</html>
