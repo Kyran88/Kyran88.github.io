@@ -1,0 +1,160 @@
+html {
+    padding: 0;
+    margin: 0;
+}
+
+#clock.mdl-card {
+    margin-top: 10px;
+    margin-left: auto;
+    margin-right: auto;
+    height: 200px;
+}
+
+#clock > .mdl-card__title {
+    color: #fff;
+    background-color:#4885ed;
+    height: 150px;
+}
+
+#clock > .mdl-card__title > h2 {
+    font-size: 85pt;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+#clock > .mdl-card__actions {
+    background-color: #fff;
+}
+
+#wrapper {
+    margin: 0;
+    width: 100%;
+}
+
+#calendar.mdl-card {
+    float: left;
+    margin-top: 10px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+#calendar > .mdl-card__title {
+    color: #fff;
+    background-color:#4885ed;
+    height: 60px;
+}
+
+#calendar > .mdl-card__actions {
+    background-color: #fff;
+    height: 550px;
+}
+
+.appt {
+    position: relative;
+    background-color: #db3236;
+    color: #fff;
+    height: 116.25px;
+    margin-top: 15px;
+    margin-bottom: 15px;
+    border-radius: 2pt;
+}
+
+.time {
+    display: inline-block;
+    font-size: 35pt;
+    position: absolute;
+    top: 0;
+    left: 0;
+    margin-top: 15px;
+    margin-left: 10px;
+}
+
+.meet {
+    font-size: 50pt;
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    margin-bottom: 30px;
+    margin-right: 20px;
+}
+
+#weather.mdl-card {
+    float: left;
+    margin-top: 10px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+#weather > .mdl-card__title {
+    color: #fff;
+    background-color:#4885ed;
+    height: 60px;
+}
+
+.wcard.mdl-card {
+    float: left;
+    background-color: #3cba54;
+    position: relative;
+}
+
+.day {
+    font-size: 25px;
+    margin-top: 15px;
+    margin-left: 10px;
+    color: #fff;
+    position: absolute;
+    top:0;
+    left: 0;
+}
+
+.wcard i {
+    margin-top: 10px;
+    margin-right: 10px;
+    color: rgba(255, 255, 255, 1);
+    font-size: 75px;
+    position: absolute;
+    top:0;
+    right: 0;
+}
+
+.temp {
+    font-size: 70px;
+    margin-bottom: 30px;
+    margin-left: 20px;
+    color: #fff;
+    position: absolute;
+    bottom:0;
+    left: 0;
+}
+
+#news.mdl-card {
+    float: left;
+    margin-top: 10px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+#news > .mdl-card__title {
+    color: #fff;
+    background-color:#4885ed;
+    height: 60px;
+}
+
+.ncard.mdl-card {
+    float: left;
+}
+
+.ncard > .mdl-card__title {
+  height: 176px;
+  background: url('testpic.png') center / cover;
+}
+
+.ncard > .mdl-card__supporting-text {
+    padding: 0px;
+}
+
+.ncard > .mdl-card__supporting-text > p {
+    margin: 10px;
+}
+
+
