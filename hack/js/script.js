@@ -90,7 +90,7 @@ $(function () {
 
 
 $(document).ready(function() {
-    loadRSS('https://www.aviva.co.uk/health-insurance/home-of-health/rss.xml', '#Newsfeed', 'Read More');   
+    loadRSS('RSS feed link here', '#Newsfeed', 'Read More');   
 });
 
 function loadRSS(link, htmlContainer, author) {
