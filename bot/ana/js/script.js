@@ -1,8 +1,8 @@
 var local = {};
-local.avatar = "https://www.avivaworld.com/sites/Fullycharged/SitePages/MeetAna/Pictures/User%20icon.png";
+local.avatar = "#";
 
 var remote = {};
-remote.avatar = "https://www.avivaworld.com/sites/Fullycharged/SitePages/MeetAna/Pictures/Ana%20Small.png";
+remote.avatar = "#";
 
 
 var accessToken = "32b97368f168447cb5017b64713a9b23";
