@@ -1,0 +1,79 @@
+
+<!DOCTYPE html>
+<html>
+<!-- [if IE 8 ]><html class="no-js ie8" lang="en"><![endif]-->
+  <head>
+<meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+<title>Meet Ana</title>
+<link rel="icon" type="image/ico" href="" />
+<link href="https://cdn.botframework.com/botframework-webchat/latest/botchat.css" rel="stylesheet" />
+</head>
+<body>
+    <div id="webchat"></div>
+    <script src="https://cdn.botframework.com/botframework-webchat/master/webchat.js"></script>
+        <style>
+      html, body { height: 100% }
+      body { margin: 0 }
+
+      #webchat,
+      #webchat > * {
+        height: 100%;
+        width: 100%;
+      }
+      
+      /* Set Scrollbar Width */
+::-webkit-scrollbar {
+  width: 8px;
+}
+/* Set Scrollbar Buttons */
+::-webkit-scrollbar-button {
+ 
+} 
+/* Set Scrollbar Track */
+::-webkit-scrollbar-track {
+  -webkit-box-shadow: inset 0 0 3px rgba(0,0,0,0.5);
+  box-shadow: inset 0 0 3px rgba(0,0,0,0.5);
+  -webkit-border-radius: 10px;
+  border-radius: 10px;
+}   
+::-webkit-scrollbar-track-piece {
+  
+}
+/* Set Scrollbar Handle */
+::-webkit-scrollbar-thumb {
+  -webkit-border-radius: 10px;
+  border-radius: 10px;
+  background: rgba(0,120,215,0.8); 
+  -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.5);
+} 
+::-webkit-scrollbar-corner {
+  
+}    
+::-webkit-resizer {
+  
+}
+::-webkit-scrollbar-thumb:window-inactive {
+	background: rgba(0,120,215,0.4); 
+}
+                  
+    </style>
+    <script>
+     // "styleSet" is a set of CSS rules which are generated from "styleOptions"
+      const styleSet = window.WebChat.createStyleSet({
+        bubbleFromUserBackground: '#0078d7',
+        bubbleFromUserBorderRadius: 4,
+        bubbleFromUserTextColor: 'white',
+      });      
+      
+      window.WebChat.renderWebChat({
+        directLine: window.WebChat.createDirectLine({ token: 'ejoQqomU-tg.cwA.iXI.K9tbC698hWDXpHQ-IATj_FftmGVZBhoXK2qI0vGs44Q' }),
+        
+      // Passing avatar initials when rendering Web Chat
+        botAvatarInitials: 'Ana',
+      //userAvatarInitials: 'User',
+      // Passing "styleSet" when rendering Web Chat
+        styleSet
+      }, document.getElementById('webchat'));
+    </script>
+  </body>
+</html>
