@@ -1,9 +1,9 @@
 require.config({
 	/* urlArgs: "bust=" + (new Date()).getTime(), */
 	paths: {
-		"jquery": "vendor/jquery/dist/jquery.min",
-		"underscore": "vendor/underscore-amd/underscore-min",
-		"backbone": "vendor/backbone-amd/backbone-min"
+		"jquery": "https://code.jquery.com/jquery-latest.min.js",
+		"underscore": "https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.9.1/underscore-min.js",
+		"backbone": "https://cdnjs.cloudflare.com/ajax/libs/backbone.js/1.3.3/backbone-min.js"
 	},
 	urlArgs: "v=" +  (new Date()).getTime(),
 	shim:{
