@@ -5167,7 +5167,7 @@
                          text: "Get in touch!",
                          path: "contact"
                      }]
-                 }] : ["Hi there!", "I'm Kyran, a UX designer living in Scotland.", "Want to know more or do you want to get in touch?", {
+                 }] : ["Hi there!", "I'm Kyran, a Triathlete and Triathlon coach living in Scotland.", "Want to know more or do you want to get in touch?", {
                      type: "choose",
                      answers: [{
                          text: "Tell me more!",
@@ -5177,13 +5177,13 @@
                          path: "contact"
                      }]
                  }],
-                 tellmemore: [e.hasSeenChat ? 'Alright! I\'m going to be honest with you. I learned this whole "introducing myself" stuff by heart, so I might repeat myself from time to time.' : "I feel humbled. ðŸ™‚", e.hasSeenChat ? "As mentioned, I write and speak about design and feel fortunate to have worked with incredibly talented people across different companies." : "I write and speak about design and am fortunate to have worked with incredibly talented people across different companies.", {
+                 tellmemore: [e.hasSeenChat ? 'Alright! I\'m going to be honest with you. I learned this whole "introducing myself" stuff by heart, so I might repeat myself from time to time.' : "I feel humbled. ðŸ™‚", e.hasSeenChat ? "As mentioned, I'm a triathlete and Triathlon coach, If you are looking for a coach your in the right place. " : "I Coach athletes of all abilities and can be face to face if you happen to live near or can be online.", {
                      type: "choose",
                      answers: [{
-                         text: "Which companies?",
+                         text: "Show me more coaching?",
                          path: "companies"
                      }, {
-                         text: "You write?!",
+                         text: "You Compete?!",
                          path: "write"
                      }]
                  }],
@@ -5198,10 +5198,10 @@
                          path: "bye-scroll"
                      }]
                  }],
-                 companies: ["Here are some of the companies I've worked with, both on staff with iA and as an independent freelancer", "- Google<br>- iA<br>- Hinderling Volkart<br>- Red Bull<br>- The Guardian<br>", {
+                 companies: ["Sure just check out my coaching website ", "- K3Tri<br> <a href="k3tri.com"> Here</a>," {
                      type: "choose",
                      answers: [{
-                         text: "Cool. What did you do for them?",
+                         text: "Cool. show me more?",
                          path: "portfolio"
                      }]
                  }],
@@ -5250,7 +5250,7 @@
                      path: "contact-thanks",
                      name: "message"
                  }],
-                 "contact-coffee": ["Great! Nothing beats UX and coffee!", "What specifically did you want to discuss?", {
+                 "contact-coffee": ["Great! Nothing beats Triathlon and coffee!", "What specifically did you want to discuss?", {
                      type: "write",
                      path: "contact-thanks",
                      name: "message"
@@ -5323,7 +5323,7 @@
                          path: "read"
                      }]
                  }],
-                 "referrer-no": ["Ok cool! It's great to meet you!", "Let me just introduce myself real quick... I'm Adrian, a UX designer from Switzerland.", "Do you want to know more or simply get in touch?", {
+                 "referrer-no": ["Ok cool! It's great to meet you!", "Let me just introduce myself real quick... I'm Kyran, a Triathlete and Triathlon Coach from Scotland.", "Do you want to know more or simply get in touch?", {
                      type: "choose",
                      answers: [{
                          text: "Tell me more!",
