@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html>
+  <head>
+  	<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+	<meta name="viewport" content="width=device-width, minimal-ui, initial-scale=1, minimum-scale=1, user-scalable = no">
+	<meta name="apple-touch-fullscreen" content="yes" />
+	<meta name="apple-mobile-web-app-capable" content="yes" />
+	<meta name="apple-mobile-web-app-status-bar-style" content="#009AB1" />
+	<meta name="theme-color" content="#009AB1">
+  
+  <title>Kyran - Triathlon Coach</title>
+  <meta name="description" content="My website talks to you." />
+
+  <meta name="twitter:card" content="summary_large_image">
+	<meta name="twitter:site" content="#">
+	<meta name="twitter:creator" content="#">
+	<meta name="twitter:title" content="Kyran – UX / UI / WEB DESIGN">
+	<meta name="twitter:description" content="Hi. I'm Kyran. I'm an independent UX designer and coffee enthusiast currently residing in the beautiful Scotland. I help companies create memorable experiences through user centered design.">
+	<meta name="twitter:image" content="#">
+  
+	<link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+	<link rel="icon" href="favicon.ico" type="image/x-icon">
+  
+  	<link rel="stylesheet" href="https://kyran88.github.io/ConversationalUI/Portfolio/css/style.min.css">
+   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <link rel="stylesheet" href="https://unpkg.com/botui/build/botui.min.css" />
+    <link rel="stylesheet" href="https://unpkg.com/botui/build/botui-theme-default.css" />
+  </head>
+  <style>
+  .botui-app-container {
+    height: auto;
+    width: 700px;
+    overflow-y: auto;
+}
+
+.botui-message-content.text {
+    background-color: #fff;
+    box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.16);
+    color: #4a4a4a;
+    font-family: 'Lato', sans-serif;
+    border-radius: 4px;
+    font-size: 18px;
+}
+
+.botui-message-content.loading {
+    background-color: #fff;
+    box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.16);
+    color: #4a4a4a;
+    border-radius: 4px;
+}
+
+.botui-actions-buttons {
+    text-align: center;
+}
+
+button.botui-actions-buttons-button {
+    outline: none !important;
+    font-family: 'Lato', sans-serif;
+    font-size: 18px;
+    border-radius: 4px;
+    background-color: #5a46ff;
+}
+
+.botui-message-content.human {
+    background-color: #5a46ff;
+    color: #fff;
+}
+  </style>
+  <body>
+  	<div class="page">
+		<div class="intro">
+
+			<section class="align chat">
+				<div class="chat__overflow">
+					<div class="chat__intro cui">
+						<div class="chat__intro__logo">
+							<img src="https://image.freepik.com/free-icon/boy-hair-outline_318-56934.jpg" alt="Image Placeholder" />
+						</div>
+						<div class="chat__intro__desc">
+							Kyran<br>
+							<em>Design + Code</em>
+						</div>
+            <div class="botui-app-container">
+                <div id="my-botui-app">
+                    <bot-ui></bot-ui>
+						<div class="chat__intro__scroll">
+							Scroll, if you don't feel like talking ⇣
+						</div>
+					</div>
+				</div>
+      </div>
+    </div>
+ </section>
+ 
+ 
+<script src="https://unpkg.com/botui/build/botui.min.js"></script> 
+<script src="https://cdn.jsdelivr.net/vue/latest/vue.min.js"></script> 
+<script>
+var botui = new BotUI('my-botui-app');
+
+// Need to include in js instead
+// https://cdn.jsdelivr.net/vue/2.0.5/vue.min.js
+
+// Start Bot
+// First Messages
+botui.message.bot({
+    content: 'Hi there! 👋',
+    loading: true,
+    delay: 3000,
+}).then(function () {
+    return botui.message.bot({
+        loading: true,
+        delay: 1500,
+        content: "I'm Kyran, a Triathlete and Triathlon Coach.",
+    });
+}).then(function () {
+    return botui.message.bot({
+        loading: true,
+        delay: 1500,
+        content: "So i wanted to share this cool jQuery plugin with you.",
+    });
+}).then(function () {
+    return botui.message.bot({
+        loading: true,
+        delay: 1500,
+        content: "[BotUI](http://docs.botui.org/)",
+    });
+}).then(function () {
+    return botui.message.bot({
+        loading: true,
+        delay: 1500,
+        content: "Pretty cool plugin or?",
+    });
+}).then(function () {
+  return botui.action.button({
+        delay: 1500,
+        loading: true,
+        addMessage: true,
+        action: [{
+            text: 'Yes!',
+            value: 'yes'
+        }, {
+            text: 'No.',
+            value: 'no'
+        }]
+    })
+}).then(function (res) {
+  if (res.value == 'yes') {
+     return botui.message.bot({
+                loading: true,
+                delay: 1500,
+                content: "I quite agree!",
+            });
+  } else {
+    return botui.message.bot({
+                loading: true,
+                delay: 1500,
+                content: "Okay, I'm sorry ...",
+            });
+  }
+}).then(function () {
+  return botui.message.bot({
+                loading: true,
+                delay: 1500,
+                content: "Bye, I need to go know.",
+            });
+})
+
+</script>
+     
+  
+  
+  </body>
+  </html>
