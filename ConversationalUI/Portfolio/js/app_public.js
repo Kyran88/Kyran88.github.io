@@ -5167,7 +5167,7 @@
                          text: "Get in touch!",
                          path: "contact"
                      }]
-                 }] : ["Hi there!", "I'm Adrian, a UX designer living in Zurich, Switzerland.", "Want to know more or do you want to get in touch?", {
+                 }] : ["Hi there!", "I'm Kyran, a UX designer living in Scotland.", "Want to know more or do you want to get in touch?", {
                      type: "choose",
                      answers: [{
                          text: "Tell me more!",
