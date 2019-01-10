@@ -5381,9 +5381,9 @@
                          e.setItem("hasSeenUX", r + "_p" + i)
                      }
                      n.name && "message" === n.name && t.text && jQuery.post("/wp-admin/admin-ajax.php", {
-                         action: "azumbrunnen_contact",
+                         action: "#",
                          message: t.text,
-                         email: "azumbrunnenmail.com"
+                         email: "kmcmanus09@hotmail.com"
                      })
                  })
              }
@@ -5428,7 +5428,7 @@
                                      scrollTop: t.top + e.scrollTop()
                                  }, "300", "swing")
                              }, 4e3), void(h && p && jQuery.post("/wp-admin/admin-ajax.php", {
-                                 action: "azumbrunnen_contact",
+                                 action: "#",
                                  message: h,
                                  email: p
                              })))
@@ -5456,7 +5456,7 @@
                      n = $(this).find("textarea").val(),
                      i = $(this).find('input[type="submit"]');
                  t.length && n.length ? ($(this).addClass("sent"), $(this).find("input, textarea").attr("disabled", !0), i.val("Thank you!"), jQuery.post("/wp-admin/admin-ajax.php", {
-                     action: "azumbrunnen_contact",
+                     action: "#",
                      message: n,
                      email: t
                  })) : (i.removeClass("shake"), setTimeout(function() {
