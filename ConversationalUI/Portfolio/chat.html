@@ -24,10 +24,22 @@
     <link rel="stylesheet" href="https://unpkg.com/botui/build/botui-theme-default.css" />
   </head>
   <style>
+    /* On screens that are 992px wide or less, go from four columns to two columns */
+@media screen and (max-width: 992px) {
+  .botui-app-container {
+    height: auto;
+    width: 700px;
+    overflow-y: auto;
+  }
+}
+
+/* On screens that are 600px wide or less, make the columns stack on top of each other instead of next to each other */
+@media screen and (max-width: 600px) {
   .botui-app-container {
     height: auto;
     width: auto;
     overflow-y: auto;
+  }
 }
 
 .botui-message-content.text {
