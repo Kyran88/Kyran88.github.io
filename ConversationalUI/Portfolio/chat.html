@@ -135,21 +135,21 @@ botui.message.bot({
             text: 'tell me more about you',
             value: 'more'
         }]
-    })
+    });
 }).then(function (res) {
   if (res.value == 'website') {
      return botui.message.bot({
                 loading: true,
                 delay: 1500,
                 content: 'here you go [Click Here](https://k3tri.com)',
-    })
+    });
 }).then(function (res) {
 	if (res.value == 'plans') {
     	return botui.message.bot({
                 loading: true,
                 delay: 1500,
                 content: 'Sure [Click Here](https://k3tri.com)',
-    })
+    });
 }).then(function (res) {
 	if (res.value == 'trainingvideo') {
   	return botui.action.button({
@@ -169,7 +169,7 @@ botui.message.bot({
             text: 'Genral Fitness',
             value: 'fitness'
         }]
-    })
+    });
 }).then(function (res) {
 	if (res.value == 'more') {
     	return botui.message.bot({
@@ -189,7 +189,7 @@ botui.message.bot({
             text: 'Example Training Plans',
             value: 'plans'
         }]
-    })
+    });
 
 </script>
      
