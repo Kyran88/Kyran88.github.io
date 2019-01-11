@@ -128,9 +128,6 @@ botui.message.bot({
         loading: true,
         addMessage: true,
         action: [{
-            text: 'Show me your website!',
-            value: 'website'
-        }, {
             text: 'Example Training Plans',
             value: 'plans'
         },{
@@ -139,15 +136,6 @@ botui.message.bot({
         }
 		]
   });
-}).then(function (res) { 
-  if (res.value == 'website') {
-  botui.message.add({
-    delay: 1500,
-    loading: true,
-    addMessage: true,
-    content: 'here you go [Click Here](https://k3tri.com)^',
-    });
-  }
 }).then(function (res) { 
   if (res.value == 'plans') {
   botui.message.add({
@@ -164,14 +152,8 @@ botui.message.bot({
     loading: true,
     addMessage: true,
      action: [{
-            text: 'Swimming',
-            value: 'swimming'
-        }, {
-            text: 'Cycling',
-            value: 'cycling'
-        },{
-            text: 'Running',
-            value: 'running'
+            text: 'Triathlon',
+            value: 'triathlon'
         },{
             text: 'Genral Fitness',
             value: 'fitness'
