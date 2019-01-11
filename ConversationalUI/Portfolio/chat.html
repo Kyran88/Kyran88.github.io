@@ -109,19 +109,13 @@ botui.message.bot({
     return botui.message.bot({
         loading: true,
         delay: 1500,
-        content: "So i wanted to share this cool jQuery plugin with you.",
+        content: "I help coach athletes of all abilities from beginner through to experienced athletes.",
     });
 }).then(function () {
     return botui.message.bot({
         loading: true,
         delay: 1500,
-        content: "[BotUI](http://docs.botui.org/)",
-    });
-}).then(function () {
-    return botui.message.bot({
-        loading: true,
-        delay: 1500,
-        content: "Pretty cool plugin or?",
+        content: "What would you like to do today? ",
     });
 }).then(function () {
   return botui.action.button({
@@ -129,34 +123,73 @@ botui.message.bot({
         loading: true,
         addMessage: true,
         action: [{
-            text: 'Yes!',
-            value: 'yes'
+            text: 'Show me your website!',
+            value: 'website'
         }, {
-            text: 'No.',
-            value: 'no'
+            text: 'Example Training Plans',
+            value: 'plans'
+        },{
+            text: 'Training Tips',
+            value: 'trainingvideo'
+        },{
+            text: 'tell me more about you',
+            value: 'more'
         }]
     })
 }).then(function (res) {
-  if (res.value == 'yes') {
+  if (res.value == 'website') {
      return botui.message.bot({
                 loading: true,
                 delay: 1500,
-                content: "I quite agree!",
-            });
-  } else {
-    return botui.message.bot({
+                content: 'here you go [Click Here](https://k3tri.com)',
+    })
+}).then(function (res) {
+	if (res.value == 'plans') {
+    	return botui.message.bot({
                 loading: true,
                 delay: 1500,
-                content: "Okay, I'm sorry ...",
-            });
-  }
+                content: 'Sure [Click Here](https://k3tri.com)',
+    })
+}).then(function (res) {
+	if (res.value == 'trainingvideo') {
+  	return botui.action.button({
+        delay: 1500,
+        loading: true,
+        addMessage: true,
+        action: [{
+            text: 'Swimming',
+            value: 'swimming'
+        }, {
+            text: 'Cycling',
+            value: 'cycling'
+        },{
+            text: 'Running',
+            value: 'running'
+        },{
+            text: 'Genral Fitness',
+            value: 'fitness'
+        }]
+    })
+}).then(function (res) {
+	if (res.value == 'more') {
+    	return botui.message.bot({
+        loading: true,
+        delay: 1500,
+        content: "hey hey, You want to know more. what about some of these?",
+    });
 }).then(function () {
-  return botui.message.bot({
-                loading: true,
-                delay: 1500,
-                content: "Bye, I need to go know.",
-            });
-})
+  return botui.action.button({
+        delay: 1500,
+        loading: true,
+        addMessage: true,
+        action: [{
+            text: 'Race Times!',
+            value: 'racing'
+        }, {
+            text: 'Example Training Plans',
+            value: 'plans'
+        }]
+    })
 
 </script>
      
