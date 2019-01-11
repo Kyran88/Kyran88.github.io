@@ -89,12 +89,17 @@ button.botui-actions-buttons-button {
 <script src="https://cdn.jsdelivr.net/vue/latest/vue.min.js"></script> 
 <script>
 var botui = new BotUI('my-botui-app');
-
 // Need to include in js instead
 // https://cdn.jsdelivr.net/vue/2.0.5/vue.min.js
-
 // Start Bot
 // First Messages
+
+/***SCROLL**/
+function scrollBottom(){
+	$("html, body").animate({ scrollTop: $('#my-botui-app').height() }, 500);
+}
+
+
 botui.message.bot({
     content: 'Hi there! 👋',
     loading: true,
@@ -130,33 +135,35 @@ botui.message.bot({
             value: 'plans'
         },{
             text: 'Training Tips',
-            value: 'trainingvideo'
-        },{
-            text: 'tell me more about you',
-            value: 'more'
-        }]
-    });
-}).then(function (res) {
+            value: 'video'
+        }
+		]
+  });
+}).then(function (res) { 
   if (res.value == 'website') {
-     return botui.message.bot({
-                loading: true,
-                delay: 1500,
-                content: 'here you go [Click Here](https://k3tri.com)',
+  botui.message.add({
+    delay: 1500,
+    loading: true,
+    addMessage: true,
+    content: 'here you go [Click Here](https://k3tri.com)^',
     });
-}).then(function (res) {
-	if (res.value == 'plans') {
-    	return botui.message.bot({
-                loading: true,
-                delay: 1500,
-                content: 'Sure [Click Here](https://k3tri.com)',
+  }
+}).then(function (res) { 
+  if (res.value == 'plans') {
+  botui.message.add({
+    delay: 1500,
+    loading: true,
+    addMessage: true,
+    content: 'plans [Click Here](https://k3tri.com)^',
     });
-}).then(function (res) {
-	if (res.value == 'trainingvideo') {
-  	return botui.action.button({
-        delay: 1500,
-        loading: true,
-        addMessage: true,
-        action: [{
+  }
+}).then(function (res) { 
+  if (res.value == 'video') {
+   return botui.action.button({
+    delay: 1500,
+    loading: true,
+    addMessage: true,
+     action: [{
             text: 'Swimming',
             value: 'swimming'
         }, {
@@ -168,28 +175,11 @@ botui.message.bot({
         },{
             text: 'Genral Fitness',
             value: 'fitness'
-        }]
+        }],
     });
-}).then(function (res) {
-	if (res.value == 'more') {
-    	return botui.message.bot({
-        loading: true,
-        delay: 1500,
-        content: "hey hey, You want to know more. what about some of these?",
-    });
-}).then(function () {
-  return botui.action.button({
-        delay: 1500,
-        loading: true,
-        addMessage: true,
-        action: [{
-            text: 'Race Times!',
-            value: 'racing'
-        }, {
-            text: 'Example Training Plans',
-            value: 'plans'
-        }]
-    });
+  }
+});
+	
 
 </script>
      
