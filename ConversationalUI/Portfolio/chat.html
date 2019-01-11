@@ -131,7 +131,7 @@ botui.message.bot({
             text: 'Training Tips',
             value: 'video'
         }
-		]
+		],
   });
 }).then(function (res) { 
   if (res.value == 'plans') {
@@ -145,39 +145,17 @@ botui.message.bot({
     return botui.message.add({
                 loading: true,
                 delay: 1500,
-                content: "Good choice, Please choose what you are looking for",
+                content: "Good choice, Please choose what you are looking for we have 2 options below",
             });
  }
-}).then(function () {
-    botui.action.button({
-    delay: 1500,
+}).then(function () { 
+  return botui.message.bot({
+    delay: 500,
     loading: true,
     addMessage: true,
-    action: [{
-            text: 'Triathlon',
-            value: 'yes'
-        },{
-            text: 'Genral Fitness',
-            value: 'no'
-        }],
+    content: 'For Triathlon Training Videos [Click Here](https://www.youtube.com/results?search_query=triathlon+training)^, or For General Fitness Training Videos [Click Here](https://www.youtube.com/results?search_query=General+Fitness+Training)^',
     });
-}).then(function (res) { 
-  if (res.value == 'yes') {
-  botui.message.add({
-    delay: 1500,
-    loading: true,
-    addMessage: true,
-    content: 'For Triathlon Training Videos [Click Here](https://www.youtube.com/results?search_query=triathlon+training)^',
-    });
- } else {
-    return botui.message.add({
-                loading: true,
-                delay: 1500,
-                content: 'For General Fitness Training Videos [Click Here](https://www.youtube.com/results?search_query=General+Fitness+Training)^',
-            });
-      }
- });
-	
+ }); 
 
 </script>
      
