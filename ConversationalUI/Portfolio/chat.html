@@ -93,13 +93,10 @@ var botui = new BotUI('my-botui-app');
 // https://cdn.jsdelivr.net/vue/2.0.5/vue.min.js
 // Start Bot
 // First Messages
-
 /***SCROLL**/
 function scrollBottom(){
 	$("html, body").animate({ scrollTop: $('#my-botui-app').height() }, 500);
 }
-
-
 botui.message.bot({
     content: 'Hi there! 👋',
     loading: true,
@@ -144,23 +141,42 @@ botui.message.bot({
     addMessage: true,
     content: 'plans [Click Here](https://k3tri.com)^',
     });
-  }
-}).then(function (res) { 
-  if (res.value == 'video') {
-   return botui.action.button({
+ } else {
+    return botui.message.add({
+                loading: true,
+                delay: 1500,
+                content: "Good choice, Please choose what you are looking for",
+            });
+ }
+}).then(function () {
+    botui.action.button({
     delay: 1500,
     loading: true,
     addMessage: true,
-     action: [{
+    action: [{
             text: 'Triathlon',
-            value: 'triathlon'
+            value: 'yes'
         },{
             text: 'Genral Fitness',
-            value: 'fitness'
+            value: 'no'
         }],
     });
-  }
-});
+}).then(function (res) { 
+  if (res.value == 'yes') {
+  botui.message.add({
+    delay: 1500,
+    loading: true,
+    addMessage: true,
+    content: 'For Triathlon Training Videos [Click Here](https://www.youtube.com/results?search_query=triathlon+training)^',
+    });
+ } else {
+    return botui.message.add({
+                loading: true,
+                delay: 1500,
+                content: 'For General Fitness Training Videos [Click Here](https://www.youtube.com/results?search_query=General+Fitness+Training)^',
+            });
+      }
+ });
 	
 
 </script>
