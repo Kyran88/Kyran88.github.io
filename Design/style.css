@@ -260,7 +260,7 @@ main {
   bottom: -10px;
   left: 0;
   width: 100%;
-  height: 175px;
+  height: 0px;
   background: rgba(255, 255, 255, 0);
   background: -moz-linear-gradient(top, rgba(255, 255, 255, 0) 0%, rgba(245, 245, 245, 1) 40%);
   background: -webkit-gradient(left top, left bottom, color-stop(0%, rgba(255, 255, 255, 0)), color-stop(40%, rgba(245, 245, 245, 1)));
@@ -287,7 +287,7 @@ main {
 }
 .menu {
   position: absolute;
-  bottom: -308px;
+  bottom: -608px;
   left: 0px;
   z-index: 90;
   height: 100%;
