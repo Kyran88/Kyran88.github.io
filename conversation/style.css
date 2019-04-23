@@ -1,0 +1,190 @@
+@import url("https://fonts.googleapis.com/css?family=Muli:400,400i,700,700i");
+* {
+  box-sizing: border-box;
+}
+
+body {
+  background: black;
+  background: -moz-linear-gradient(-45deg, black 0%, #001b36 100%);
+  background: -webkit-gradient(left top, right bottom, color-stop(0%, black), color-stop(100%, #001b36));
+  background: -webkit-linear-gradient(-45deg, black 0%, #001b36 100%);
+  background: -o-linear-gradient(-45deg, black 0%, #001b36 100%);
+  background: -ms-linear-gradient(-45deg, black 0%, #001b36 100%);
+  background: linear-gradient(135deg, black 0%, #001b36 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#000000', endColorstr='#001b36', GradientType=1 );
+  font-family: 'Muli', sans-serif;
+  font-weight: 400;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.table {
+  width: 768px;
+  margin: 0 auto;
+  max-width: 100%;
+}
+
+.inner {
+  display: table;
+  text-align: center;
+  height: 100vh;
+}
+
+.chat {
+  width: 768px;
+  padding: 20px;
+  display: table-cell;
+  vertical-align: middle;
+  max-width: 100%;
+}
+
+.chatLogo {
+  padding: 40px;
+  padding-left: 0;
+  margin-right: 20px;
+  position: absolute;
+  transition: .3s;
+}
+.chatLogo img {
+  height: 48px;
+}
+
+.humanlyText, .spacer {
+  width: 100%;
+  margin-left: 98px;
+  float: left;
+  text-align: left;
+}
+.humanlyText p, .spacer p {
+  border-left: 1px solid RGBA(255, 255, 255, 0.2);
+  padding: 20px 40px;
+  font-size: 32px;
+  color: #fff;
+  line-height: 1.25;
+}
+
+.userOptions {
+  float: left;
+  width: 100%;
+  padding-left: 40px;
+  margin-top: 40px;
+}
+.userOptions p {
+  display: inline-block;
+  float: left;
+  font-weight: bold;
+  color: #1FC9C7;
+  text-align: left;
+  margin-bottom: 25px;
+  border-left: 3px solid #1FC9C7;
+  padding: 10px;
+  font-size: 20px;
+  width: 100%;
+}
+.userOptions .option {
+  color: #fff;
+  border: 1px solid #fff;
+  float: left;
+  border-radius: 5px;
+  padding: 15px 18px;
+  margin-right: 20px;
+  margin-bottom: 20px;
+  font-size: 16px;
+  font-weight: bold;
+}
+.userOptions .option.secondary {
+  border: none;
+  color: RGBA(255, 255, 255, 0.25);
+}
+.userOptions .option:hover {
+  background: #1FC9C7;
+  cursor: pointer;
+  border: 1px solid #1FC9C7;
+  color: #000;
+  transition: .3s;
+}
+
+.humanlyText {
+  display: none;
+}
+
+label {
+  color: #fff;
+  width: 25%;
+  float: left;
+  line-height: 36px;
+  font-size: 16px;
+}
+
+.queryWrap {
+  float: left;
+  width: 100%;
+  margin-bottom: 20px;
+}
+
+input {
+  float: left;
+  padding: 10px;
+  border-radius: 5px;
+  outline: none;
+  border: 1px solid #fff;
+  font-size: 16px;
+  font-weight: bold;
+  line-height: 16px;
+}
+
+button {
+  margin-left: 25%;
+  padding: 15px 20px;
+  border-radius: 5px;
+  font-weight: bold;
+  background: #007CF6;
+  color: #fff;
+  border: 1px solid #007CF6;
+  font-size: 14px;
+}
+
+@media (max-width: 768px) {
+  .chatLogo {
+    padding: 0;
+    margin: 0;
+  }
+
+  .humanlyText {
+    margin: 20px 0 0 0;
+  }
+
+  .chatLogo img {
+    height: 24px;
+  }
+
+  .humanlyText p {
+    font-size: 24px;
+  }
+
+  .userOptions p {
+    font-size: 16px;
+  }
+
+  .userOptions .option {
+    font-size: 14px;
+    line-height: 1.25;
+    width: calc( 100% - 40px );
+  }
+
+  label {
+    float: left;
+    width: 100%;
+    font-weight: bold;
+    font-size: 14px;
+  }
+
+  input {
+    width: calc( 100% - 40px);
+  }
+
+  button#submit {
+    width: calc( 100% - 40px );
+    margin: 0;
+  }
+}
