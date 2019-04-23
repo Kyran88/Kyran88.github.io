@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+<!-- [if IE 8 ]><html class="no-js ie8" lang="en"><![endif]-->
+  <head>
+<meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+<meta name="theme-color" content="#29B2BC" />  
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content=""/>   
+<title></title>
+    <link rel="icon" type="image/ico" href=""/>	
+	   
+    <link href="https://kyran88.github.io/conversation/style.css" rel="stylesheet" />
+  </head>
+  
+  <body>
+  <!-- chatbot start -->
+  <div class="section 1" style="display: block;">
+  <div class="table" id="slide-1">
+    <div class="inner">
+      <div class="chat">
+        <div class="humanlyChat">
+          <div class="chatLogo"><img src="http://humanly.io/img/logo_copy.png"></div>
+          <div class"spacer">&nbsp;</div> 
+          <div class="humanlyText slide-1" style="display:block;">
+            <p>Hello, we’re Humanly.</p>
+            <p>We’ve developed a scalable recruiting voice using the latest AI chatbot tools.</p>
+            <div class="userOptions">
+              <p>What would you like to do next?</p>
+              <div class="option continue" id="continue">How can this supercharge my HR team?</div>
+              <div class="option" id="demo">Request Demo</div>
+            </div>
+          </div>
+        <div class="humanlyText slide-2">
+          <p>The Humanly chatbot experience automates the acqusition and qualification of potential recruits. Instead of clunky forms, parsing resumes or long email strings — our AI keeps potential recruits engaged.
+            <div class="userOptions">
+              <p>How many job postings do you have per month?</p>
+              <div class="option continue" id="2">1-4</div>
+              <div class="option continue" id="7">5-9</div>
+              <div class="option continue" id="23">10-49</div>
+              <div class="option continue" id="95">50+</div>
+            </div>
+        </div>
+          <div class="humanlyText slide-3">
+          <p>Drop our widget onto your recruiting page and enjoy increased conversions, easy fast-tracking of qualified applicants, and automatically answer frequently asked questions in a conversational setting.
+            <div class="userOptions">
+              <p>Ready to get started?</p>
+              <div class="option continue" id="2">Yes, let's schedule a demo</div>
+              <div class="option secondary home" id="7">A little more information, please</div>
+            </div>
+        </div>
+          <div class="humanlyText slide-4 demo">
+          <p>We look forward to meeting you.
+            <div class="userOptions">
+              <form>
+                <div class="queryWrap">
+                <label for="name">Name</label>
+                <input type="text" name="name" id="name">
+                </div>
+                <div class="queryWrap">
+                <label for="company">Company</label>
+                <input type="text" name="company" id="company">
+                </div>
+                <div class="queryWrap">
+                <label for="email">Email</label>
+                <input type="email" name="email" id="email">
+                </div>
+                <div class="queryWrap">
+                <label for="phone">Phone</label>
+                <input type="text" name="phone" id="phone">
+                </div>
+                <button id="submit">SUBMIT</button>
+              </form>
+            </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+  <!-- chatbot end -->
+  
+  <script src="https://kyran88.github.io/conversation/script.js"></script>  
+  </body>
+</html>
