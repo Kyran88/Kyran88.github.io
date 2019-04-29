@@ -8,6 +8,7 @@ h1, .shadow {
   text-shadow: 0 0 8px rgba(0, 0, 0, 0.808);
 }
 /* Trying to get a fixed background that works in iOS */
+/* need to look for a better background image */
 .background {
   position: fixed;
   left: 0px;
