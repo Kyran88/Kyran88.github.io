@@ -1,14 +1,16 @@
 [v-cloak] {
   display: none;
 }
+
 body {
   font-family: "Cabin", sans-serif;
 }
+
 h1, .shadow {
   text-shadow: 0 0 8px rgba(0, 0, 0, 0.808);
 }
+
 /* Trying to get a fixed background that works in iOS */
-/* need to look for a better background image */
 .background {
   position: fixed;
   left: 0px;
@@ -18,15 +20,14 @@ h1, .shadow {
   z-index: -1;
   overflow: hidden;
   width: 100%;
-  // height: 100%;
-  background: url(https://images.pexels.com/photos/45888/landscape-scotland-nature-highlands-and-islands-45888.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260)
-    no-repeat;
+  background: url(https://images.pexels.com/photos/45888/landscape-scotland-nature-highlands-and-islands-45888.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260) no-repeat;
   background-position: 50% 0px;
   background-size: cover;
   background-attachment: fixed;
 }
+
 /* Now lets talk about bubbles! */
-%bubble-properties {
+.bot-bubble, .customer-bubble {
   position: relative;
   padding: 10px 20px;
   border-radius: 25px;
@@ -35,8 +36,9 @@ h1, .shadow {
   margin-bottom: 25px;
   clear: both;
 }
+
 /* First part of the tail shape */
-%bubble-tail {
+.bot-bubble:before, .customer-bubble:before {
   content: "";
   position: absolute;
   z-index: 2;
@@ -44,8 +46,9 @@ h1, .shadow {
   height: 20px;
   -webkit-transform: translate(0, -2px);
 }
+
 /* white overlay to make the tail shape */
-%bubble-tail-overlay {
+.bot-bubble:after, .customer-bubble:after {
   content: "";
   position: absolute;
   z-index: 3;
@@ -53,57 +56,57 @@ h1, .shadow {
   height: 20px;
   bottom: -2px;
   background: white;
-  -webkit-transform: translate(-30px, -2px);  
+  -webkit-transform: translate(-30px, -2px);
 }
+
 .bot-bubble {
-  @extend %bubble-properties;
   margin-right: 20px;
   color: white;
   background: #7957d5;
-  &:before {
-    @extend %bubble-tail;
-    right: -7px;
-    border-right: 20px solid #7957d5;
-    border-bottom-left-radius: 16px 14px;
-  }
-  &:after {
-    @extend %bubble-tail-overlay;
-    right: -56px;
-    border-bottom-left-radius: 10px;
-  }
 }
+.bot-bubble:before {
+  right: -7px;
+  border-right: 20px solid #7957d5;
+  border-bottom-left-radius: 16px 14px;
+}
+.bot-bubble:after {
+  right: -56px;
+  border-bottom-left-radius: 10px;
+}
+
 .customer-bubble {
-  @extend %bubble-properties;
   margin-left: 20px;
   background: #e5e5ea;
   color: black;
-  &:before {
-    @extend %bubble-tail;
-    left: -7px;
-    border-left: 20px solid #e5e5ea;
-    border-bottom-right-radius: 16px 14px;
-  }
-  &:after {
-    @extend %bubble-tail-overlay;
-    left: 4px;
-    border-bottom-right-radius: 10px;
-  }
 }
+.customer-bubble:before {
+  left: -7px;
+  border-left: 20px solid #e5e5ea;
+  border-bottom-right-radius: 16px 14px;
+}
+.customer-bubble:after {
+  left: 4px;
+  border-bottom-right-radius: 10px;
+}
+
 .suggestions {
   display: block;
   clear: both;
 }
+
 .expand-enter-active,
 .expand-leave-active {
   transition: all 0.6s ease;
   max-height: 1200px;
   overflow: hidden;
 }
+
 .expand-enter,
 .expand-leave-to {
   max-height: 0;
   opacity: 0;
 }
+
 .drawer-container {
   transition: all 0.5s ease;
   margin-top: 6vh;
