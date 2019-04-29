@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Chatbot powered homepage</title>
+<!-- styles -->
+<link rel="stylesheet" href="https://kyran88.github.io/website/style.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Cabin">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.5.1">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/buefy@0.6.6/lib/buefy.min.css">
+</head>
+  
+  
+    <body>
+    <div id="vue" aria-live="polite">
+  <section class="hero is-fullheight">
+    <div class="hero-body">
+      <div class="container has-text-centered">
+        <div class="columns">
+          <div class="column"></div>
+          <div class="column is-two-thirds">
+            <div class="drawer-container">
+              <h1 class="title is-2 has-text-light">Welcome to The help section</h1>
+
+              <div class="control has-icons-right">
+                <input v-model="question" class="input is-large" type="search" placeholder="Ask a question" @keyup.enter="askQuestion" ref="questionField">
+                <span class="icon is-medium is-right">
+                                        <i class="fas fa-comments"></i>
+                                        </span>
+              </div>
+            </div>
+            <span v-cloak>
+            <transition name="expand" mode="out-in">
+              <div v-if="conversation[0] != null && show == 'conversation' ">
+                <br>
+                <div class="box is-marginless is-clearfix">
+                  <button class="button is-rounded is-pulled-right" @click="clearChat"><span></span> <i class="far fa-trash-alt"></i></button>
+
+                  <br><br>
+
+                  <transition-group name="custom-classes-transition" enter-active-class="animated bounceIn" tag="div">
+                    <span v-for="words in conversationOrdered" :key="words" :class="[ words.BotOrNot == 'bot' ? botSpeechBubble : '', words.BotOrNot == 'not' ? customerSpeechBubble : '' ] ">
+                                                    <div><p>{{words.QandA}}</p></div>
+                                                    <div class="suggestions">
+                                                        <suggestion-buttons v-if="words.HTML == '...' "></suggestion-buttons>
+                                                    </div>
+                                                </span>
+                  </transition-group>
+                </div>
+              </div>
+            </transition>
+
+            <transition name="expand" mode="out-in">
+              <div v-if="show == 'bin-calendar' ">
+                <br>
+                <div class="box has-background-light">
+                  <button @click="back2chat " class="button is-rounded is-light is-pulled-right"><i class="fas fa-times"></i></button>
+                  <br/><br/>
+                  <div class="field has-background-light">
+                    <label class="label has-text-left title is-4" for="postcode">What's your postcode?</label>
+                    <div class="control has-icons-left">
+                      <input v-model="binday" class="input" id="postcode" type="text" placeholder="Enter your postcode">
+                      <span class="icon is-small is-left">
+                                                        <i class="fas fa-globe-americas"></i>
+                                                    </span>
+                    </div>
+                    <br/><br/>
+                    <transition name="expand" mode="out-in">
+                      <div v-if="binday.length > 6">
+                        <h2 class="title is-3">Your next bin days</h2><br/>
+                        <h2 class="title is-4 has-text-success"><i class="fas fa-trash-alt"></i> This Thursday (Household rubbish bin)</h2>
+                        <h2 class="title is-4 has-text-info"><i class="fas fa-recycle"></i> Next Wednesday (Recycling bin)</h2>
+                      </div>
+                    </transition>
+                  </div>
+                </div>
+              </div>
+            </transition>
+
+            <transition name="expand" mode="out-in">
+              <div v-if="show == 'missed-bin' ">
+                <br>
+                <div class="box has-background-light">
+                  <button @click="back2chat" class="button is-rounded is-light is-pulled-right"><i class="fas fa-times"></i></button>
+                  <br/><br/>
+                  <h2 class="title is-3 has-text-left">Report missed bin collection</h2>
+                  <div class="field">
+                    <label class="label has-text-left title is-4">Type of bin</label>
+                    <div class="control">
+                      <div class="select">
+                        <select name="bintype" id="bintype">
+                                                        <option value="Green bin">Waste bin</option>
+                                                        <option value="Blue bin">Recycling bin</option>
+                                                        <option value="Brown bin">Garden waste bin</option>
+                                                    </select>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="field">
+                    <label class="label has-text-left title is-4" for="contactName">Your name</label>
+                    <div class="control">
+                      <input class="input" id="contactName" type="text">
+                    </div>
+                  </div>
+                  <div class="field">
+                    <label class="label has-text-left title is-4" for="binDetails">Tell us about the missed collection</label>
+                    <div class="control">
+                      <textarea class="textarea" id="binDetails" required></textarea>
+                    </div>
+                  </div>
+                  <div class="field">
+                    <label class="label has-text-left title is-4" for="contactName">Leave a contact, so we can get in touch</label>
+                    <div class="control">
+                      <input class="input" id="contact" type="text" required>
+                    </div>
+                  </div>
+                  <div class="field">
+                    <div class="control has-text-centered">
+                      <input class="button is-rounded is-primary" type="submit" value="Submit" @click="caseNumber">
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </transition>
+
+            <transition name="expand" mode="out-in">
+              <div v-if="show == 'garden-waste' ">
+                <br>
+                <div class="box has-background-light">
+                  <button @click="back2chat" class="button is-rounded is-light is-pulled-right"><i class="fas fa-times"></i></button>
+                  <br/><br/>
+                  <h2 class="title is-3 has-text-left">Pay for brown bin collection</h2>
+                  <p class="has-text-left"><strong>Brown bin payments have ended for the season. Come back next summer</strong></p><br>
+                  <p class="has-text-left">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Voluptates aliquid, quasi saepe incidunt impedit in! Eius, ducimus? Et reprehenderit, unde assumenda at delectus quaerat quos omnis, repellendus impedit esse dignissimos.<br/><br/>                    Lorem ipsum dolor sit, amet consectetur adipisicing elit. Iusto optio, dolorum nam quisquam impedit ab distinctio exercitationem in eveniet aut fuga, labore eaque. Magnam possimus nesciunt odit? Iste, dolor beatae?</p>
+                  <br/>
+                  <p class="is-italic"><a href="#">Was this page helpful?</a></p>
+                </div>
+              </div>
+            </transition>
+            </span>
+          </div>
+          <div class="column"></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="hero-foot">
+      <div class="container has-text-centered title is-6 has-text-light shadow">
+        <span><i class="fab fa-twitter"></i></span>&nbsp;&nbsp;
+        <span><i class="fab fa-facebook"></i></span> &nbsp;&nbsp;
+        <span><i class="fab fa-instagram"></i></span>&nbsp;&nbsp;
+        <span><i class="fab fa-youtube"></i></span>&nbsp;&nbsp;
+        <span><i class="fab fa-flickr"></i></span>
+        <br/>
+        <p><strong>Site powered by Ness-e chatbot</strong></p><br/>
+      </div>
+    </div>
+
+  </section>
+
+</div>
+  <!-- iOS friendly fixed background -->
+  <div class="background"></div>
+
+
+<!-- chatbot script -->
+<script type="text/javascript" src="https://kyran88.github.io/website/chat/script.js"></script>
+<!--Scripts -->
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.5.17/vue.min.js"></script>
+<script type="text/javascript" src="https://unpkg.com/buefy/dist/buefy.min.js"></script>
+<script type="text/javascript" src="https://use.fontawesome.com/releases/v5.1.0/js/all.js"></script>
+    </body>
+</html>
