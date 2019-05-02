@@ -40,7 +40,1647 @@
 <div class="effects"><img></div>
 <!-- we only need jQuery for ajaxing -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+	
+	<script>
+	var c = [
+  {
+    path: "11",
+    messages: [
+      { author: "uxbear", text: "Groaaaar! (Polar bearish for hi)" },
+      {
+        author: "uxbear",
+        text: "Looks like this is your first time here. \ud83e\udd17"
+      },
+      {
+        author: "uxbear",
+        text:
+          "I\u2019m UX Bear, your user experience friend from uxdesign.cc. I talk to industry professionals and share my insights here with you. I hope I can learn from you too! \ud83d\ude47"
+      },
+      {
+        author: "uxbear",
+        type: "link",
+        href: "https://uxdesign.cc",
+        src:
+          "http://uxchat.me/wp-content/uploads/1-hMGWyRGDAe_2TmE48MuvTw.jpeg",
+        title: "Me planning the roadmap of UX Chat \u2014 uxdesign.cc"
+      },
+      {
+        author: "uxbear",
+        text:
+          "You wanna talk about what happened in design lately or get to know me better?"
+      }
+    ],
+    choices: [
+      { path: "11/get-to-know-you", text: "Get to know you", write: false },
+      { path: "560", text: "Design \ud83e\udd14", write: false }
+    ]
+  },
+  {
+    path: "11/get-to-know-you",
+    messages: [
+      { author: "uxbear", text: "I feel humbled! \u263a\ufe0f" },
+      {
+        author: "uxbear",
+        text:
+          "My passion is to tell you about the very best in UX, so you spend less time finding links and more time learning about our craft. \ud83d\udd28"
+      },
+      { author: "uxbear", text: "Ready to get started?" }
+    ],
+    choices: [
+      { path: "11/get-to-know-you/no-", text: "No \ud83d\ude11", write: false },
+      { path: "560", text: "Yep, let\u2019s go \ud83d\ude4c", write: false }
+    ]
+  },
+  {
+    path: "11/get-to-know-you/no-",
+    messages: [
+      {
+        author: "uxbear",
+        text: "Hmm\u2026  Not so comfy talking to new people huh? Erm... bears?"
+      },
+      {
+        author: "uxbear",
+        text:
+          "I reveal something about me, you tell me something about you, deal?"
+      }
+    ],
+    choices: [
+      { path: "11/get-to-know-you/no-/cool", text: "Cool", write: false },
+      { path: "11/get-to-know-you/no-/nope", text: "Nope\u2026", write: false }
+    ]
+  },
+  {
+    path: "11/get-to-know-you/no-/nope",
+    messages: [
+      {
+        author: "uxbear",
+        text: "A conversation can only be fun if you participate."
+      },
+      {
+        author: "uxbear",
+        text:
+          "Otherwise I just go hang out with the other bears here\u2026 It\u2019s really up to you.\u00a0\u263a\ufe0f"
+      }
+    ],
+    choices: [
+      {
+        path: "11/get-to-know-you/no-/cool",
+        text: "Ok, go ahead",
+        write: false
+      }
+    ]
+  },
+  {
+    path: "11/get-to-know-you/no-/cool",
+    messages: [
+      {
+        author: "uxbear",
+        text: "Alright! Did you know that my hair is actually not white?"
+      },
+      {
+        author: "uxbear",
+        type: "link",
+        href: "http://listverse.com",
+        src: "http://uxchat.me/wp-content/uploads/bear.jpg",
+        title: "11 cool facts about polar bears \u2014 listverse.com"
+      },
+      {
+        author: "uxbear",
+        text:
+          "It just reflects the light, that\u2019s why it seems white \ud83d\ude43"
+      }
+    ],
+    choices: [
+      {
+        path: "11/get-to-know-you/no-/cool/huh-interesting",
+        text: "Huh! Interesting",
+        write: false
+      }
+    ]
+  },
+  {
+    path: "11/get-to-know-you/no-/cool/huh-interesting",
+    messages: [
+      { author: "uxbear", text: "I think so too! \ud83d\ude07" },
+      { author: "uxbear", text: "Now it\u2019s your turn!" }
+    ],
+    choices: [
+      {
+        path: "11/get-to-know-you/no-/cool/huh-interesting/reveal",
+        text: "reveal",
+        write: true
+      }
+    ]
+  },
+  {
+    path: "11/get-to-know-you/no-/cool/huh-interesting/reveal",
+    messages: [
+      {
+        author: "uxbear",
+        text: "Hmm\u2026 That\u2019s surprising! \u263a\ufe0f\ud83e\udd17"
+      },
+      {
+        author: "uxbear",
+        text:
+          "I didn\u2019t expect that. But let\u2019s be honest, what can I expect?"
+      },
+      {
+        author: "uxbear",
+        text: "Ready to start discussing design or what are you waiting for?"
+      },
+      {
+        author: "uxbear",
+        type: "link",
+        href: "",
+        src: "http://uxchat.me/wp-content/uploads/giphy.gif",
+        title: ""
+      }
+    ],
+    choices: [
+      {
+        path: "11/get-to-know-you/no-/cool/huh-interesting/reveal/i-dont-know-",
+        text: "I don\u2019t know \ud83d\ude33",
+        write: false
+      },
+      { path: "560", text: "Let\u2019s go!", write: false }
+    ]
+  },
+  {
+    path: "11/get-to-know-you/no-/cool/huh-interesting/reveal/i-dont-know-",
+    messages: [
+      { author: "uxbear", text: "Me neither" },
+      {
+        author: "uxbear",
+        text:
+          "But I know\u2026 Some decisions in life are hard. And switching topics can be a daunting thing."
+      },
+      {
+        author: "uxbear",
+        text:
+          "I\u2019d suggest we start easy with some more casual design stuff, what do you think?"
+      }
+    ],
+    choices: [
+      {
+        path:
+          "11/get-to-know-you/no-/cool/huh-interesting/reveal/i-dont-know-/nope-",
+        text: "Nope \ud83d\ude11",
+        write: false
+      },
+      { path: "560", text: "Ok \u263a\ufe0f", write: false }
+    ]
+  },
+  {
+    path:
+      "11/get-to-know-you/no-/cool/huh-interesting/reveal/i-dont-know-/nope-",
+    messages: [
+      { author: "uxbear", text: "Are you even interested in design?" }
+    ],
+    choices: [
+      {
+        path:
+          "11/get-to-know-you/no-/cool/huh-interesting/reveal/i-dont-know-/nope-/no",
+        text: "No",
+        write: false
+      },
+      {
+        path:
+          "11/get-to-know-you/no-/cool/huh-interesting/reveal/i-dont-know-/nope-/yes",
+        text: "Yes",
+        write: false
+      }
+    ]
+  },
+  {
+    path:
+      "11/get-to-know-you/no-/cool/huh-interesting/reveal/i-dont-know-/nope-/yes",
+    messages: [
+      { author: "uxbear", text: "I\u2019m glad to hear that!" },
+      {
+        author: "uxbear",
+        text:
+          "You probably just need some warm up time. Design is for everyone, trust me. \ud83e\udd17"
+      },
+      {
+        author: "uxbear",
+        text:
+          "Let\u2019s learn and improve together and start with the first steps ok?"
+      }
+    ],
+    choices: [{ path: "560", text: "Ok cool!", write: false }]
+  },
+  {
+    path:
+      "11/get-to-know-you/no-/cool/huh-interesting/reveal/i-dont-know-/nope-/no",
+    messages: [
+      {
+        author: "uxbear",
+        text: "Sorry but then I\u2019m probably the wrong bear to talk too."
+      },
+      {
+        author: "uxbear",
+        text:
+          "I\u2019m happy to introduce you to my friend Siri though. I heard she\u2019s pretty cool\u00a0\ud83d\ude4e"
+      },
+      {
+        author: "uxbear",
+        text:
+          "Maybe, you just don\u2019t trust bears. I\u2019m sure this guy can change your opinion:"
+      },
+      {
+        author: "uxbear",
+        type: "link",
+        href: "https://www.vitsoe.com/rw/about/good-design",
+        src: "http://uxchat.me/wp-content/uploads/rams.jpg",
+        title: "Dieter Rams: ten principles for good design"
+      }
+    ],
+    choices: [
+      {
+        path:
+          "11/get-to-know-you/no-/cool/huh-interesting/reveal/i-dont-know-/nope-/yes",
+        text: "You got my interest",
+        write: false
+      }
+    ]
+  },
+  {
+    path: "560",
+    messages: [
+      {
+        author: "uxbear",
+        text:
+          "As you might have guessed... I am not all flesh and blood...\u00a0"
+      },
+      {
+        author: "uxbear",
+        text:
+          "In fact, I am made up of human written code under my fur! \ud83e\udd16"
+      },
+      {
+        author: "uxbear",
+        text:
+          "The same goes for lots of my popular buddies such as Poncho the Weather Cat and others out there! \ud83d\ude40"
+      }
+    ],
+    choices: [
+      { path: "560/no-sht-", text: "No Sh*t \ud83d\ude31", write: false },
+      { path: "560/got-that-", text: "Got that! \ud83d\ude09", write: false }
+    ]
+  },
+  {
+    path: "560/got-that-",
+    messages: [
+      { author: "uxbear", text: "Yes, hard to believe right?" },
+      {
+        author: "uxbear",
+        text:
+          "Think of me as Sheldon Cooper, my level of empathy isn't great. Hopefully I'll get there some day."
+      },
+      {
+        author: "uxbear",
+        text:
+          "If you want to avoid some of the most common mistakes when it comes to designing chatbots, have a look at this post we recently published! \ud83e\udd13"
+      },
+      {
+        author: "uxbear",
+        type: "link",
+        href: "https://chatbot.fail/",
+        src: "http://uxchat.me/wp-content/uploads/download.jpeg",
+        title: "Why chatbots fail"
+      }
+    ],
+    choices: [{ path: "17", text: "What else?", write: false }]
+  },
+  {
+    path: "560/no-sht-",
+    messages: [
+      { author: "uxbear", text: "Groar, groar groaaar!\u00a0" },
+      { author: "uxbear", text: "It's true!\u00a0" },
+      {
+        author: "uxbear",
+        text:
+          "So, I don't know a lot of things and constantly try to get better and learn from my mistakes...\u00a0"
+      },
+      {
+        author: "uxbear",
+        text:
+          "If you want to avoid some of these mistakes for your bot, it helps to learn from others! \ud83e\udd13"
+      },
+      {
+        author: "uxbear",
+        type: "link",
+        href: "",
+        src: "http://uxchat.me/wp-content/uploads/1489465581410.jpeg",
+        title: "Why chatbots fail"
+      }
+    ],
+    choices: [{ path: "17", text: "What else?", write: false }]
+  },
+  {
+    path: "17",
+    messages: [
+      { author: "uxbear", text: "By the way, before I forget\u2026" },
+      { author: "uxbear", text: "what should I call you?" }
+    ],
+    choices: [{ path: "17/name-memory", text: "name-memory", write: true }]
+  },
+  {
+    path: "17/name-memory",
+    messages: [
+      { author: "uxbear", text: "Cool. I\u2019ll remember that.\u00a0" },
+      {
+        author: "uxbear",
+        text:
+          "I feel like that\u2019s the start of a wonderful friendship.\u00a0\ud83e\udd17"
+      }
+    ],
+    choices: [
+      { path: "17/name-memory/no-stop", text: "No! Stop!", write: false },
+      { path: "556", text: "\u2764\ufe0f\u00a0What else?", write: false }
+    ]
+  },
+  {
+    path: "17/name-memory/no-stop",
+    messages: [
+      {
+        author: "uxbear",
+        text: "Ok relax. I won\u2019t call you this way.\u00a0\ud83d\ude48"
+      },
+      {
+        author: "uxbear",
+        text: "I might ask you again though\u00a0\ud83d\ude43"
+      }
+    ],
+    choices: [{ path: "556", text: "Ok... What else?", write: false }]
+  },
+  {
+    path: "556",
+    messages: [
+      {
+        author: "uxbear",
+        text:
+          "Confirmations ask a user to verify whether they want to proceed or cancel a requested action."
+      },
+      {
+        author: "uxbear",
+        text:
+          "If done wrong they may be a major pain point in a user's experience of a product. \ud83d\ude21\ud83d\ude21\ud83d\ude21"
+      },
+      {
+        author: "uxbear",
+        text: "But there is some best practice to avoid pitfalls!"
+      }
+    ],
+    choices: [
+      { path: "556/show-me-", text: "Show me! \ud83d\udc4d", write: false },
+      { path: "553", text: "What else?", write: false }
+    ]
+  },
+  {
+    path: "556/show-me-",
+    messages: [
+      { author: "uxbear", text: "OK, here we go:" },
+      {
+        author: "uxbear",
+        text:
+          '\ud83d\udc49 HEADER: Present the action as a question (don\'t ask "are you sure").'
+      },
+      {
+        author: "uxbear",
+        text:
+          "\ud83d\udc49 BODY: Explain the outcome of the action (avoid non-descriptive body copy)."
+      },
+      {
+        author: "uxbear",
+        text:
+          '\ud83d\udc49 BUTTONS: Restate the action (avoid "yes", "no" and "cancel").\u00a0'
+      },
+      {
+        author: "uxbear",
+        type: "link",
+        href:
+          "https://uxdesign.cc/designing-confirmation-278d159723e#.83c2dq2ib",
+        src: "http://uxchat.me/wp-content/uploads/10oWc9VcgucRR7sjme_ZpBg.jpeg",
+        title: "Designing Confirmation\n"
+      }
+    ],
+    choices: [{ path: "553", text: "What else?", write: false }]
+  },
+  {
+    path: "553",
+    messages: [
+      {
+        author: "uxbear",
+        text:
+          "How would you describe the term \u00abbot\u00bb to a non-technical person? \ud83e\udd14"
+      }
+    ],
+    choices: [
+      { path: "553/your-definition", text: "your definition", write: true }
+    ]
+  },
+  {
+    path: "553/your-definition",
+    messages: [
+      {
+        author: "uxbear",
+        text: "Alright! Thank you for your feedback... \ud83d\udc4d"
+      },
+      {
+        author: "uxbear",
+        text: "Well, describing jargon to non-experts is not always easy.\u00a0"
+      },
+      {
+        author: "uxbear",
+        text:
+          "Thus, it helps to work with analogies!\u00a0That's what the Sideways Dictionary does! Give it a shot! \ud83d\udd2b"
+      },
+      {
+        author: "uxbear",
+        type: "link",
+        href: "https://sidewaysdictionary.com/#/",
+        src:
+          "http://uxchat.me/wp-content/uploads/Screen-Shot-2017-03-15-at-08.36.21.png",
+        title: "Sideways Dictionary"
+      }
+    ],
+    choices: [{ path: "550", text: "What else?", write: false }]
+  },
+  {
+    path: "550",
+    messages: [
+      { author: "uxbear", text: "Did you know...?!? \ud83e\udd14" },
+      {
+        author: "uxbear",
+        text: "Humans have a lower attention span than a goldfish...\u00a0"
+      },
+      { author: "uxbear", text: "\ud83d\udc1f\ud83d\udc1f\ud83d\udc1f" },
+      {
+        author: "uxbear",
+        text:
+          "This is why cards \ud83c\udccf\ud83c\udccf\ud83c\udccf are a powerful tool in webdesign!\u00a0"
+      }
+    ],
+    choices: [
+      {
+        path: "550/tell-me-more-",
+        text: "Tell me more \ud83e\udd17",
+        write: false
+      },
+      { path: "114", text: "What else?", write: false }
+    ]
+  },
+  {
+    path: "550/tell-me-more-",
+    messages: [
+      {
+        author: "uxbear",
+        text: "Glad you are still paying attention \ud83d\ude09\u00a0"
+      },
+      {
+        author: "uxbear",
+        text:
+          "The card component is a preview of more detailed content a user sees when actioned."
+      },
+      {
+        author: "uxbear",
+        text:
+          "Here is an in-depth article covering the subject if you wanna dive in right away!"
+      },
+      {
+        author: "uxbear",
+        type: "link",
+        href: "https://uxdesign.cc/design-better-cards-c0d12ab581c4#.xjacackln",
+        src: "http://uxchat.me/wp-content/uploads/1c4Y9d2G4a3GbMbzsSgVFlA.jpeg",
+        title: "Design Better Cards\n"
+      },
+      {
+        author: "uxbear",
+        text:
+          "If you want I can give you some bast-practices from the article! \ud83e\udd13"
+      }
+    ],
+    choices: [
+      {
+        path: "550/tell-me-more-/yeah-do-that",
+        text: "Yeah, do that \ud83d\udc4d",
+        write: false
+      },
+      { path: "114", text: "What else?", write: false }
+    ]
+  },
+  {
+    path: "550/tell-me-more-/yeah-do-that",
+    messages: [
+      {
+        author: "uxbear",
+        text:
+          "You are really attentive today \ud83d\ude09 and earned yourself some \ud83d\udc1f\u00a0\ud83d\udc1f\ud83d\udc1f\ud83d\udc1f\ud83d\udc1f\ud83d\udc1f\ud83d\udc1f"
+      },
+      {
+        author: "uxbear",
+        text:
+          "\ud83c\udccf\ud83c\udccf\ud83c\udccf may include a headline, sub-headline, summary text, multi-media, image, video, graph, comments, and action."
+      },
+      {
+        author: "uxbear",
+        text:
+          "\ud83c\udccf\ud83c\udccf\ud83c\udccf are not always the right solution:\u00a0Use a list if the design presents homogeneous content that is less than a few lines."
+      },
+      {
+        author: "uxbear",
+        text: "Don\u2019t present multiple ideas in one \ud83c\udccf.\u00a0"
+      },
+      {
+        author: "uxbear",
+        type: "link",
+        href: "https://uxdesign.cc/design-better-cards-c0d12ab581c4#.xjacackln",
+        src: "http://uxchat.me/wp-content/uploads/1c4Y9d2G4a3GbMbzsSgVFlA.jpeg",
+        title: "Design Better Cards\n"
+      }
+    ],
+    choices: [{ path: "114", text: "What else?", write: false }]
+  },
+  {
+    path: "114",
+    messages: [
+      { author: "uxbear", text: "Would you mind sharing your email?" },
+      {
+        author: "uxbear",
+        text:
+          "I could use it to let you know if there is new stuff we\u2019re discussing here\u2026"
+      }
+    ],
+    choices: [
+      { path: "114/sure", text: "Sure! \ud83d\udc4d", write: false },
+      { path: "114/nope", text: "Nope\u2026", write: false }
+    ]
+  },
+  {
+    path: "114/nope",
+    messages: [
+      {
+        author: "uxbear",
+        text: "Ok got it\u2026 I might still ask you another time\u2026"
+      },
+      {
+        author: "uxbear",
+        text: "Just in case you change your opinion \ud83d\ude48"
+      }
+    ],
+    choices: [
+      {
+        path: "caughtup",
+        text: "Cool! Let\u2019s move on! \ud83d\ude4c",
+        write: false
+      }
+    ]
+  },
+  {
+    path: "114/sure",
+    messages: [{ author: "uxbear", text: "Awesome! What is it?" }],
+    choices: [{ path: "114/sure/email", text: "email", write: true }]
+  },
+  {
+    path: "114/sure/email",
+    messages: [
+      {
+        author: "uxbear",
+        text:
+          "Cool! I\u2019ll remember that and let you know if there is any news happening here\u2026"
+      }
+    ],
+    choices: [{ path: "caughtup", text: "Cool! What else?", write: false }]
+  },
+  {
+    messages: [
+      { text: "Aloha \u2600\ufe0f", author: "uxbear" },
+      {
+        text:
+          "I\u2019m out of things to say and the other bears are making fun of me because I talk to silly humans. \ud83d\udca9",
+        author: "uxbear"
+      },
+      {
+        text:
+          "Got a link or any design news others might find interesting? \ud83e\udd17",
+        author: "uxbear"
+      }
+    ],
+    path: "empty",
+    choices: [
+      { path: "submitArticle", text: "Yes!", write: false },
+      { path: "bye", text: "Nope, thanks!", write: false }
+    ]
+  },
+  {
+    messages: [
+      { text: "Awesome! What\u2019s on your mind?", author: "uxbear" }
+    ],
+    path: "submitArticle",
+    choices: [{ path: "articleSubmitted", text: "", write: true }]
+  },
+  {
+    messages: [
+      {
+        text: "Looking into it asap. Thanks for sharing! \ud83d\ude4c",
+        author: "uxbear"
+      },
+      { text: "Come back soon \ud83d\ude0a", author: "uxbear" }
+    ],
+    path: "articleSubmitted"
+  },
+  {
+    messages: [
+      {
+        text: "All right! Great chat. See you soon! \ud83e\udd17",
+        author: "uxbear"
+      }
+    ],
+    path: "bye"
+  },
+  {
+    messages: [
+      {
+        text:
+          "Thanks for the great talk! Talk again tomorrow? Here is a gift for you: \ud83c\udf81",
+        author: "uxbear"
+      },
+      {
+        text:
+          '<img src="https://media.giphy.com/media/6AachtBbwRYm4/giphy.gif">',
+        author: "uxbear"
+      },
+      {
+        text:
+          "Got a link or any design news others might find interesting? \ud83e\udd17",
+        author: "uxbear"
+      }
+    ],
+    path: "caughtup",
+    choices: [
+      { path: "submitArticle", text: "Yes!", write: false },
+      { path: "bye", text: "Nope, thanks!", write: false }
+    ]
+  }
+];
+var a = [
+  {
+    id: "uxbear",
+    name: "UX Bear",
+    src: "https://cdn-images-1.medium.com/max/72/1*4dXC4-4BGgu348Q06f-FGw.jpeg",
+    url: "http://twitter.com/uxdesigncc"
+  },
+  {
+    id: "default",
+    name: "UX Bear",
+    src: "https://cdn-images-1.medium.com/max/72/1*4dXC4-4BGgu348Q06f-FGw.jpeg",
+    url: "http://twitter.com/uxdesigncc"
+  },
+  {
+    id: "adactio@gmail.com",
+    name: "Jeremy Keith",
+    url: "https://adactio.com/",
+    src:
+      "http://0.gravatar.com/avatar/66ed18ffd62bc77d51306cd51d298d3a?s=96&d=mm&r=g"
+  },
+  {
+    id: "azumbrunnen",
+    name: "Adrian Zumbrunnen",
+    url: "",
+    src:
+      "http://2.gravatar.com/avatar/b5d089f8738888d50ec5cd344d49a581?s=96&d=mm&r=g"
+  },
+  {
+    id: "danariely",
+    name: "Dan Ariely",
+    url: "http://danariely.com",
+    src:
+      "http://1.gravatar.com/avatar/a59e2016d42bc82d46f935d125b63c74?s=96&d=mm&r=g"
+  },
+  {
+    id: "dannessler",
+    name: "Dan Nessler",
+    url: "http://www.dannessler.com/",
+    src:
+      "http://0.gravatar.com/avatar/f0e3885e4199d6f08c6bb3b2a27c7fb0?s=96&d=mm&r=g"
+  },
+  {
+    id: "denisejacobs",
+    name: "Denise Jacobs",
+    url: "http://www.denisejacobs.com",
+    src:
+      "http://0.gravatar.com/avatar/ff23902c7650259667de5a16a9cb0f09?s=96&d=mm&r=g"
+  },
+  {
+    id: "evalottchen",
+    name: "Eva-Lotta Lamm",
+    url: "https://twitter.com/evalottchen",
+    src:
+      "http://0.gravatar.com/avatar/363694304ccb13c7ef30c2adc5f7ce37?s=96&d=mm&r=g"
+  },
+  {
+    id: "fabriciot",
+    name: "Fabricio Teixeira",
+    url: "https://twitter.com/fabriciot",
+    src:
+      "http://1.gravatar.com/avatar/1d018b905cab5db2e92e845e5f224fdf?s=96&d=mm&r=g"
+  },
+  {
+    id: "jessican",
+    name: "Jessica Müller",
+    url: "https://twitter.com/jessicamzh",
+    src:
+      "http://1.gravatar.com/avatar/78d2440af78ee2270e9941a36aea44f0?s=96&d=mm&r=g"
+  },
+  {
+    id: "kchristen",
+    name: "Karin Christen",
+    url: "https://twitter.com/karinchristen",
+    src:
+      "http://1.gravatar.com/avatar/4d4996b003601a513d8b0a1085c6b41c?s=96&d=mm&r=g"
+  },
+  {
+    id: "lukew",
+    name: "Luke Wroblewski",
+    url: "http://www.lukew.com/",
+    src:
+      "http://2.gravatar.com/avatar/beed373a9ec70d5fcc4f1170660a4a5f?s=96&d=mm&r=g"
+  },
+  {
+    id: "Mark@rebelmail.com",
+    name: "Mark Robbins",
+    url: "http://gorebel.com",
+    src:
+      "http://2.gravatar.com/avatar/ed5fdee38bfcf04a2089ad5575d573ef?s=96&d=mm&r=g"
+  },
+  {
+    id: "mattstokes",
+    name: "Matt Stokes",
+    url: "https://www.linkedin.com/in/mattstokes/",
+    src:
+      "http://2.gravatar.com/avatar/ec292f20fc77c906bda0ab0500127f78?s=96&d=mm&r=g"
+  },
+  {
+    id: "monteiro",
+    name: "Mike Monteiro",
+    url: "http://monteiro.com",
+    src:
+      "http://0.gravatar.com/avatar/65d7b340bfefff9fb8d84061b2be226a?s=96&d=mm&r=g"
+  },
+  {
+    id: "nickbabich",
+    name: "Nick Babich",
+    url: "http://babich.biz",
+    src:
+      "http://0.gravatar.com/avatar/60e4bf5cdc458c49be1174619cf89ccb?s=96&d=mm&r=g"
+  },
+  {
+    id: "nireyal",
+    name: "Nir Eyal",
+    url: "http://nireyal.com",
+    src:
+      "http://2.gravatar.com/avatar/8e3bc458655f21f4ecb00e84a18f1c44?s=96&d=mm&r=g"
+  },
+  {
+    id: "oliviashepherd",
+    name: "Olivia Shepherd",
+    url: "https://www.linkedin.com/in/olivia-shepherd-20618995",
+    src:
+      "http://1.gravatar.com/avatar/1e0a477565e5f563e5fb31db193114a0?s=96&d=mm&r=g"
+  },
+  {
+    id: "olo",
+    name: "Oliver Reichenstein",
+    url: "https://twitter.com/@iA",
+    src:
+      "http://0.gravatar.com/avatar/90e037f9fa16ccdc797e22bcb06fbf7d?s=96&d=mm&r=g"
+  },
+  {
+    id: "smashingmagazine",
+    name: "Vitaly Friedman",
+    url: "https://twitter.com/smashingmag",
+    src:
+      "http://2.gravatar.com/avatar/e8977f4397be6ca8dcf6f2d6d8aa45f1?s=96&d=mm&r=g"
+  },
+  {
+    id: "steveportigal",
+    name: "Steve Portigal",
+    url: "http://portigal.com",
+    src:
+      "http://2.gravatar.com/avatar/8f476374062bace6690a3d00b10b45a7?s=96&d=mm&r=g"
+  }
+];
 
+/*
+ * UX-chat
+ *
+ * Author: Adrian Zumbrunnen
+ *
+ * Iâ€™m working on making this open source. In the meantime, donâ€™t rip it off please.
+ * Unless you really want toâ€¦ Because I canâ€™t stop you. No one can. Not even your parentsâ€¦
+ * Because weâ€™re all grown ups nowâ€¦  ðŸ¤— ðŸ‘
+ *
+ * You wanna know more? [Yes] | [No]
+ */
+("use strict");
+function _classCallCheck(e, t) {
+  if (!(e instanceof t))
+    throw new TypeError("Cannot call a class as a function");
+}
+var _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator
+  ? function(e) {
+      return typeof e;
+    }
+  : function(e) {
+      return e && "function" == typeof Symbol && e.constructor === Symbol
+        ? "symbol"
+        : typeof e;
+    },
+  _createClass = (function() {
+    function e(e, t) {
+      for (var n = 0; n < t.length; n++) {
+        var s = t[n];
+        (s.enumerable = s.enumerable || !1), (s.configurable = !0), "value" in
+          s && (s.writable = !0), Object.defineProperty(e, s.key, s);
+      }
+    }
+    return function(t, n, s) {
+      return n && e(t.prototype, n), s && e(t, s), t;
+    };
+  })(),
+  Chat = (function() {
+    function e(t) {
+      var n = arguments.length <= 1 || void 0 === arguments[1]
+        ? {}
+        : arguments[1];
+      return _classCallCheck(this, e), (this.config = Object.assign(
+        {},
+        e.defaultConfig,
+        n
+      )), (this.threads =
+        t ||
+        []), (this.callbacks = {}), (this.bubbleTypes = {}), (this.conversation = document.createElement(
+        "ol"
+      )), (this.conversation.className =
+        "cui__list"), (this.responses = document.createElement(
+        "div"
+      )), (this.responses.className =
+        "cui__responses"), (this.hostElement = document.querySelector(
+        this.config.targetNode
+      )), this.registerBubbleType("text", Bubble), this.hostElement
+        ? (
+            this.hostElement.classList.add(
+              "cui",
+              this.config.avatar ? "cui--avatarEnabled" : ""
+            ),
+            this.hostElement.appendChild(this.conversation),
+            this.hostElement.appendChild(this.responses),
+            this
+          )
+        : console.warn("Host element not found.");
+    }
+    return _createClass(e, [
+      {
+        key: "addMessageSet",
+        value: function(e) {
+          this.threads.push(e);
+        }
+      },
+      {
+        key: "scrollIntoView",
+        value: function(e) {
+          var t = this.hostElement.getBoundingClientRect(),
+            n = t.bottom - window.innerHeight,
+            s = document.querySelector(this.config.scrollNode),
+            a = function i() {
+              n > 0 &&
+                (
+                  (s.scrollTop = s.scrollTop + 8),
+                  (n -= 8),
+                  window.requestAnimationFrame(i)
+                );
+            };
+          a();
+        }
+      },
+      {
+        key: "getAbsoluteRect",
+        value: function(e) {
+          var t = e.getBoundingClientRect(),
+            n = t.top + window.pageYOffset,
+            s = t.left + window.pageXOffset;
+          return { x: s, y: n };
+        }
+      },
+      {
+        key: "getRectDelta",
+        value: function(e, t) {
+          return { x: e.x - t.x, y: e.y - t.y };
+        }
+      },
+      {
+        key: "emit",
+        value: function(e, t) {
+          var n = this,
+            s = this.callbacks[e];
+          s &&
+            s.forEach(function(e) {
+              return e.call(n, t);
+            });
+        }
+      },
+      {
+        key: "on",
+        value: function(e, t) {
+          (this.callbacks[e] = this.callbacks[e] || []), this.callbacks[e].push(
+            t
+          );
+        }
+      },
+      {
+        key: "wipeResponses",
+        value: function(e) {
+          [].slice.call(this.responses.children).forEach(function(t) {
+            return t !== e
+              ? (t.style.transform = "translate3d(0, 100px, 0)")
+              : void 0;
+          });
+        }
+      },
+      {
+        key: "animateResponse",
+        value: function(e, t, n) {
+          var s = this;
+          this.appendSpeechBubble(t, !0);
+          var a = t.parentNode,
+            i = this.getAbsoluteRect(t);
+          a.setAttribute("style", "height: 0");
+          var o = this.getAbsoluteRect(e),
+            r = this.getRectDelta(i, o);
+          (e.style.transform =
+            "translate3d(" + r.x + "px, " + r.y + "px, 0)"), e.addEventListener(
+            "transitionend",
+            function() {
+              n.call(s, e), e.parentNode.removeChild(
+                e
+              ), (s.responses.innerHTML = ""), a.removeAttribute("style");
+            },
+            !1
+          ), this.wipeResponses(e);
+        }
+      },
+      {
+        key: "createResponseBubble",
+        value: function(e) {
+          var t = this.createBubble({ text: e || "", response: !0 });
+          return (t.style.transform =
+            "translate3d(0, 72px, 0)"), this.responses.appendChild(
+            t
+          ), setTimeout(function() {
+            t.style.transform = "translate3d(0, 0, 0)";
+          }, 450), t.addEventListener("transitionend", function() {
+            t.focus();
+          }), t;
+        }
+      },
+      {
+        key: "loadResponses",
+        value: function() {
+          var e = this,
+            t = arguments.length <= 0 || void 0 === arguments[0]
+              ? []
+              : arguments[0],
+            n = arguments[1];
+          t.forEach(function(t, s) {
+            return t.write
+              ? e.writeResponse(n, t.path)
+              : void setTimeout(function() {
+                  var s = e.createResponseBubble(t.text);
+                  s.addEventListener("click", function(a) {
+                    e.animateResponse(s, s.cloneNode(!0), function() {
+                      (t.currentPath = n), e.emit("respond", t), e.say(e.getThreadByPath(t.path));
+                    });
+                  });
+                }, 65 * s);
+          });
+        }
+      },
+      {
+        key: "writeResponse",
+        value: function(e, t) {
+          var n = this,
+            s = !1,
+            a = this.createResponseBubble();
+          a.classList.add("cui__answers__placeholder"), a.setAttribute(
+            "contentEditable",
+            !0
+          ), a.addEventListener("paste", function(e) {
+            return !1;
+          }), a.addEventListener("keyup", function(e) {
+            return a.innerText.length
+              ? void a.classList.remove("cui__answers__placeholder")
+              : (a.classList.add("cui__answers__placeholder"), a.focus());
+          });
+          var i = !1,
+            o = function(s) {
+              a.innerText.length &&
+                !i &&
+                (
+                  (i = !0),
+                  a.removeAttribute("contentEditable"),
+                  n.animateResponse(a, a.cloneNode(!0), function(s) {
+                    n.emit("respond", {
+                      path: e,
+                      value: s.textContent
+                    }), n.say(n.getThreadByPath(t));
+                  })
+                );
+            };
+          a.addEventListener(
+            "blur",
+            o.bind(this)
+          ), a.addEventListener("keydown", function(e) {
+            13 === e.keyCode && (e.preventDefault(), o());
+          }), a.addEventListener("keypress", function(e) {
+            a.innerText.length > n.config.maxCharsResponse &&
+              (
+                s ||
+                  (
+                    (s = !0),
+                    n.say({
+                      messages: [{ text: n.config.maxCharsResponseReached }]
+                    })
+                  ),
+                e.preventDefault()
+              );
+          });
+        }
+      },
+      {
+        key: "animateEntry",
+        value: function(e, t) {
+          var n = this,
+            s = e.getBoundingClientRect();
+          window.getComputedStyle(e).opacity, e.classList.add(
+            "cui__bubble--slideIn",
+            "cui__bubble--typing"
+          ), setTimeout(function() {
+            (e.style.minHeight =
+              s.height +
+              "px"), (e.style.minWidth = s.width + "px"), e.classList.add("cui__bubble--fade"), setTimeout(function(t) {
+              e.classList.remove(
+                "cui__bubble--typing"
+              ), e.removeAttribute("style"), n.scrollIntoView();
+            }, 350);
+          }, t);
+        }
+      },
+      {
+        key: "appendSpeechBubble",
+        value: function(e) {
+          var t = document.createElement("li");
+          return t.classList.add("cui__list__item"), t.appendChild(
+            e
+          ), this.conversation.appendChild(t), e;
+        }
+      },
+      {
+        key: "getWritingTime",
+        value: function(e) {
+          return Math.max(
+            e.length / this.config.average_cpm * 47.5 * 100,
+            1250
+          );
+        }
+      },
+      {
+        key: "getAuthorById",
+        value: function(e) {
+          return (
+            this.config.authors.filter(function(t) {
+              return t.id === e;
+            })[0] || !1
+          );
+        }
+      },
+      {
+        key: "appendAuthor",
+        value: function(e, t) {
+          var n = this.getAuthorById(e || "default"),
+            s =
+              '<a target="_blank" href="' +
+              n.url +
+              '">\n            <img class="cui__avatar" src="' +
+              n.src +
+              '">\n        </a><a target="_blank" href="' +
+              n.url +
+              '" class="cui__list__item__author">\n            ' +
+              n.name +
+              "\n        </a>";
+          t.insertAdjacentHTML("afterbegin", s), window.getComputedStyle(t)
+            .opacity, t.classList.add("cui__list__item--new");
+        }
+      },
+      {
+        key: "getThreadByPath",
+        value: function(e) {
+          return (
+            this.threads.filter(function(t) {
+              return t.path === e;
+            })[0] || !1
+          );
+        }
+      },
+      {
+        key: "registerBubbleType",
+        value: function(e, t) {
+          this.bubbleTypes[e] = t;
+        }
+      },
+      {
+        key: "createBubble",
+        value: function(e) {
+          var t = this.bubbleTypes[e.type || "text"];
+          if (t) {
+            var n = document.createElement("li");
+            return n.classList.add("cui__list__item"), new t(e).render();
+          }
+          console.warn("Bubble type not registered");
+        }
+      },
+      {
+        key: "say",
+        value: function(e) {
+          var t = this,
+            n = "object" ===
+              ("undefined" == typeof e ? "undefined" : _typeof(e))
+              ? e
+              : this.getThreadByPath(e),
+            s = (n.groupThread ? n.groupThread[0].messages : n.messages, !1);
+          n.messages.reduce(function(e, a, i) {
+            var o = t.createBubble(a),
+              r = t.getWritingTime(o.textContent),
+              u = 0 === i ? 0 : e,
+              l = s !== a.author;
+            (s =
+              a.author), l && i > 0 && (u += t.config.delay_between_authors * (1 + Math.random()));
+            var c = setTimeout(function() {
+              t.appendSpeechBubble(
+                o
+              ), l && t.appendAuthor(a.author, o.parentNode), t.animateEntry(o, r), i ===
+                n.messages.length - 1 &&
+                setTimeout(function() {
+                  t.loadResponses(n.choices, n.path), t.emit("finish", n.path);
+                }, t.config.delay_between_messages + r);
+            }, u);
+            return t.on("respond", function() {
+              return window.clearTimeout(c);
+            }), u + 1.4 * r;
+          }, 0);
+        }
+      }
+    ]), e;
+  })();
+(Chat.defaultConfig = {
+  botName: "UX Bear",
+  authors: [
+    {
+      id: "uxbear",
+      name: "UX Bear",
+      src:
+        "https://cdn-images-1.medium.com/max/72/1*4dXC4-4BGgu348Q06f-FGw.jpeg",
+      url: "#"
+    }
+  ],
+  avatar: !0,
+  targetNode: "body",
+  scrollNode: "body",
+  delay_between_messages: 400,
+  delay_between_authors: 1050,
+  average_cpm: 240,
+  maxCharsResponse: 120,
+  maxCharsResponseReached:
+    "Sorry, we need to keep this short. Please keep the message under 120 chars ðŸ™ˆ"
+}), (Chat.info = {
+  name: "JS-chat",
+  description: "A simple conversational JS framework"
+});
+
+/*
+ * Chat-Bubble modules
+ *
+ * Author: Adrian Zumbrunnen
+ */
+("use strict");
+function _possibleConstructorReturn(e, t) {
+  if (!e)
+    throw new ReferenceError(
+      "this hasn't been initialised - super() hasn't been called"
+    );
+  return !t || ("object" != typeof t && "function" != typeof t) ? e : t;
+}
+function _inherits(e, t) {
+  if ("function" != typeof t && null !== t)
+    throw new TypeError(
+      "Super expression must either be null or a function, not " + typeof t
+    );
+  (e.prototype = Object.create(t && t.prototype, {
+    constructor: { value: e, enumerable: !1, writable: !0, configurable: !0 }
+  })), t &&
+    (Object.setPrototypeOf ? Object.setPrototypeOf(e, t) : (e.__proto__ = t));
+}
+function _classCallCheck(e, t) {
+  if (!(e instanceof t))
+    throw new TypeError("Cannot call a class as a function");
+}
+var _createClass = (function() {
+  function e(e, t) {
+    for (var n = 0; n < t.length; n++) {
+      var r = t[n];
+      (r.enumerable = r.enumerable || !1), (r.configurable = !0), "value" in
+        r && (r.writable = !0), Object.defineProperty(e, r.key, r);
+    }
+  }
+  return function(t, n, r) {
+    return n && e(t.prototype, n), r && e(t, r), t;
+  };
+})(),
+  Bubble = (function() {
+    function e(t) {
+      return _classCallCheck(this, e), (this.config = Object.assign(
+        {},
+        { response: !1 },
+        t
+      )), this;
+    }
+    return _createClass(e, [
+      { key: "bindEvents", value: function() {} },
+      {
+        key: "parseTemplate",
+        value: function(e) {
+          return "<span>" + e.text + "</span>";
+        }
+      },
+      {
+        key: "render",
+        value: function() {
+          var e = document.createElement("div");
+          return e.classList.add("cui__bubble"), e.classList.toggle(
+            "cui__bubble--response",
+            this.config.response
+          ), (e.innerHTML = this.parseTemplate(this.config)), this.bindEvents(
+            e
+          ), e;
+        }
+      }
+    ]), e;
+  })(),
+  LinkBubble = (function(e) {
+    function t() {
+      return _classCallCheck(this, t), _possibleConstructorReturn(
+        this,
+        Object.getPrototypeOf(t).apply(this, arguments)
+      );
+    }
+    return _inherits(t, e), _createClass(t, [
+      {
+        key: "parseTemplate",
+        value: function(e) {
+          return (
+            '<a class="cui__card" target="_blank" href="' +
+            e.href +
+            '"><img src="' +
+            e.src +
+            '">' +
+            e.title +
+            "</a>"
+          );
+        }
+      }
+    ]), t;
+  })(Bubble),
+  EmbedBubble = (function(e) {
+    function t() {
+      return _classCallCheck(this, t), _possibleConstructorReturn(
+        this,
+        Object.getPrototypeOf(t).apply(this, arguments)
+      );
+    }
+    return _inherits(t, e), _createClass(t, [
+      {
+        key: "parseTemplate",
+        value: function(e) {
+          return '<div class="cui__embed">' + e.code + "</div>";
+        }
+      }
+    ]), t;
+  })(Bubble),
+  AudioBubble = (function(e) {
+    function t() {
+      return _classCallCheck(this, t), _possibleConstructorReturn(
+        this,
+        Object.getPrototypeOf(t).apply(this, arguments)
+      );
+    }
+    return _inherits(t, e), _createClass(t, [
+      {
+        key: "bindEvents",
+        value: function(e) {
+          var t = e.querySelector("audio");
+          t &&
+            !(function() {
+              var n = e.querySelector("path"),
+                r = n.firstChild,
+                i = r.getAttribute("from"),
+                s = r.getAttribute("to");
+              t.previousElementSibling.addEventListener("click", function() {
+                t.paused
+                  ? (
+                      r.setAttribute("from", s),
+                      r.setAttribute("to", i),
+                      n.firstChild.beginElement(),
+                      t.play()
+                    )
+                  : (
+                      r.setAttribute("from", i),
+                      r.setAttribute("to", s),
+                      n.firstChild.beginElement(),
+                      t.pause()
+                    );
+              }), t.addEventListener("timeupdate", function() {
+                var e = this.currentTime / this.duration * 100;
+                this.nextElementSibling.style.width = e + "%";
+              });
+            })();
+        }
+      },
+      {
+        key: "parseTemplate",
+        value: function(e) {
+          return (
+            '<div class="cui__audio"><button class="cui__audio__btn"><svg xmlns="http://www.w3.org/2000/svg" version="1.1" viewBox="2 0 34 34"><defs><path id="playicon" d="M11,10 L18,13.74 18,22.28 11,26 M18,13.74 L26,18 26,18 18,22.28"><animate begin="indefinite" attributeType="XML" attributeName="d" fill="freeze" from="M9,10 L15,10 15,26 9,26 M18,10 L24,10 24,26 18,26" to="M11,10 L18,13.74 18,22.28 11,26 M18,13.74 L26,18 26,18 18,22.28" dur="0.15s" keySplines=".4 0 1 1"           repeatCount="1"></animate></path></defs><use xlink:href="#playicon"></use></svg>' +
+            e.length +
+            '</button><audio preload="true"><source src="' +
+            e.src +
+            '"></audio><hr class="cui__audio__progress"><div>'
+          );
+        }
+      }
+    ]), t;
+  })(Bubble);
+
+/*
+ * UX-chat
+ *
+ * Author: Adrian Zumbrunnen
+ *
+ * Iâ€™m working on making this open source. In the meantime, donâ€™t rip it off please.
+ * Unless you really want toâ€¦ Because I canâ€™t stop you. No one can. Not even your parentsâ€¦
+ * Because weâ€™re all grown ups nowâ€¦  ðŸ¤— ðŸ‘
+ *
+ * You wanna know more? [Yes] | [No]
+ */
+("use strict");
+function _classCallCheck(e, t) {
+  if (!(e instanceof t))
+    throw new TypeError("Cannot call a class as a function");
+}
+var _createClass = (function() {
+  function e(e, t) {
+    for (var n = 0; n < t.length; n++) {
+      var i = t[n];
+      (i.enumerable = i.enumerable || !1), (i.configurable = !0), "value" in
+        i && (i.writable = !0), Object.defineProperty(e, i.key, i);
+    }
+  }
+  return function(t, n, i) {
+    return n && e(t.prototype, n), i && e(t, i), t;
+  };
+})(),
+  co = (function() {
+    return {
+      getItem: function(e) {
+        return (
+          decodeURIComponent(
+            document.cookie.replace(
+              new RegExp(
+                "(?:(?:^|.*;)\\s*" +
+                  encodeURIComponent(e).replace(/[\-\.\+\*]/g, "\\$&") +
+                  "\\s*\\=\\s*([^;]*).*$)|^.*$"
+              ),
+              "$1"
+            )
+          ) || null
+        );
+      },
+      setItem: function(e, t, n, i, s, r) {
+        if (!e || /^(?:expires|max\-age|path|domain|secure)$/i.test(e))
+          return !1;
+        var a = "";
+        if (n)
+          switch (n.constructor) {
+            case Number:
+              a = n === 1 / 0
+                ? "; expires=Fri, 31 Dec 9999 23:59:59 GMT"
+                : "; max-age=" + n;
+              break;
+            case String:
+              a = "; expires=" + n;
+              break;
+            case Date:
+              a = "; expires=" + n.toUTCString();
+          }
+        return (document.cookie =
+          encodeURIComponent(e) +
+          "=" +
+          encodeURIComponent(t) +
+          a +
+          (s ? "; domain=" + s : "") +
+          (i ? "; path=" + i : "") +
+          (r ? "; secure" : "")), !0;
+      },
+      removeItem: function(e, t, n) {
+        return (
+          !(!e || !this.hasItem(e)) &&
+          (
+            (document.cookie =
+              encodeURIComponent(e) +
+              "=; expires=Thu, 01 Jan 1970 00:00:00 GMT" +
+              (n ? "; domain=" + n : "") +
+              (t ? "; path=" + t : "")),
+            !0
+          )
+        );
+      },
+      hasItem: function(e) {
+        return new RegExp(
+          "(?:^|;\\s*)" +
+            encodeURIComponent(e).replace(/[\-\.\+\*]/g, "\\$&") +
+            "\\s*\\="
+        ).test(document.cookie);
+      },
+      keys: function() {
+        for (
+          var e = document.cookie
+            .replace(
+              /((?:^|\s*;)[^\=]+)(?=;|$)|^\s*|\s*(?:\=[^;]*)?(?:\1|$)/g,
+              ""
+            )
+            .split(/\s*(?:\=[^;]*)?;\s*/),
+            t = 0;
+          t < e.length;
+          t++
+        )
+          e[t] = decodeURIComponent(e[t]);
+        return e;
+      }
+    };
+  })(),
+  Uxchat = (function() {
+    function e() {
+      _classCallCheck(this, e), (this.chat = new Chat(c, {
+        targetNode: ".uxchat",
+        authors: a
+      })), (this.listEl = document.querySelector(
+        ".cui__list"
+      )), (this.effectsEl = document.querySelector(
+        ".effects"
+      )), (this.fishometerCount = document.querySelector(
+        ".fishometer__count"
+      )), (this.fishometer = document.querySelector(
+        ".fishometer"
+      )), this.chat.registerBubbleType(
+        "link",
+        LinkBubble
+      ), this.chat.registerBubbleType(
+        "embed",
+        EmbedBubble
+      ), this.chat.registerBubbleType("audio", AudioBubble), this.chat.on(
+        "respond",
+        this.handleResponse.bind(this)
+      ), this.fishometer.addEventListener(
+        "click",
+        this.clickFish.bind(this)
+      ), this.preloadEffect(), this.chat.say(c[0]);
+    }
+    return _createClass(e, [
+      {
+        key: "clickFish",
+        value: function() {
+          this.seenFish ||
+            (
+              this.chat.addMessageSet({
+                path: "fishometer",
+                messages: [
+                  {
+                    author: "uxbear",
+                    type: "text",
+                    text:
+                      "This is the fishometer. It increases with your experience, by sharing great content and picking the right answers. ðŸ¤—"
+                  },
+                  {
+                    author: "uxbear",
+                    type: "text",
+                    text:
+                      "You can use those fishes later to wake me up when Iâ€™m sleeping. But donâ€™t worryâ€¦ you will know when you need them. ðŸŸ"
+                  }
+                ]
+              }),
+              this.chat.say("fishometer")
+            ), (this.seenFish = !0);
+        }
+      },
+      {
+        key: "preloadEffect",
+        value: function() {
+          (this.preloadEl = new Image()), (this.preloadEl.src =
+            "/wp-content/themes/uxchat/img/1.gif");
+        }
+      },
+      {
+        key: "playEffect",
+        value: function() {
+          var e = this;
+          new Image();
+          (this.effectsEl.firstChild.src = this.preloadEl.src), this.effectsEl.classList.add(
+            "effects--run"
+          ), setTimeout(function() {
+            return e.effectsEl.classList.remove("effects--run");
+          }, 12e3), setTimeout(function() {
+            return e.effectsEl.firstChild.removeAttribute("src");
+          }, 12300);
+        }
+      },
+      {
+        key: "countUp",
+        value: function(e) {
+          for (var t = this, n = 0; n < e; n++)
+            setTimeout(function() {
+              t.fishometerCount.innerHTML = ~~t.fishometerCount.innerHTML + 1;
+            }, 1750 + n * n * n);
+        }
+      },
+      {
+        key: "createReward",
+        value: function(e) {
+          var t =
+            !(arguments.length <= 1 || void 0 === arguments[1]) && arguments[1],
+            n = document.createElement("li");
+          n.className = "fish";
+          var i = document.createElement("div");
+          (i.className = "fish__bubble"), (i.innerHTML =
+            "+" + e + " fishes earned!"), n.appendChild(
+            i
+          ), this.listEl.insertBefore(
+            n,
+            this.listEl.lastChild
+          ), window.getComputedStyle(i).opacity, i.classList.add(
+            "fish__bubble--animate"
+          ), this.countUp(e), t && this.playEffect();
+        }
+      },
+      {
+        key: "handleResponse",
+        value: function(e) {
+          var t = this,
+            n = e.path.match(/^[0-9]*/);
+          if (e.currentPath && e.currentPath.match(/^[0-9]*$/)) {
+            var i = co.getItem("uxr") || "";
+            co.setItem("uxr", i + "_p" + e.currentPath);
+          }
+          if ("submitArticle" === e.path)
+            return jQuery.post("#", {
+              action: "uxchat_submit",
+              message: e.value
+            });
+          if (e.currentPath)
+            return jQuery
+              .post("#", {
+                action: "uxchat_ping",
+                post_id: e.currentPath.match(/([a-z]|[0-9])*/)[0],
+                path: e.path
+              })
+              .done(function(e) {
+                e.length &&
+                  e.match(/^[0-9]*$/).length > 0 &&
+                  t.createReward(e, !0);
+              });
+          if (e.value) {
+            if (!n.length) return;
+            return jQuery.post("#", {
+              action: "uxchat_comment",
+              post_id: n[0],
+              message: e.value
+            });
+          }
+        }
+      }
+    ]), e;
+  })();
+new Uxchat();
+
+	</script>
   
 <!-- more scripts -->  
 <script type="text/javascript" src="https://kyran88.github.io/ConversationalUI/UXBear/JS/chat.js"></script>
