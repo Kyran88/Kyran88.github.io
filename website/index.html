@@ -61,25 +61,23 @@
             </transition>
 
             <transition name="expand" mode="out-in">
-              <div v-if="show == 'bin-calendar' ">
+              <div v-if="show == 'membership' ">
                 <br>
                 <div class="box has-background-light">
-                  <button @click="back2chat " class="button is-rounded is-light is-pulled-right"><i class="fas fa-times"></i></button>
+                  <button @click="back2chat" class="button is-rounded is-light is-pulled-right"><i class="fas fa-times"></i></button>
                   <br/><br/>
-                  <div class="field has-background-light">
-                    <label class="label has-text-left title is-4" for="postcode">What's your postcode?</label>
-                    <div class="control has-icons-left">
-                      <input v-model="binday" class="input" id="postcode" type="text" placeholder="Enter your postcode">
-                      <span class="icon is-small is-left">
-                                                        <i class="fas fa-globe-americas"></i>
-                                                    </span>
-                    </div>
-                    <br/><br/>
-                    <transition name="expand" mode="out-in">
-                      <div v-if="binday.length > 6">
-                        <h2 class="title is-3">Your next bin days</h2><br/>
-                        <h2 class="title is-4 has-text-success"><i class="fas fa-trash-alt"></i> This Thursday (Household rubbish bin)</h2>
-                        <h2 class="title is-4 has-text-info"><i class="fas fa-recycle"></i> Next Wednesday (Recycling bin)</h2>
+                        <h4 class="title is-3">New Members <i class="fa fa-users"></i></h4><br/>
+                        <p class="title is-4 has-text-success"></i> If you are looking to join the club and want to know more about costs.</p><p> Click on the contact us for more information.</p><br><br>
+              <h4 class="title is-3">Current Members <i class="fa fa-book"></i></h4><br/>
+                        <p class="title is-4 has-text-success"></i>Current members. The membership is due shortly please click below to download the membership form.</p><br>
+            <!-- CTA -->
+            <button target="_blank" href="http://perthmasters.co.uk/membership/Perth%20Masters%20membership%20Form%202019.pdf" class="btn secondary-color btn-md">Download
+              <i class="fa fa-download ml-1"></i>
+            </button><br><br><br><br>
+                        <h4 class="title is-3">Affiliates <i class="fa fa-graduation-cap"></i></h4><br/>
+                        <p class="title is-4 has-text-success"></i> 
+          <a href="http://www.scottishswimming.com/" target="_blank"><img src="http://perthmasters.co.uk/about/Scottish Swimming.jpg" height="45px" width="125px" alt="Scottish Swimming" style="margin: 10px 10px 0 10px"></a>
+		<a href="http://www.sasamidlanddistrict.co.uk/" target="_blank"><img src="http://perthmasters.co.uk/about/sasa%20Midlands.PNG" height="45px" width="125px" alt="SASA Midland District" style="margin: 10px 10px 0 10px"></a>
                       </div>
                     </transition>
                   </div>
@@ -195,7 +193,7 @@
         <span><i class="fab fa-youtube"></i></span>&nbsp;&nbsp;
         <span><i class="fab fa-flickr"></i></span>
         <br/>
-        <p><strong>Site powered by Ness-e chatbot</strong></p><br/>
+        <p><strong>Site powered by Swim-e chatbot</strong></p><br/>
       </div>
     </div>
 
@@ -212,6 +210,6 @@
 <script type="text/javascript" src="https://unpkg.com/buefy/dist/buefy.min.js"></script>
 <script type="text/javascript" src="https://use.fontawesome.com/releases/v5.1.0/js/all.js"></script>
   <!-- chatbot script -->
-<script type="text/javascript" src="https://kyran88.github.io/website/chat/script.js"></script>      
+<!-- <script type="text/javascript" src="https://kyran88.github.io/website/chat/script.js"></script>   -->   
     </body>
 </html>
