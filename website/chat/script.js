@@ -35,7 +35,7 @@ const vue = new Vue({
                 this.conversation.push({"BotOrNot": 'bot', "QandA": "Phone us on 01349 886606. Our call centre will answer your questions or connect you to the right person"})
                 return
             }                 
-            if (question.indexOf('bin') != -1) {
+            if (question.indexOf('membership') != -1) {
                 this.conversation.push({"HTML": '...'})
                 this.conversation.push({"BotOrNot": 'bot', "QandA": "Hmm, are you looking for any of these?"})
                 return
@@ -48,11 +48,15 @@ const vue = new Vue({
                 this.conversation.push({"BotOrNot": 'bot', "QandA": "Bye!"})
                 return
             }
+            if (question.indexOf('help') != -1) {
+                this.conversation.push({"BotOrNot": 'bot', "QandA": "I can help you with questions you may have regarding the club. Try asking me about membership?"})
+                return
+            }
             if (question.indexOf('thank') != -1) {
                 this.conversation.push({"BotOrNot": 'bot', "QandA": "You're welcome"})
                 return
             } else {
-                this.conversation.push({"BotOrNot": 'bot', "QandA": "Sorry, I'm just a demo. Ask me about bins..."})
+                this.conversation.push({"BotOrNot": 'bot', "QandA": "Sorry, I'm just a demo. Ask me about membership..."})
                 return
             }
         },
@@ -82,7 +86,7 @@ Vue.component('suggestion-buttons', {
     template: `
     <div class="box has-background-light level" style="margin-bottom:20px;">
         <div class="level-item has-text-centered">
-            <button @click="$root.show = 'bin-calendar'" class="button is-rounded is-primary"><i class="far fa-calendar-alt"></i>&nbsp;Bin calendar</button>
+            <button @click="$root.show = 'membership'" class="button is-rounded is-primary"><i class="fa fa-users"></i>&nbsp;membership</button>
         </div>
         <div class="level-item has-text-centered">
             <button @click="$root.show = 'missed-bin'" class="button is-rounded is-danger"><i class="fas fa-exclamation-circle"></i>&nbsp;Missed bin</button>
