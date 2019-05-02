@@ -32,10 +32,10 @@ const vue = new Vue({
         getAnswer: function (asked) {
             const question = asked.toLowerCase();
             if (question.indexOf('phone') != -1 || question.indexOf('contact') != -1 || question.indexOf('email') != -1) {
-                this.conversation.push({"BotOrNot": 'bot', "QandA": "Phone us on 01349 886606. Our call centre will answer your questions or connect you to the right person"})
+                this.conversation.push({"BotOrNot": 'bot', "QandA": "Sure just click '<a href="https://perthmastersswimming.typeform.com/to/bALPdm"> here</a>' to contact us.})
                 return
             }                 
-            if (question.indexOf('membership') != -1) {
+            if (question.indexOf('membership') != -1 || question.indexOf('member') != -1) {
                 this.conversation.push({"HTML": '...'})
                 this.conversation.push({"BotOrNot": 'bot', "QandA": "Hmm, are you looking for any of these?"})
                 return
@@ -48,11 +48,11 @@ const vue = new Vue({
                 this.conversation.push({"BotOrNot": 'bot', "QandA": "Bye!"})
                 return
             }
-            if (question.indexOf('help') != -1) {
+            if (question.indexOf('help') != -1 || question.indexOf('what can you do') != -1 || question.indexOf('menu') != -1) {
                 this.conversation.push({"BotOrNot": 'bot', "QandA": "I can help you with questions you may have regarding the club. Try asking me about membership?"})
                 return
             }
-            if (question.indexOf('thank') != -1) {
+            if (question.indexOf('thank') != -1 || question.indexOf('cheer') != -1 || question.indexOf('ta') != -1) {
                 this.conversation.push({"BotOrNot": 'bot', "QandA": "You're welcome"})
                 return
             } else {
