@@ -32,7 +32,7 @@ const vue = new Vue({
         getAnswer: function (asked) {
             const question = asked.toLowerCase();
             if (question.indexOf('phone') != -1 || question.indexOf('contact') != -1 || question.indexOf('email') != -1) {
-                this.conversation.push({"BotOrNot": 'bot', "QandA": "Sure just click '<a href='https://perthmastersswimming.typeform.com/to/bALPdm'> here</a>' to contact us."})
+                this.conversation.push({"BotOrNot": 'bot', "QandA": "Sure just click <a href='https://perthmastersswimming.typeform.com/to/bALPdm' target='_blank'> here</a> to contact us."})
                 return
             }                 
             if (question.indexOf('membership') != -1 || question.indexOf('member') != -1) {
