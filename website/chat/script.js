@@ -40,7 +40,7 @@ const vue = new Vue({
                 this.conversation.push({"BotOrNot": 'bot', "QandA": "Hmm, are you looking for any of these?"})
                 return
             } 
-            if (question.indexOf.search(/\b(hi|hiya|howdy|alright|hey|bonjour|ola)\b/i) != -1) {
+            if (question.indexOf.('hi') != -1 || question.indexOf('hello') != -1 || question.indexOf('howdy') != -1 || question.indexOf('hey') != -1) {
                 this.conversation.push({"BotOrNot": 'bot', "QandA": "Hello!"})
                 return
             }
