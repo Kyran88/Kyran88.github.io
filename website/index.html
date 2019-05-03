@@ -1,3 +1,4 @@
+
 <html>
 <head>
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -84,47 +85,14 @@
             </transition>
 
             <transition name="expand" mode="out-in">
-              <div v-if="show == 'missed-bin' ">
+              <div v-if="show == 'contact' ">
                 <br>
                 <div class="box has-background-light">
                   <button @click="back2chat" class="button is-rounded is-light is-pulled-right"><i class="fas fa-times"></i></button>
                   <br/><br/>
-                  <h2 class="title is-3 has-text-left">Report missed bin collection</h2>
-                  <div class="field">
-                    <label class="label has-text-left title is-4">Type of bin</label>
-                    <div class="control">
-                      <div class="select">
-                        <select name="bintype" id="bintype">
-                                                        <option value="Green bin">Waste bin</option>
-                                                        <option value="Blue bin">Recycling bin</option>
-                                                        <option value="Brown bin">Garden waste bin</option>
-                                                    </select>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="field">
-                    <label class="label has-text-left title is-4" for="contactName">Your name</label>
-                    <div class="control">
-                      <input class="input" id="contactName" type="text">
-                    </div>
-                  </div>
-                  <div class="field">
-                    <label class="label has-text-left title is-4" for="binDetails">Tell us about the missed collection</label>
-                    <div class="control">
-                      <textarea class="textarea" id="binDetails" required></textarea>
-                    </div>
-                  </div>
-                  <div class="field">
-                    <label class="label has-text-left title is-4" for="contactName">Leave a contact, so we can get in touch</label>
-                    <div class="control">
-                      <input class="input" id="contact" type="text" required>
-                    </div>
-                  </div>
-                  <div class="field">
-                    <div class="control has-text-centered">
-                      <input class="button is-rounded is-primary" type="submit" value="Submit" @click="caseNumber">
-                    </div>
-                  </div>
+                        <h4 class="title is-3">Contact Us <i class="fa fa-users"></i></h4><br/>
+                        <p class="title is-4 has-text-success"></i> You can contact us through a few different options.</p><p> If you use facebook please use this link here</p><br><br> <p> If you prefer to email please use this link here</p><br><br>
+                  
                 </div>
               </div>
             </transition>
