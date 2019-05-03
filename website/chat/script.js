@@ -32,15 +32,16 @@ const vue = new Vue({
         getAnswer: function (asked) {
             const question = asked.toLowerCase();
             if (question.indexOf('phone') != -1 || question.indexOf('contact') != -1 || question.indexOf('email') != -1) {
-                this.conversation.push({"BotOrNot": 'bot', "QandA": "Sure just click <a href='https://perthmastersswimming.typeform.com/to/bALPdm' target='_blank'> here</a> to contact us."})
+                this.conversation.push({"HTML": '...'})
+                this.conversation.push({"BotOrNot": 'bot', "QandA": "contact us by clicking the contact option below"})
                 return
             }                 
             if (question.indexOf('membership') != -1 || question.indexOf('member') != -1) {
                 this.conversation.push({"HTML": '...'})
-                this.conversation.push({"BotOrNot": 'bot', "QandA": "Hmm, are you looking for any of these?"})
+                this.conversation.push({"BotOrNot": 'bot', "QandA": "see membership button below"})
                 return
-            } 
-            if (question.indexOf.('hi') != -1 || question.indexOf('hello') != -1 || question.indexOf('howdy') != -1 || question.indexOf('hey') != -1) {
+            }  
+            if (question.indexOf('hi') != -1 || question.indexOf('hello') != -1 || question.indexOf('howdy') != -1 || question.indexOf('hey') != -1) {
                 this.conversation.push({"BotOrNot": 'bot', "QandA": "Hello!"})
                 return
             }
@@ -49,9 +50,9 @@ const vue = new Vue({
                 return
             }
             if (question.indexOf('help') != -1 || question.indexOf('what can you do') != -1 || question.indexOf('menu') != -1) {
-                this.conversation.push({"BotOrNot": 'bot', "QandA": "I can help you with questions you may have regarding the club. Try asking me about membership?"})
+                this.conversation.push({"BotOrNot": 'bot', "QandA": "I can help you with questions you may have regarding the club. Try asking me     about membership?"})
                 return
-            }
+            }          
             if (question.indexOf('thank') != -1 || question.indexOf('cheer') != -1 || question.indexOf('ta') != -1) {
                 this.conversation.push({"BotOrNot": 'bot', "QandA": "You're welcome"})
                 return
@@ -89,7 +90,7 @@ Vue.component('suggestion-buttons', {
             <button @click="$root.show = 'membership'" class="button is-rounded is-primary"><i class="fa fa-users"></i>&nbsp;membership</button>
         </div>
         <div class="level-item has-text-centered">
-            <button @click="$root.show = 'missed-bin'" class="button is-rounded is-danger"><i class="fas fa-exclamation-circle"></i>&nbsp;Missed bin</button>
+            <button @click="$root.show = 'contact'" class="button is-rounded is-danger"><i class="fas fa-exclamation-circle"></i>&nbsp;Contact us</button>
         </div>
         <div class="level-item has-text-centered">
             <button @click="$root.show = 'garden-waste'" class="button is-rounded is-primary"><i class="fab fa-pagelines"></i>&nbsp;Garden waste</button>
