@@ -40,7 +40,23 @@ const vue = new Vue({
                 this.conversation.push({"HTML": '...'})
                 this.conversation.push({"BotOrNot": 'bot', "QandA": "see membership button below"})
                 return
-            }  
+            } 
+          
+  //calls time function        
+   if (h < 10){ // if 1 number display 0 before it.
+      h = "0" + h;
+    }
+    if (m < 10){ // if 1 number display 0 before it.
+      m = "0" + m;
+    } 
+  if ((question.indexOf('time') != -1)) {
+      var date = new Date();
+      var h = date.getHours();
+      var m = date.getMinutes();
+      this.conversation.push({"BotOrNot": 'bot', "QandA": "Current time is: " + h + ':' + m})
+    return
+    }      
+          
             if (question.indexOf('hi') != -1 || question.indexOf('hello') != -1 || question.indexOf('howdy') != -1 || question.indexOf('hey') != -1) {
                 this.conversation.push({"BotOrNot": 'bot', "QandA": "Hello!"})
                 return
