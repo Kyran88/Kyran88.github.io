@@ -65,6 +65,12 @@ const vue = new Vue({
                 this.conversation.push({"BotOrNot": 'bot', "QandA": "Bye!"})
                 return
             }
+            
+          if (question.indexOf('test') != -1) {
+                this.conversation.push({"BotOrNot": 'bot', "QandA": "Sure here you go:" + setTimeout('window.open("https://codyhouse.co", "_blank")',1000)})
+                return
+            }
+          
             if (question.indexOf('help') != -1 || question.indexOf('what can you do') != -1 || question.indexOf('menu') != -1) {
                 this.conversation.push({"BotOrNot": 'bot', "QandA": "I can help you with questions you may have regarding the club. Try asking me     about membership?"})
                 return
