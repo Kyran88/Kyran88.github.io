@@ -91,9 +91,9 @@ $(".fancyboxadapt").fancybox({
     }
 });
 
-$(".fancyboxcontact").fancybox({
-		maxWidth	: 650,
-		maxHeight	: 350,
+$(".fancyboxchatbot").fancybox({
+		maxWidth	: 450,
+		maxHeight	: 600,
 		fitToView	: false,
 		autoSize	: false,
 		closeClick	: false,
