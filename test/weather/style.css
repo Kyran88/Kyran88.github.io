@@ -93,11 +93,11 @@ body {
 	text-align: left;
 	line-height: 1.5;
 	letter-spacing: 1px;
-  color: #444;
+  	color: #444;
 }
 
 .weather-summary-headings {
-	color: #ffc0cb;
+	color: #11cdef;
 }
 
 .forecast-day {
@@ -106,14 +106,6 @@ body {
 
 .forecast-icon {
 	padding-bottom: .5em;
+	color: #444;
 }
 
-.max-temp {
-	font-weight: bold;
-		font-family: 'Quicksand', sans-serif;
-}
-
-.min-temp {
-	color: #9aacb8;
-		font-family: 'Quicksand', sans-serif;
-}
