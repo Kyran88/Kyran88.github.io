@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Local Weather</title>
+    
+    
+</head>
+
+<body>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-sm-4 col-xs-block">
+                <div id="my-location" class="text-center"></div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-sm-4 col-xs-block text-center">
+                <div id="current-icon-container" class="col-xs-block">
+                    <canvas id="current-icon" width="150" height="150"></canvas>
+                </div>
+            </div>
+            <div id="weather-summary" class="col-lg-4 col-md-5 col-sm-6 hidden-xs"></div>
+        </div>
+
+        <div id="current-forecast" class="row">
+            <div class="col-sm-4 col-xs-block text-center">
+                <div id="current-temp"></div>
+
+                <div id="unitOfMeasure">
+                    <div id="celcius">
+                        &#8451;
+                    </div>
+                    <div id="farenheit" class="selected">
+                        &#8457;
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    
+</body>
+</html>
