@@ -6,7 +6,7 @@ html {
 body {
 	/* setup a 1/3rd gradient at the bottom of the page */
 	background: #fff;
-	color: #f4e7d7;
+	color: #444;
 	overflow: hidden;
 	font-family: 'Quicksand', sans-serif;
 }
@@ -72,7 +72,7 @@ body {
 }
 
 #unitOfMeasure>.selected {
-	color: #f4e7d7;
+	color: #444;
 	font-size: 1.4em;
 }
 
