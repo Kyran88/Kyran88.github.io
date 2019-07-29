@@ -5,7 +5,7 @@ html {
 
 body {
 	/* setup a 1/3rd gradient at the bottom of the page */
-	background: linear-gradient(#3c455c, #3c455c, #2b3140);
+	background: #fff;
 	color: #f4e7d7;
 	overflow: hidden;
 	font-family: 'Quicksand', sans-serif;
@@ -58,7 +58,7 @@ body {
 	padding-right: 10px;
 	display: inline-block;
 	font-family: 'Quicksand', sans-serif;
-  	color: #fff;
+  	color: #444;
 }
 
 #unitOfMeasure {
@@ -93,7 +93,7 @@ body {
 	text-align: left;
 	line-height: 1.5;
 	letter-spacing: 1px;
-  color: #fff;
+  color: #444;
 }
 
 .weather-summary-headings {
@@ -116,19 +116,4 @@ body {
 .min-temp {
 	color: #9aacb8;
 		font-family: 'Quicksand', sans-serif;
-}
-
-.footer {
-	font-family: Helvetica, sans-serif;
-	position: absolute;
-	bottom: 0;
-	left: 0;
-	width: 100%;
-	color: #707584;
-	font-size: 14px;
-}
-
-a, a:visited, a:hover {
-	color: #707584;
-	text-decoration: none;
 }
