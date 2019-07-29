@@ -1,0 +1,139 @@
+@import url('https://fonts.googleapis.com/css?family=Quicksand:400,500');
+html {
+	height: 100%
+}
+
+body {
+	/* setup a 1/3rd gradient at the bottom of the page */
+	background: linear-gradient(#3c455c, #3c455c, #2b3140);
+	color: #f4e7d7;
+	overflow: hidden;
+	font-family: 'Quicksand', sans-serif;
+}
+
+
+/*.col-xs-*/
+
+@media screen and (max-width: 767px) {
+	body {
+		font-size: 14px;
+	}
+}
+
+
+/*.col-sm-*/
+
+@media only screen and (min-width: 768px) {
+	body {
+		font-size: 16px;
+	}
+}
+
+
+/*.col-md-*/
+
+@media only screen and (min-width: 992px) {
+	body {
+		font-size: 16px;
+	}
+}
+
+
+/*.col-lg-*/
+
+@media screen and (min-width: 1200px) {
+	body {
+		font-size: 16px;
+	}
+}
+
+#my-location {
+	font-size: 1.5em;
+	padding-top: 3%;
+	padding-bottom: 7%;
+}
+
+#current-temp {
+	font-size: 5em;
+	padding-right: 10px;
+	display: inline-block;
+	font-family: 'Quicksand', sans-serif;
+}
+
+#unitOfMeasure {
+	font-family: "Times New Roman", serif;
+	display: inline-block;
+	cursor: pointer;
+	font-size: 1em;
+	font-weight: normal;
+	position: relative;
+	bottom: 15px;
+}
+
+#unitOfMeasure>.selected {
+	color: #f4e7d7;
+	font-size: 1.4em;
+}
+
+#celcius {
+	color: #9aacb8;
+}
+
+#farenheit {
+	color: #9aacb8;
+}
+
+#current-icon-container {
+	width: auto;
+}
+
+#weather-summary {
+	margin-top: 2em;
+	text-align: left;
+	line-height: 1.5;
+	letter-spacing: 1px;
+}
+
+.weather-summary-headings {
+	color: #ffc0cb;
+}
+
+#three-day-forecast {
+	border-top: 1px dotted rgba(154, 172, 184, 0.29);
+	margin-top: 3%;
+	padding-top: 7%;
+	text-align: center;
+}
+
+.forecast-day {
+	padding-bottom: 1em;
+}
+
+.forecast-icon {
+	padding-bottom: .5em;
+}
+
+.max-temp {
+	font-weight: bold;
+		font-family: 'Quicksand', sans-serif;
+}
+
+.min-temp {
+	color: #9aacb8;
+		font-family: 'Quicksand', sans-serif;
+}
+
+.footer {
+	font-family: Helvetica, sans-serif;
+	position: absolute;
+	bottom: 0;
+	left: 0;
+	width: 100%;
+	color: #707584;
+	font-size: 14px;
+}
+
+a, a:visited, a:hover {
+	color: #707584;
+	text-decoration: none;
+}
