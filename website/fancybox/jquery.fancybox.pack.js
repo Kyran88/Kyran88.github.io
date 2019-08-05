@@ -92,7 +92,7 @@ $(".fancyboxadapt").fancybox({
 });
 
 $(".fancyboxchatbot").fancybox({
-		maxWidth	: 450,
+		maxWidth	: 400,
 		maxHeight	: 600,
 		fitToView	: false,
 		autoSize	: false,
