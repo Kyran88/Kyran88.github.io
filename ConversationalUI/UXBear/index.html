@@ -51,7 +51,7 @@ background-color: #fafafa;
   {
     path: "11",
     messages: [
-      { author: "uxbear", text: "Groaaaar! (Polar bearish for hi)" },
+      { author: "uxbear", text: "Hi Kyran 👋" },
       {
         author: "uxbear",
         text: "Looks like this is your first time here. \ud83e\udd17"
@@ -59,41 +59,37 @@ background-color: #fafafa;
       {
         author: "uxbear",
         text:
-          "I\u2019m UX Bear, your user experience friend from uxdesign.cc. I talk to industry professionals and share my insights here with you. I hope I can learn from you too! \ud83d\ude47"
-      },
-      {
-        author: "uxbear",
-        type: "link",
-        href: "https://uxdesign.cc",
-        src:
-          "http://uxchat.me/wp-content/uploads/1-hMGWyRGDAe_2TmE48MuvTw.jpeg",
-        title: "Me planning the roadmap of UX Chat \u2014 uxdesign.cc"
+          "Welcome to your new app!"
       },
       {
         author: "uxbear",
         text:
-          "You wanna talk about what happened in design lately or get to know me better?"
-      }
+          "We're taking a different approach from your average insurance app."
+      },
+      {
+        author: "uxbear",
+        text:
+          "It's sort of like texting. We send you messages and you respond by tapping the buttons that appear."
+      },	    
     ],
     choices: [
-      { path: "11/get-to-know-you", text: "Get to know you", write: false },
-      { path: "560", text: "Design \ud83e\udd14", write: false }
+      { path: "11/get-to-know-you", text: "Like this?", write: false }
+    //  { path: "560", text: "Design \ud83e\udd14", write: false }
     ]
   },
   {
     path: "11/get-to-know-you",
     messages: [
-      { author: "uxbear", text: "I feel humbled! \u263a\ufe0f" },
+      { author: "uxbear", text: "You guesseg it! 👍" },
       {
         author: "uxbear",
         text:
-          "My passion is to tell you about the very best in UX, so you spend less time finding links and more time learning about our craft. \ud83d\udd28"
-      },
-      { author: "uxbear", text: "Ready to get started?" }
+          "We can also send you notifications so you're always up to date on your Pension value. Does this sound ok?"
+      }
     ],
     choices: [
-      { path: "11/get-to-know-you/no-", text: "No \ud83d\ude11", write: false },
-      { path: "560", text: "Yep, let\u2019s go \ud83d\ude4c", write: false }
+      { path: "11/get-to-know-you/no-", text: "Sure, Works for me", write: false },
+      { path: "560", text: "No I don't want notifications.", write: false }
     ]
   },
   {
@@ -101,17 +97,44 @@ background-color: #fafafa;
     messages: [
       {
         author: "uxbear",
-        text: "Hmm\u2026  Not so comfy talking to new people huh? Erm... bears?"
+        text: "Great, your notifications are now set up."
       },
       {
         author: "uxbear",
         text:
-          "I reveal something about me, you tell me something about you, deal?"
-      }
+          "Okay, let's get started."
+      },
+      {
+        author: "uxbear",
+        text:
+          "Here's a summary of your policies."
+      },
+{
+    path: "11/get-to-know-you/no-/nope",
+    messages: [
+	    {
+    id: "uxbear",
+    name: "UX Bear",
+    src: "https://cdn-images-1.medium.com/max/72/1*4dXC4-4BGgu348Q06f-FGw.jpeg",
+    url: "http://twitter.com/uxdesigncc"
+  },
+  {
+    id: "default",
+    name: "UX Bear",
+    src: "https://cdn-images-1.medium.com/max/72/1*4dXC4-4BGgu348Q06f-FGw.jpeg",
+    url: "http://twitter.com/uxdesigncc"
+  },
+  {
+    id: "adactio@gmail.com",
+    name: "Jeremy Keith",
+    url: "https://adactio.com/",
+    src:
+      "http://0.gravatar.com/avatar/66ed18ffd62bc77d51306cd51d298d3a?s=96&d=mm&r=g"
+  }	    
     ],
     choices: [
-      { path: "11/get-to-know-you/no-/cool", text: "Cool", write: false },
-      { path: "11/get-to-know-you/no-/nope", text: "Nope\u2026", write: false }
+      { path: "11/get-to-know-you/no-/cool", text: "Show me discounts", write: false },
+      { path: "11/get-to-know-you/no-/nope", text: "I want to make a claim", write: false }
     ]
   },
   {
