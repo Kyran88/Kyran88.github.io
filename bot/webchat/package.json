@@ -20,6 +20,6 @@
     "body-parser": "^1.17.2",
     "cookie-parser": "^1.4.3",
     "express": "^4.15.3",
-    "node-fetch": "^1.7.1"
+    "node-fetch": "^2.6.1"
   }
 }
