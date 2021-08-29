@@ -18,7 +18,10 @@
 </head>
 
 <style>
-
+html {
+  scroll-behavior: smooth;
+}
+  
 h2 {
   Margin-top: 50px;
 }
@@ -86,6 +89,8 @@ div.calcInput {
 	float: left;
 	text-align: left;
 }
+  
+  
 
 
 div.center { text-align: center; }  
@@ -108,6 +113,12 @@ div.center { text-align: center; }
 
 </div>
 
+<!-- calculate button -->
+<div class="col-lg-12">
+ <h1><a href="#timeoutput" data-bb="alert_callback" class="btn btn-info alertInfo">Calculate <i class="glyphicon glyphicon-share-alt"></i></a></h1> 
+  
+</div>  
+<!-- end button -->  
 
 <div class="col-md-12">
   <div class="row">
@@ -190,7 +201,7 @@ div.center { text-align: center; }
 				(entering a value will change distance to match)</p>
 		</div>
 
-<div class="calcCell">
+<div class="calcCell" id="timeoutput">
 	<div class="calcTitle"><p><font color = "red">Time: </font></p></div>
 	<div class="calcInput"><p><input type="text" name="time" size="6" maxlength="7" onFocus="this.select()" onChange="if (valDecNumber(this.value) == false) {this.value = ''; this.focus(); this.select() } else updateDistance(calcID,1)"> minutes</p></div>
 </div>
