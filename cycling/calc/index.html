@@ -103,7 +103,7 @@ div.center { text-align: center; }
 		
 		<br>
   <p>
-    Please complete the following fields only "<font color = "red">Watts</font>"(FTP) & "<font color = "red">Rider Weight</font>" this will then provide a time output at the bottom.
+    Please complete the following fields only "<font color = "red">Power</font>"(FTP) & "<font color = "red">Rider Weight</font>" this will then provide a time output at the bottom.
   </p><br>
 
 </div>
@@ -116,7 +116,7 @@ div.center { text-align: center; }
 	<form name="calcID" id="calcID">
 	
 	<div class="calcHeading">
-	<div class="calcCellHeading"><p>Power: </br>
+	<div class="calcCellHeading"><p>Power (FTP): </br>
 	<input type="text" name="power" id="powerID" value="180" size="6" maxlength="7" onFocus="this.select()" onChange="if (valDecNumber(this.value) == false) {this.value = '180'; this.focus(); this.select()} else {setMode(0); update(calcID)}"> watts</p></div>
 	<div class="calcCellHeading"><p>Velocity: </br>
 	<input type="text" name="velocity" value="" size="6" maxlength="7" onFocus="this.select()" onChange="if (valDecNumber(this.value) == false) {this.value = ''; this.focus(); this.select()} else {setMode(1); update(calcID)}"> kph / mph</p></div>
