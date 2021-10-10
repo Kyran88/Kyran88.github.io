@@ -163,11 +163,11 @@ div.center { text-align: center; }
 <div class="calcCell">
 	<div class="calcTitle"><p>Position: </p></div>
 	<div class="calcInput"><p><select name="aero" onChange="update(calcID)">
-				<option value=0 selected>Hoods</option>
+				<option value=0>Hoods</option>
 				<option value=1>Bartops</option>
 				<option value=2>Bar ends</option>
 				<option value=2>Drops</option>
-				<option value=2>Aerobar</option>
+				<option value=2 selected>Aerobar</option>
 			</select> </p></div>
 </div>
 
@@ -183,7 +183,7 @@ div.center { text-align: center; }
 
 <div class="calcCell">
 	<div class="calcTitle"><p>Distance: </p></div>
-	<div class="calcInput"><p><input type="text" name="distance" value="37" size="6" maxlength="7" onFocus="this.select()" onChange="if (valDecNumber(this.value) == false) {this.value = '37'; this.focus(); this.select()} else update(calcID)"> km / mi</p></div>
+	<div class="calcInput"><p><input type="text" name="distance" value="20" size="6" maxlength="7" onFocus="this.select()" onChange="if (valDecNumber(this.value) == false) {this.value = '20'; this.focus(); this.select()} else update(calcID)"> km / mi</p></div>
 </div>
 
 <div class="calcCell">
