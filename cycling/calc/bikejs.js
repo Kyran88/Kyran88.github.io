@@ -1,11 +1,3 @@
-/**
- * Bike Calculator Javascript Code
- * 
- *
- * Copyright (c) 2012, 2015, Curt Austin
- * All rights reserved
- * 
- */
  
 units = 0; // default is metric
 calcMode = 0; // zero means we calculate velocity, 1 means power
@@ -187,18 +179,18 @@ function update(form) {
 
 // The following incorporates a work-around the adsense js conflict with window.onload in order to get the slider going. But it may not work right in IE8 or less, or in Opera. Ref: http://www.rgraph.net/docs/domcontentloaded.html
 
-function startDragSlider() {
-		dragSlider = new Dragdealer('powerCtrl',
-		{
-		x: 0.3,
-		animationCallback: function(x, y)
-			{
-				// call update with x
-				var powerField = document.getElementById('powerID');
-				var form = document.getElementById('calcID');
-				powerField.value = makeDecimal0(500.0 * x);
-				calcMode = 0;
-				update(form);
-			}
-		});
-}
+//function startDragSlider() {
+		//dragSlider = new Dragdealer('powerCtrl',
+		//{
+		//x: 0.3,
+		//animationCallback: function(x, y)
+		//	{
+		//		// call update with x
+		//		var powerField = document.getElementById('powerID');
+		//		var form = document.getElementById('calcID');
+		//		powerField.value = makeDecimal0(500.0 * x);
+		//		calcMode = 0;
+		//		update(form);
+		//	}
+	//	});
+//}
