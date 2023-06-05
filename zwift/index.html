@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Ava the Zwift File Generator</title>
+</head>
+<body>
+<h1>Ava the Zwift File Generator</h1>
+<p>Ava is an AI assistant cycling, running and triathlon coach who is an expert at generating Zwift files. She can generate files for warmups, cooldowns, steady-state workouts, and intervals. She can also include motivating names and descriptions in her files.</p>
+<p>To use Ava, simply enter your desired workout details below. Ava will then generate a Zwift file for you.</p>
+<form action="/generate" method="post">
+<input type="text" name="name" placeholder="Workout Name">
+<input type="text" name="description" placeholder="Workout Description">
+<input type="text" name="duration" placeholder="Workout Duration (minutes)">
+<input type="text" name="cadence" placeholder="Workout Cadence (RPM)">
+<input type="text" name="power" placeholder="Workout Power (watts)">
+<input type="submit" value="Generate Workout">
+</form>
+<script>
+function generateWorkout() {
+// Get the workout details from the form
+var name = document.getElementById("name").value;
+var description = document.getElementById("description").value;
+var duration = document.getElementById("duration").value;
+var cadence = document.getElementById("cadence").value;
+var power = document.getElementById("power").value;
+
+// Call the ChatGPT API to generate a Zwift file
+var url = "https://api.chatgpt.com/generate?model=zwo&prompt=" + name + " " + description + " " + duration + " " + cadence + " " + power;
+var xhr = new XMLHttpRequest();
+xhr.open("GET", url, true);
+xhr.onload = function() {
+if (xhr.status === 200) {
+// The request was successful
+var response = JSON.parse(xhr.responseText);
+var workout = response.data;
+
+// Write the workout to a file
+var file = new File(workout, name + ".zwo");
+file.save();
+
+// Notify the user that the workout was generated
+alert("Workout generated successfully!");
+} else {
+// The request failed
+alert("Error generating workout: " + xhr.status);
+}
+};
+xhr.send();
+}
+
+// When the form is submitted, call the generateWorkout function
+document.getElementById("generate").addEventListener("click", generateWorkout);
+</script>
+</body>
+</html>
