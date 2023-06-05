@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Kai's Zwift Workout Generator</title>
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script>
+    function generateWorkout() {
+      var duration = $("#duration").val();
+      var intensity = $("#intensity").val();
+
+      // Call the ChatGPT API to generate a workout
+      $.ajax({
+        url: "https://api.openai.com/v1/engines/gpt-3.5-turbo/completions",
+        type: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          "Authorization": "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" // Replace with your OpenAI API key
+        },
+        data: JSON.stringify({
+          prompt: "You are a zwo file generator and an Al assistant cycling, running and triathlon coach named Kai. Generate a " + duration + "-minute workout to enhance " + intensity + " intensity. The workout should include Warmup, Cooldown, SteadyState, and IntervalsT nodes.",
+          max_tokens: 256,
+          n: 1,
+          stop: "\n"
+        }),
+        success: function(response) {
+          var workout = response.choices[0].text.trim();
+
+          // Generate a unique filename for the workout
+          var filename = "workout_" + Date.now() + ".zwo";
+
+          // Create a download link for the workout file
+          var link = document.createElement("a");
+          link.href = "data:text/xml;charset=utf-8," + encodeURIComponent(generateZwoFile(workout));
+          link.download = filename;
+          link.innerText = "Download Workout";
+
+          // Append the download link to the page
+          document.getElementById("result").innerHTML = "";
+          document.getElementById("result").appendChild(link);
+        },
+        error: function(xhr, status, error) {
+          console.error("Error generating workout:", error);
+          alert("Failed to generate workout. Please try again.");
+        }
+      });
+    }
+
+    function generateZwoFile(workout) {
+      var zwoContent = `<?xml version="1.0" encoding="UTF-8"?>
+<workout_file>
+  <author>Kai, Your AI Coach</author>
+  <name>${generateUniqueWorkoutName()}</name>
+  <description>${generateWorkoutDescription()}</description>
+  <sportType>cycling</sportType>
+  <workout>
+    ${workout}
+  </workout>
+</workout_file>`;
+
+      return zwoContent;
+    }
+
+    function generateUniqueWorkoutName() {
+      var uniqueId = Date.now().toString();
+      var workoutTypes = ["Cycling", "Running", "Triathlon"];
+      var randomWorkoutType = workoutTypes[Math.floor(Math.random() * workoutTypes.length)];
+      return uniqueId + "_" + randomWorkoutType + "_Workout";
+    }
+
+    function generateWorkoutDescription() {
+      var intensity = $("#intensity").val();
+      var intensityLevels = {
+        low: "A gentle and low-intensity workout",
+        medium: "A moderate-intensity workout to challenge yourself",
+        high: "An intense and high-intensity workout for pushing your limits"
+      };
+
+      return "This workout is designed to improve your performance and increase your fitness level. Expect " + intensityLevels[intensity] + ". Get ready to break barriers and achieve new heights of athleticism!";
+    }
+  </script>
+</head>
+<body>
+  <h1>Kai's Zwift Workout Generator</h1>
+  <p>Kai is an AI assistant cycling, running, and triathlon coach who can generate Zwift workout files. Simply select the desired duration and intensity of the workout, and Kai will create a unique and motivating workout for you!</p>
+  <form>
+    <label for="duration">Duration (minutes):</label>
+    <input type="text" id="duration" placeholder="Enter duration" required>
+    <br>
+    <label for="intensity">Intensity:</label>
+    <select id="intensity" required>
+      <option value="low">Low</option>
+      <option value="medium">Medium</option>
+      <option value="high">High</option>
+    </select>
+    <br>
+    <button type="button" onclick="generateWorkout()">Generate Workout</button>
+  </form>
+  <div id="result"></div>
+</body>
+</html>
