@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>ZWO File Generator</title>
+</head>
+<body>
+    <h1>ZWO File Generator</h1>
+    
+    <form id="workout-form">
+        <label for="workout-name">Workout Name:</label>
+        <input type="text" name="workout-name" id="workout-name" required>
+        
+        <label for="workout-description">Workout Description:</label>
+        <textarea name="workout-description" id="workout-description" required></textarea>
+        
+        <label for="duration">Duration (minutes):</label>
+        <input type="number" name="duration" id="duration" required>
+        
+        <button type="submit">Generate ZWO File</button>
+    </form>
+    
+    <a href="#" id="download-link" style="display: none;">Download ZWO File</a>
+    
+    <script>
+        document.getElementById("workout-form").addEventListener("submit", function(e) {
+            e.preventDefault();
+            
+            var workoutName = document.getElementById("workout-name").value;
+            var workoutDescription = document.getElementById("workout-description").value;
+            var duration = document.getElementById("duration").value;
+            
+            // Generate the ZWO file content
+            var zwoContent = generateZWOFile(workoutName, workoutDescription, duration);
+            
+            // Create a Blob from the ZWO content
+            var blob = new Blob([zwoContent], { type: "application/xml" });
+            
+            // Create a URL for the Blob
+            var url = URL.createObjectURL(blob);
+            
+            // Set the download link's attributes
+            var downloadLink = document.getElementById("download-link");
+            downloadLink.href = url;
+            downloadLink.download = workoutName + ".zwo";
+            
+            // Show the download link
+            downloadLink.style.display = "block";
+        });
+        
+        function generateZWOFile(workoutName, workoutDescription, duration) {
+            // Create a valid ZWO file based on the specified parameters
+            var xml = '<?xml version="1.0" encoding="UTF-8"?>\n';
+            xml += '<workout_file>\n';
+            xml += '  <author>Ava, Your AI Coach</author>\n';
+            xml += '  <name>' + workoutName + '</name>\n';
+            xml += '  <description>' + workoutDescription + '</description>\n';
+            xml += '  <sportType>cycling</sportType>\n';
+            xml += '  <workout>\n';
+            xml += '    <Warmup Duration="' + duration + ':00">\n';
+            xml += '      <textevent time_offset="0">Get ready to warm up your body and mind!</textevent>\n';
+            xml += '    </Warmup>\n';
+            xml += '    <SteadyState Duration="' + (duration / 2) + ':00">\n';
+            xml += '      <textevent time_offset="0">Push through and find your steady rhythm.</textevent>\n';
+            xml += '    </SteadyState>\n';
+            xml += '    <IntervalsT Repeat="3" OnDuration="2:00" OffDuration="1:00">\n';
+            xml += '      <textevent time_offset="0">Let\'s kick it up a notch and power through these intervals!</textevent>\n';
+            xml += '      <textevent time_offset="60">Stay strong and maintain your focus!</textevent>\n';
+            xml += '    </IntervalsT>\n';
+            xml += '    <Cooldown Duration="' + (duration / 4) + ':00">\n';
+            xml += '      <textevent time_offset="0">Great job! Now it\'s time to cool down and recover.</textevent>\n';
+            xml += '    </Cooldown>\n';
+            xml += '  </workout>\n';
+            xml += '</workout_file>';
+            
+            return xml;
+        }
+    </script>
+</body>
+</html>
