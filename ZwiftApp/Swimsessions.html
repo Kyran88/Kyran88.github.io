@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+  <title>Swim Session Selector</title>
+  <style>
+    .chat-box {
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      padding: 10px;
+      margin-top: 20px;
+    }
+  </style>
+</head>
+<body>
+
+<div class="container mt-5">
+  <h2>Swim Session Selector</h2>
+
+  <div class="form-group">
+    <label for="distance">Select Distance (m):</label>
+    <select class="form-control" id="distance">
+      <option value="1500">1500m</option>
+      <option value="2000">2000m</option>
+      <option value="2500">2500m</option>
+      <!-- Add more distance options as needed -->
+    </select>
+  </div>
+
+  <div class="form-group">
+    <label for="sessionStyle">Select Session Style:</label>
+    <select class="form-control" id="sessionStyle">
+      <option value="Aerobic">Aerobic</option>
+      <option value="Strength">Strength</option>
+      <option value="Speed">Speed</option>
+      <option value="Threshold">Threshold</option>
+      <!-- Add more session style options as needed -->
+    </select>
+  </div>
+
+  <button class="btn btn-primary" onclick="displaySession()">Display Session</button>
+
+  <div id="sessionDisplay" class="chat-box mt-4" style="display: none;">
+    <p><strong>Selected Swim Session:</strong></p>
+    <div id="sessionContent"></div>
+  </div>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+
+<script>
+  // Fetch the sessions from the JSON file
+  async function fetchSessions() {
+    const response = await fetch('sessions.json');
+    const sessions = await response.json();
+    return sessions;
+  }
+
+  async function displaySession() {
+    const distance = document.getElementById('distance').value;
+    const sessionStyle = document.getElementById('sessionStyle').value;
+    const sessionContent = document.getElementById('sessionContent');
+    const sessionDisplay = document.getElementById('sessionDisplay');
+
+    // Fetch the sessions from the JSON file
+    const sessions = await fetchSessions();
+
+    // Find the selected session based on distance and style
+    const selectedSession = sessions.find(session =>
+      session.distance == distance && session.style == sessionStyle
+    );
+
+    if (selectedSession) {
+      // Display the selected session content
+      const sessionText = `Distance: ${selectedSession.distance}m\nSession Style: ${selectedSession.style}\nSession: ${selectedSession.session}`;
+      sessionContent.innerText = sessionText;
+      sessionDisplay.style.display = 'block';
+    } else {
+      // Display an error message if no session is found
+      sessionContent.innerText = 'No session found for the selected distance and style.';
+      sessionDisplay.style.display = 'block';
+    }
+  }
+</script>
+
+</body>
+</html>
