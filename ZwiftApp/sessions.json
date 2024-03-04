@@ -1,6 +1,6 @@
 [
-  { "distance": 1500, "style": "Aerobic", "session": "Aerobic Session for 500m" },
-  { "distance": 2000, "style": "Strength", "session": "Strength Session for 1000m" },
-  { "distance": 2500, "style": "Speed", "session": "Speed Session for 1500m" },
-  { "distance": 2500, "style": "Threshold", "session": "Threshold Session for 500m" }
+  { "distance": 1500, "style": "Aerobic", "session": "Aerobic Session for 1500m" },
+  { "distance": 2000, "style": "Strength", "session": "Strength Session for 2000m" },
+  { "distance": 2500, "style": "Speed", "session": "Speed Session for 2500m" },
+  { "distance": 2500, "style": "Threshold", "session": "Threshold Session for 2500m" }
 ]
