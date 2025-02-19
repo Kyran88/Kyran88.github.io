@@ -37,6 +37,10 @@ function calculate() {
     const speedAtFTP2 = (ftp / power2) * speed2;
     const timeAtFTP1 = (16.0934 / speedAtFTP1) * 3600;
     const timeAtFTP2 = (16.0934 / speedAtFTP2) * 3600;
+    const minutesAtFTP1 = Math.floor(timeAtFTP1 / 60);
+    const secondsAtFTP1 = (timeAtFTP1 % 60).toFixed(2);
+    const minutesAtFTP2 = Math.floor(timeAtFTP2 / 60);
+    const secondsAtFTP2 = (timeAtFTP2 % 60).toFixed(2);
     const timeSavingAtFTP = timeAtFTP1 - timeAtFTP2;
     const minutesAtFTP = Math.floor(timeSavingAtFTP / 60);
     const secondsAtFTP = (timeSavingAtFTP % 60).toFixed(2);
@@ -54,14 +58,14 @@ function calculate() {
     const seconds40km = (timeSaving40km % 60).toFixed(2);
 
     // Display results
-    document.getElementById('results').innerHTML = `
+    const resultsHTML = `
         <p>Cda Improvement: ${cdaImprovement.toFixed(2)}%</p>
         <p>Speed Improvement: ${speedImprovement.toFixed(2)}%</p>
         <p>Power Saving: ${powerSaving.toFixed(2)} W</p>
         <p>Time Saving over 10 miles: ${minutes} minutes ${seconds} seconds</p>
         <p>Performance Breakdown at FTP (${ftp} W):</p>
-        <p>Position 1 Time: ${timeAtFTP1.toFixed(2)} seconds</p>
-        <p>Position 2 Time: ${timeAtFTP2.toFixed(2)} seconds</p>
+        <p>Position 1 Time: ${minutesAtFTP1} minutes ${secondsAtFTP1} seconds</p>
+        <p>Position 2 Time: ${minutesAtFTP2} minutes ${secondsAtFTP2} seconds</p>
         <p>Time Saving: ${minutesAtFTP} minutes ${secondsAtFTP} seconds</p>
         <p>This improvement means:</p>
         <p>${cdaImprovement.toFixed(2)}% better aerodynamic efficiency</p>
@@ -71,10 +75,11 @@ function calculate() {
         <p>Time saving of ${minutes90km} minutes ${seconds90km} seconds over 90km</p>
         <p>Time saving of ${minutes40km} minutes ${seconds40km} seconds over 40km</p>
     `;
+    document.getElementById('results').innerHTML = resultsHTML;
 
     // Create chart
     const ctx = document.getElementById('chart').getContext('2d');
-    new Chart(ctx, {
+    const chart = new Chart(ctx, {
         type: 'bar',
         data: {
             labels: ['Cda Improvement (%)', 'Speed Improvement (%)', 'Power Saving (W)', 'Time Saving (s)', 'Time Saving at FTP (s)'],
@@ -94,9 +99,15 @@ function calculate() {
             }
         }
     });
+
+    // Save chart as image
+    const chartImage = chart.toBase64Image();
+
+    // Export data
+    exportData(resultsHTML, chartImage);
 }
 
-function exportData() {
+function exportData(resultsHTML, chartImage) {
     const power1 = document.getElementById('power1').value;
     const cda1 = document.getElementById('cda1').value;
     const speed1 = document.getElementById('speed1').value;
@@ -116,32 +127,43 @@ function exportData() {
     const ftp = document.getElementById('ftp').value;
 
     const data = `
-        Test 1:
-        Power: ${power1} W
-        Cda: ${cda1}
-        Speed: ${speed1} kph
-        Crr: ${crr1}
-        Weight: ${weight1} kg
-        Efficiency: ${efficiency1} %
-        Density: ${density1} kg/m³
-
-        Test 2:
-        Power: ${power2} W
-        Cda: ${cda2}
-        Speed: ${speed2} kph
-        Crr: ${crr2}
-        Weight: ${weight2} kg
-        Efficiency: ${efficiency2} %
-        Density: ${density2} kg/m³
-
-        FTP: ${ftp} W
+        <html>
+        <head>
+            <title>Aero Calculator Results</title>
+        </head>
+        <body>
+            <h1>Aero Calculator Results</h1>
+            <h2>Test 1</h2>
+            <p>Power: ${power1} W</p>
+            <p>Cda: ${cda1}</p>
+            <p>Speed: ${speed1} kph</p>
+            <p>Crr: ${crr1}</p>
+            <p>Weight: ${weight1} kg</p>
+            <p>Efficiency: ${efficiency1} %</p>
+            <p>Density: ${density1} kg/m³</p>
+            <h2>Test 2</h2>
+            <p>Power: ${power2} W</p>
+            <p>Cda: ${cda2}</p>
+            <p>Speed: ${speed2} kph</p>
+            <p>Crr: ${crr2}</p>
+            <p>Weight: ${weight2} kg</p>
+            <p>Efficiency: ${efficiency2} %</p>
+            <p>Density: ${density2} kg/m³</p>
+            <h2>FTP</h2>
+            <p>FTP: ${ftp} W</p>
+            <h2>Results</h2>
+            ${resultsHTML}
+            <h2>Chart</h2>
+            <img src="${chartImage}" alt="Chart">
+        </body>
+        </html>
     `;
 
-    const blob = new Blob([data], { type: 'text/plain' });
+    const blob = new Blob([data], { type: 'text/html' });
     const url = URL.createObjectURL(blob);
     const a = document.createElement('a');
     a.href = url;
-    a.download = 'aero_calculator_results.txt';
+    a.download = 'aero_calculator_results.html';
     a.click();
     URL.revokeObjectURL(url);
 }
