@@ -22,11 +22,7 @@
                 </div>
                 <div class="form-group">
                     <label for="cda1">CdA: 
-                        <span class="tooltip-icon" data-toggle="tooltip" data-html="true" data-placement="top" title="Typical CdA Values:<br><br>
-                        <b>Time Trialists:</b> 0.200 - 0.250 m²<br>
-                        <b>Triathletes:</b> 0.220 - 0.270 m²<br>
-                        <b>Road Cyclists (aero road position):</b> 0.250 - 0.300 m²<br>
-                        <b>Road Cyclists (relaxed road position):</b> 0.300 - 0.350 m²">
+                        <span class="info-icon" data-toggle="modal" data-target="#cdaModal">
                             <i class="fas fa-info-circle"></i>
                         </span>
                     </label>
@@ -66,11 +62,7 @@
                 </div>
                 <div class="form-group">
                     <label for="cda2">CdA: 
-                        <span class="tooltip-icon" data-toggle="tooltip" data-html="true" data-placement="top" title="Typical CdA Values:<br><br>
-                        <b>Time Trialists:</b> 0.200 - 0.250 m²<br>
-                        <b>Triathletes:</b> 0.220 - 0.270 m²<br>
-                        <b>Road Cyclists (aero road position):</b> 0.250 - 0.300 m²<br>
-                        <b>Road Cyclists (relaxed road position):</b> 0.300 - 0.350 m²">
+                        <span class="info-icon" data-toggle="modal" data-target="#cdaModal">
                             <i class="fas fa-info-circle"></i>
                         </span>
                     </label>
@@ -113,11 +105,30 @@
         <canvas id="chart"></canvas>
         <button class="btn btn-secondary mt-3" onclick="exportData()">Export Data</button>
     </div>
-    <script>
-        $(function () {
-            $('[data-toggle="tooltip"]').tooltip()
-        })
-    </script>
+
+        <!-- Modal -->
+    <div class="modal fade" id="cdaModal" tabindex="-1" role="dialog" aria-labelledby="cdaModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="cdaModalLabel">Typical CdA Values</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <p><b>Time Trialists:</b> 0.200 - 0.250 m²</p>
+                    <p><b>Triathletes:</b> 0.220 - 0.270 m²</p>
+                    <p><b>Road Cyclists (aero road position):</b> 0.250 - 0.300 m²</p>
+                    <p><b>Road Cyclists (relaxed road position):</b> 0.300 - 0.350 m²</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    
     <script src="https://kyran88.github.io/calculators/aero_calculator.js"></script>
 </body>
 </html>
