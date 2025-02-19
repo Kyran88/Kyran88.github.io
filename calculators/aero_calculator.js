@@ -1,3 +1,8 @@
+document.getElementById('power2').addEventListener('input', function() {
+    const power2 = parseFloat(document.getElementById('power2').value);
+    document.getElementById('ftp').value = power2;
+});
+
 function calculate() {
     // Get inputs for Test 1
     const power1 = parseFloat(document.getElementById('power1').value);
