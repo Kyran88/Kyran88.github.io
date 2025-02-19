@@ -8,6 +8,12 @@ function calculate() {
     const efficiency1 = parseFloat(document.getElementById('efficiency1').value) || 0.95;
     const density1 = parseFloat(document.getElementById('density1').value) || 1.225;
 
+    // Get FTP
+    const ftp = parseFloat(document.getElementById('ftp').value);
+
+    // Set default power for Test 2 to FTP
+    document.getElementById('power2').value = ftp;
+
     // Get inputs for Test 2
     const power2 = parseFloat(document.getElementById('power2').value);
     const cda2 = parseFloat(document.getElementById('cda2').value);
@@ -16,9 +22,6 @@ function calculate() {
     const weight2 = parseFloat(document.getElementById('weight2').value) || 90;
     const efficiency2 = parseFloat(document.getElementById('efficiency2').value) || 0.95;
     const density2 = parseFloat(document.getElementById('density2').value) || 1.225;
-
-    // Get FTP
-    const ftp = parseFloat(document.getElementById('ftp').value);
 
     // Calculate improvements
     const cdaImprovement = ((cda1 - cda2) / cda1) * 100;
