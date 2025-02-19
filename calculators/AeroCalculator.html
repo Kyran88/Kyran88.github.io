@@ -5,6 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Aero Calculator</title>
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 <body>
@@ -25,22 +28,26 @@
                     <label for="speed1">Speed (kph):</label>
                     <input type="number" class="form-control" id="speed1">
                 </div>
-                <h3>Advanced Inputs</h3>
-                <div class="form-group">
-                    <label for="crr1">Rolling Resistance (Crr):</label>
-                    <input type="number" class="form-control" id="crr1" step="0.0001" placeholder="0.004">
-                </div>
-                <div class="form-group">
-                    <label for="weight1">Weight (kg):</label>
-                    <input type="number" class="form-control" id="weight1" placeholder="90">
-                </div>
-                <div class="form-group">
-                    <label for="efficiency1">Mechanical Efficiency (%):</label>
-                    <input type="number" class="form-control" id="efficiency1" step="0.01" placeholder="0.95">
-                </div>
-                <div class="form-group">
-                    <label for="density1">Air Density (kg/m³):</label>
-                    <input type="number" class="form-control" id="density1" step="0.01" placeholder="1.225">
+                <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#advancedInputs1" aria-expanded="false" aria-controls="advancedInputs1">
+                    Advanced Inputs
+                </button>
+                <div class="collapse" id="advancedInputs1">
+                    <div class="form-group">
+                        <label for="crr1">Rolling Resistance (Crr):</label>
+                        <input type="number" class="form-control" id="crr1" step="0.0001" placeholder="0.004">
+                    </div>
+                    <div class="form-group">
+                        <label for="weight1">Weight (kg):</label>
+                        <input type="number" class="form-control" id="weight1" placeholder="90">
+                    </div>
+                    <div class="form-group">
+                        <label for="efficiency1">Mechanical Efficiency (%):</label>
+                        <input type="number" class="form-control" id="efficiency1" step="0.01" placeholder="0.95">
+                    </div>
+                    <div class="form-group">
+                        <label for="density1">Air Density (kg/m³):</label>
+                        <input type="number" class="form-control" id="density1" step="0.01" placeholder="1.225">
+                    </div>
                 </div>
             </div>
             <div class="col-md-6">
@@ -57,22 +64,26 @@
                     <label for="speed2">Speed (kph):</label>
                     <input type="number" class="form-control" id="speed2">
                 </div>
-                <h3>Advanced Inputs</h3>
-                <div class="form-group">
-                    <label for="crr2">Rolling Resistance (Crr):</label>
-                    <input type="number" class="form-control" id="crr2" step="0.0001" placeholder="0.004">
-                </div>
-                <div class="form-group">
-                    <label for="weight2">Weight (kg):</label>
-                    <input type="number" class="form-control" id="weight2" placeholder="90">
-                </div>
-                <div class="form-group">
-                    <label for="efficiency2">Mechanical Efficiency (%):</label>
-                    <input type="number" class="form-control" id="efficiency2" step="0.01" placeholder="0.95">
-                </div>
-                <div class="form-group">
-                    <label for="density2">Air Density (kg/m³):</label>
-                    <input type="number" class="form-control" id="density2" step="0.01" placeholder="1.225">
+                <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#advancedInputs2" aria-expanded="false" aria-controls="advancedInputs2">
+                    Advanced Inputs
+                </button>
+                <div class="collapse" id="advancedInputs2">
+                    <div class="form-group">
+                        <label for="crr2">Rolling Resistance (Crr):</label>
+                        <input type="number" class="form-control" id="crr2" step="0.0001" placeholder="0.004">
+                    </div>
+                    <div class="form-group">
+                        <label for="weight2">Weight (kg):</label>
+                        <input type="number" class="form-control" id="weight2" placeholder="90">
+                    </div>
+                    <div class="form-group">
+                        <label for="efficiency2">Mechanical Efficiency (%):</label>
+                        <input type="number" class="form-control" id="efficiency2" step="0.01" placeholder="0.95">
+                    </div>
+                    <div class="form-group">
+                        <label for="density2">Air Density (kg/m³):</label>
+                        <input type="number" class="form-control" id="density2" step="0.01" placeholder="1.225">
+                    </div>
                 </div>
             </div>
         </div>
@@ -82,7 +93,7 @@
         </div>
         <button class="btn btn-primary" onclick="calculate()">Calculate</button>
         <h2 class="mt-4">Results</h2>
-        <p id="results"></p>
+        <div id="results"></div>
         <canvas id="chart"></canvas>
         <button class="btn btn-secondary mt-3" onclick="exportData()">Export Data</button>
     </div>
