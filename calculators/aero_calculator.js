@@ -62,21 +62,29 @@ function calculate() {
 
     // Display results
     const resultsHTML = `
-        <p>Cda Improvement: ${cdaImprovement.toFixed(2)}%</p>
-        <p>Speed Improvement: ${speedImprovement.toFixed(2)}%</p>
-        <p>Power Saving: ${powerSaving.toFixed(2)} W</p>
-        <p>Time Saving over 10 miles: ${minutes} minutes ${seconds} seconds</p>
-        <p>Performance Breakdown at FTP (${ftp} W):</p>
-        <p>Position 1 Time: ${minutesAtFTP1} minutes ${secondsAtFTP1} seconds</p>
-        <p>Position 2 Time: ${minutesAtFTP2} minutes ${secondsAtFTP2} seconds</p>
-        <p>Time Saving: ${minutesAtFTP} minutes ${secondsAtFTP} seconds</p>
-        <p>This improvement means:</p>
-        <p>${cdaImprovement.toFixed(2)}% better aerodynamic efficiency</p>
-        <p>${speedImprovement.toFixed(2)}% increase in speed at the same power</p>
-        <p>Equivalent saving over the following distances:</p>
-        <p>Time saving of ${minutes180km} minutes ${seconds180km} seconds over 180km</p>
-        <p>Time saving of ${minutes90km} minutes ${seconds90km} seconds over 90km</p>
-        <p>Time saving of ${minutes40km} minutes ${seconds40km} seconds over 40km</p>
+        <div class="card">
+            <div class="card-header">
+                <h3>Results</h3>
+            </div>
+            <div class="card-body">
+                <h5 class="card-title">Improvements</h5>
+                <p class="card-text">Cda Improvement: ${cdaImprovement.toFixed(2)}%</p>
+                <p class="card-text">Speed Improvement: ${speedImprovement.toFixed(2)}%</p>
+                <p class="card-text">Power Saving: ${powerSaving.toFixed(2)} W</p>
+                <p class="card-text">Time Saving over 10 miles: ${minutes} minutes ${seconds} seconds</p>
+                <h5 class="card-title">Performance Breakdown at FTP (${ftp} W)</h5>
+                <p class="card-text">Position 1 Time: ${minutesAtFTP1} minutes ${secondsAtFTP1} seconds</p>
+                <p class="card-text">Position 2 Time: ${minutesAtFTP2} minutes ${secondsAtFTP2} seconds</p>
+                <p class="card-text">Time Saving: ${minutesAtFTP} minutes ${secondsAtFTP} seconds</p>
+                <h5 class="card-title">This Improvement Means</h5>
+                <p class="card-text">${cdaImprovement.toFixed(2)}% better aerodynamic efficiency</p>
+                <p class="card-text">${speedImprovement.toFixed(2)}% increase in speed at the same power</p>
+                <h5 class="card-title">Equivalent Savings Over Distances</h5>
+                <p class="card-text">Time saving of ${minutes180km} minutes ${seconds180km} seconds over 180km</p>
+                <p class="card-text">Time saving of ${minutes90km} minutes ${seconds90km} seconds over 90km</p>
+                <p class="card-text">Time saving of ${minutes40km} minutes ${seconds40km} seconds over 40km</p>
+            </div>
+        </div>
     `;
     document.getElementById('results').innerHTML = resultsHTML;
 
@@ -133,31 +141,64 @@ function exportData(resultsHTML, chartImage) {
         <html>
         <head>
             <title>Aero Calculator Results</title>
+            <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
         </head>
         <body>
-            <h1>Aero Calculator Results</h1>
-            <h2>Test 1</h2>
-            <p>Power: ${power1} W</p>
-            <p>Cda: ${cda1}</p>
-            <p>Speed: ${speed1} kph</p>
-            <p>Crr: ${crr1}</p>
-            <p>Weight: ${weight1} kg</p>
-            <p>Efficiency: ${efficiency1} %</p>
-            <p>Density: ${density1} kg/m³</p>
-            <h2>Test 2</h2>
-            <p>Power: ${power2} W</p>
-            <p>Cda: ${cda2}</p>
-            <p>Speed: ${speed2} kph</p>
-            <p>Crr: ${crr2}</p>
-            <p>Weight: ${weight2} kg</p>
-            <p>Efficiency: ${efficiency2} %</p>
-            <p>Density: ${density2} kg/m³</p>
-            <h2>FTP</h2>
-            <p>FTP: ${ftp} W</p>
-            <h2>Results</h2>
-            ${resultsHTML}
-            <h2>Chart</h2>
-            <img src="${chartImage}" alt="Chart">
+            <div class="container mt-5">
+                <h1 class="text-center">Aero Calculator Results</h1>
+                <div class="card mb-3">
+                    <div class="card-header">
+                        <h2>Test 1</h2>
+                    </div>
+                    <div class="card-body">
+                        <p>Power: ${power1} W</p>
+                        <p>Cda: ${cda1}</p>
+                        <p>Speed: ${speed1} kph</p>
+                        <p>Crr: ${crr1}</p>
+                        <p>Weight: ${weight1} kg</p>
+                        <p>Efficiency: ${efficiency1} %</p>
+                        <p>Density: ${density1} kg/m³</p>
+                    </div>
+                </div>
+                <div class="card mb-3">
+                    <div class="card-header">
+                        <h2>Test 2</h2>
+                    </div>
+                    <div class="card-body">
+                        <p>Power: ${power2} W</p>
+                        <p>Cda: ${cda2}</p>
+                        <p>Speed: ${speed2} kph</p>
+                        <p>Crr: ${crr2}</p>
+                        <p>Weight: ${weight2} kg</p>
+                        <p>Efficiency: ${efficiency2} %</p>
+                        <p>Density: ${density2} kg/m³</p>
+                    </div>
+                </div>
+                <div class="card mb-3">
+                    <div class="card-header">
+                        <h2>FTP</h2>
+                    </div>
+                    <div class="card-body">
+                        <p>FTP: ${ftp} W</p>
+                    </div>
+                </div>
+                <div class="card mb-3">
+                    <div class="card-header">
+                        <h2>Results</h2>
+                    </div>
+                    <div class="card-body">
+                        ${resultsHTML}
+                    </div>
+                </div>
+                <div class="card mb-3">
+                    <div class="card-header">
+                        <h2>Chart</h2>
+                    </div>
+                    <div class="card-body">
+                        <img src="${chartImage}" alt="Chart" class="img-fluid">
+                    </div>
+                </div>
+            </div>
         </body>
         </html>
     `;
