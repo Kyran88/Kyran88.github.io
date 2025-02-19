@@ -16,9 +16,6 @@ function calculate() {
     // Get FTP
     const ftp = parseFloat(document.getElementById('ftp').value);
 
-    // Set default power for Test 2 to FTP
-    document.getElementById('power2').value = ftp;
-
     // Get inputs for Test 2
     const power2 = parseFloat(document.getElementById('power2').value);
     const cda2 = parseFloat(document.getElementById('cda2').value);
