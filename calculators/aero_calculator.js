@@ -213,3 +213,63 @@ function exportData(resultsHTML, chartImage) {
     a.click();
     URL.revokeObjectURL(url);
 }
+
+function exportToPDF() {
+    const { jsPDF } = window.jspdf;
+    const doc = new jsPDF();
+    
+    doc.setFontSize(18);
+    doc.text("Aero Calculator Results", 10, 10);
+    
+    doc.setFontSize(12);
+    let y = 20;
+    
+    function addSection(title, content) {
+        doc.setFontSize(14);
+        doc.text(title, 10, y);
+        y += 6;
+        doc.setFontSize(12);
+        content.forEach(line => {
+            doc.text(line, 10, y);
+            y += 6;
+        });
+        y += 4;
+    }
+    
+    addSection("Test 1", [
+        `Power: ${document.getElementById('power1').value} W`,
+        `CdA: ${document.getElementById('cda1').value}`,
+        `Speed: ${document.getElementById('speed1').value} kph`,
+        `Crr: ${document.getElementById('crr1').value || 0.004}`,
+        `Weight: ${document.getElementById('weight1').value || 90} kg`,
+        `Efficiency: ${document.getElementById('efficiency1').value || 0.95} %`,
+        `Density: ${document.getElementById('density1').value || 1.225} kg/m³`
+    ]);
+    
+    addSection("Test 2", [
+        `Power: ${document.getElementById('power2').value} W`,
+        `CdA: ${document.getElementById('cda2').value}`,
+        `Speed: ${document.getElementById('speed2').value} kph`,
+        `Crr: ${document.getElementById('crr2').value || 0.004}`,
+        `Weight: ${document.getElementById('weight2').value || 90} kg`,
+        `Efficiency: ${document.getElementById('efficiency2').value || 0.95} %`,
+        `Density: ${document.getElementById('density2').value || 1.225} kg/m³`
+    ]);
+    
+    addSection("FTP", [`FTP: ${document.getElementById('ftp').value} W`]);
+    
+    addSection("Results", [
+        document.getElementById('results').innerText
+    ]);
+    
+    doc.save("Aero_Calculator_Results.pdf");
+}
+
+// Add a button for exporting to PDF
+document.addEventListener("DOMContentLoaded", function() {
+    const button = document.createElement("button");
+    button.className = "btn btn-success mt-3";
+    button.textContent = "Download PDF";
+    button.onclick = exportToPDF;
+    document.querySelector(".container").appendChild(button);
+});
