@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cycling Phenotype Calculator</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 20px auto;
+            padding: 20px;
+        }
+        .input-group {
+            margin-bottom: 15px;
+        }
+        label {
+            display: inline-block;
+            width: 200px;
+        }
+        input {
+            padding: 5px;
+            width: 100px;
+        }
+        button {
+            padding: 10px 20px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+        #results {
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Cycling Phenotype Calculator</h1>
+    <div class="input-group">
+        <label>Weight (kg):</label>
+        <input type="number" id="weight" step="0.1" min="0" placeholder="e.g., 70">
+    </div>
+    <div class="input-group">
+        <label>5-Second Peak Power (W):</label>
+        <input type="number" id="power5s" min="0" placeholder="e.g., 1200">
+    </div>
+    <div class="input-group">
+        <label>1-Minute Average Power (W):</label>
+        <input type="number" id="power1m" min="0" placeholder="e.g., 600">
+    </div>
+    <div class="input-group">
+        <label>5-Minute Average Power (W):</label>
+        <input type="number" id="power5m" min="0" placeholder="e.g., 400">
+    </div>
+    <div class="input-group">
+        <label>20-Minute Average Power (W):</label>
+        <input type="number" id="power20m" min="0" placeholder="e.g., 300">
+    </div>
+    <div class="input-group">
+        <label>1-Hour Average Power (W, optional):</label>
+        <input type="number" id="power1h" min="0" placeholder="e.g., 250">
+    </div>
+    <button onclick="calculatePhenotype()">Calculate</button>
+
+    <div id="results"></div>
+    <canvas id="powerChart" width="400" height="200"></canvas>
+
+    <!-- Include Chart.js for graphing -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
+​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​
