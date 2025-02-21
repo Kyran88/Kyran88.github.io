@@ -265,11 +265,3 @@ function exportToPDF() {
     doc.save("Aero_Calculator_Results.pdf");
 }
 
-// Add a button for exporting to PDF
-document.addEventListener("DOMContentLoaded", function() {
-    const button = document.createElement("button");
-    button.className = "btn btn-success mt-3";
-    button.textContent = "Download PDF";
-    button.onclick = exportToPDF;
-    document.querySelector(".container").appendChild(button);
-});
