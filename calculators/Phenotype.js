@@ -25,14 +25,14 @@ function calculatePhenotype() {
 
     // Determine phenotype (simplified logic)
     let phenotype = '';
-    if (wkg5s > 20 && wkg1m > 8) {
+    if (wkg5s > 20) {
         phenotype = 'Sprinter';
+    } else if (wkg1m > 6) {
+        phenotype = 'Pursuiter';
     } else if (wkg5m > 5.5 && wkgFtp > 4.5) {
-        phenotype = 'Climber/Time Trialist';
+        phenotype = 'Time Trialist/Climber';
     } else if (wkg5s > 15 && wkgFtp > 4) {
         phenotype = 'All-Rounder';
-    } else if (power1h && wkg1h > 3.5) {
-        phenotype = 'Endurance Specialist';
     } else {
         phenotype = 'General Cyclist (Balanced or Developing)';
     }
@@ -52,11 +52,15 @@ function calculatePhenotype() {
 
     // Prepare data for chart
     const powerData = [wkg5s, wkg1m, wkg5m, wkgFtp];
-    const labels = ['5s', '1min', '5min', 'FTP'];
+    const labels = ['Sprinter', 'Pursuiter', 'Time Trialist/Climber', 'All-Rounder'];
     if (power1h) {
         powerData.push(wkg1h);
-        labels.push('1hr');
+        labels.push('General Cyclist');
     }
+
+    // Calculate percentages
+    const totalPower = powerData.reduce((acc, val) => acc + parseFloat(val), 0);
+    const percentageData = powerData.map(val => ((parseFloat(val) / totalPower) * 100).toFixed(2));
 
     // Destroy existing chart if it exists
     if (chart) {
@@ -70,8 +74,8 @@ function calculatePhenotype() {
         data: {
             labels: labels,
             datasets: [{
-                label: 'Power-to-Weight (W/kg)',
-                data: powerData,
+                label: 'Percentage of Rider Type (%)',
+                data: percentageData,
                 backgroundColor: 'rgba(54, 162, 235, 0.7)',
                 borderColor: 'rgba(54, 162, 235, 1)',
                 borderWidth: 1
@@ -83,19 +87,26 @@ function calculatePhenotype() {
                     beginAtZero: true,
                     title: {
                         display: true,
-                        text: 'Watts per Kilogram (W/kg)'
+                        text: 'Percentage (%)'
                     }
                 },
                 x: {
                     title: {
                         display: true,
-                        text: 'Test Duration'
+                        text: 'Rider Type'
                     }
                 }
             },
             plugins: {
                 legend: {
                     display: true
+                },
+                tooltip: {
+                    callbacks: {
+                        label: function(context) {
+                            return `${context.label}: ${context.raw}%`;
+                        }
+                    }
                 }
             }
         }
