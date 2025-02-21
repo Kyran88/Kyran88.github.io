@@ -74,13 +74,16 @@ function calculate() {
                 <p class="card-text">Speed Improvement: ${speedImprovement.toFixed(2)}%</p>
                 <p class="card-text">Power Saving: ${powerSaving.toFixed(2)} W</p>
                 <p class="card-text">Time Saving over 10 miles: ${minutes} minutes ${seconds} seconds</p>
-                <h5 class="card-title">Performance Breakdown at FTP (${ftp} W)</h5>
+                <br>
+                <h5 class="card-title">Performance Breakdown at FTP (${ftp} W) over 10 miles:</h5>
                 <p class="card-text">Position 1 Time: ${minutesAtFTP1} minutes ${secondsAtFTP1} seconds</p>
                 <p class="card-text">Position 2 Time: ${minutesAtFTP2} minutes ${secondsAtFTP2} seconds</p>
                 <p class="card-text">Time Saving: ${minutesAtFTP} minutes ${secondsAtFTP} seconds</p>
+                <br>
                 <h5 class="card-title">This Improvement Means</h5>
                 <p class="card-text">${cdaImprovement.toFixed(2)}% better aerodynamic efficiency</p>
                 <p class="card-text">${speedImprovement.toFixed(2)}% increase in speed at the same power</p>
+                <br>
                 <h5 class="card-title">Equivalent Savings Over Distances</h5>
                 <p class="card-text">Time saving of ${minutes180km} minutes ${seconds180km} seconds over 180km</p>
                 <p class="card-text">Time saving of ${minutes90km} minutes ${seconds90km} seconds over 90km</p>
