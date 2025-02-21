@@ -23,19 +23,27 @@ function calculatePhenotype() {
     const wkgFtp = (ftp / weight).toFixed(2);
     const wkg1h = power1h ? (power1h / weight).toFixed(2) : 'N/A';
 
-    // Determine phenotype (simplified logic)
+    // Determine phenotype
     let phenotype = '';
-    if (wkg5s > 20) {
-        phenotype = 'Sprinter';
-    } else if (wkg1m > 6) {
-        phenotype = 'Pursuiter';
-    } else if (wkg5m > 5.5 && wkgFtp > 4.5) {
-        phenotype = 'Time Trialist/Climber';
-    } else if (wkg5s > 15 && wkgFtp > 4) {
-        phenotype = 'All-Rounder';
-    } else {
-        phenotype = 'General Cyclist (Balanced or Developing)';
+    let highestCategory = '';
+    let highestValue = 0;
+    
+    const categories = {
+        'Sprinter': parseFloat(wkg5s),
+        'Pursuiter': parseFloat(wkg1m),
+        'Time Trialist/Climber': Math.max(parseFloat(wkg5m), parseFloat(wkgFtp)),
+        'All-Rounder': (parseFloat(wkg5s) + parseFloat(wkgFtp)) / 2,
+        'General Cyclist': power1h ? parseFloat(wkg1h) : 0
+    };
+    
+    for (const [category, value] of Object.entries(categories)) {
+        if (value > highestValue) {
+            highestValue = value;
+            highestCategory = category;
+        }
     }
+
+    phenotype = highestCategory;
 
     // Display results
     const resultsDiv = document.getElementById('results');
@@ -50,17 +58,11 @@ function calculatePhenotype() {
         <p><strong>Phenotype: ${phenotype}</strong></p>
     `;
 
-    // Prepare data for chart
-    const powerData = [wkg5s, wkg1m, wkg5m, wkgFtp];
-    const labels = ['Sprinter', 'Pursuiter', 'Time Trialist/Climber', 'All-Rounder'];
-    if (power1h) {
-        powerData.push(wkg1h);
-        labels.push('General Cyclist');
-    }
-
-    // Calculate percentages
-    const totalPower = powerData.reduce((acc, val) => acc + parseFloat(val), 0);
-    const percentageData = powerData.map(val => ((parseFloat(val) / totalPower) * 100).toFixed(2));
+    // Normalize and prioritize the highest phenotype in the chart
+    const totalPower = Object.values(categories).reduce((acc, val) => acc + val, 0);
+    const percentageData = Object.entries(categories).map(([category, value]) => {
+        return category === phenotype ? (value / totalPower) * 150 : (value / totalPower) * 100;
+    });
 
     // Destroy existing chart if it exists
     if (chart) {
@@ -72,7 +74,7 @@ function calculatePhenotype() {
     chart = new Chart(ctx, {
         type: 'bar',
         data: {
-            labels: labels,
+            labels: Object.keys(categories),
             datasets: [{
                 label: 'Percentage of Rider Type (%)',
                 data: percentageData,
@@ -104,7 +106,7 @@ function calculatePhenotype() {
                 tooltip: {
                     callbacks: {
                         label: function(context) {
-                            return `${context.label}: ${context.raw}%`;
+                            return `${context.label}: ${context.raw.toFixed(2)}%`;
                         }
                     }
                 }
