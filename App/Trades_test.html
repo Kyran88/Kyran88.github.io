@@ -32,7 +32,7 @@
 </head>
 <body>
     <div class="container">
-        <h1 class="text-center">Trades Search Facility</h1>
+        <h1 class="text-center">Insurance Search Facility</h1>
         <div class="form-group">
             <label for="businessActivities">Describe your business activities:</label>
             <input type="text" class="form-control" id="businessActivities" placeholder="e.g., We run a bakery">
@@ -97,59 +97,78 @@
             const activities = document.getElementById('businessActivities').value.toLowerCase();
             let results = '';
 
-            // Call the LLM API to get suggested trades
-            const suggestedTrades = await getSuggestedTrades(activities);
+            console.log('Activities:', activities); // Log the activities input
 
-            if (suggestedTrades.length > 0) {
-                results += '<h3>Recommended Trades:</h3>';
-                results += '<ul>';
-                suggestedTrades.forEach(trade => {
-                    results += `<li>${trade.charAt(0).toUpperCase() + trade.slice(1)}</li>`;
-                });
-                results += '</ul>';
+            try {
+                // Call the LLM API to get suggested trades
+                const suggestedTrades = await getSuggestedTrades(activities);
+                console.log('Suggested Trades:', suggestedTrades); // Log the suggested trades
 
-                results += '<h3>Recommended Insurance Products:</h3>';
-                suggestedTrades.forEach(trade => {
-                    const matchedProducts = insuranceData.find(item => item.activity === trade);
-                    if (matchedProducts) {
-                        results += `<h4>${matchedProducts.activity.charAt(0).toUpperCase() + matchedProducts.activity.slice(1)}</h4>`;
-                        results += '<div class="card-deck">';
-                        matchedProducts.products.forEach(product => {
-                            results += `
-                                <div class="card">
-                                    <div class="card-body">
-                                        <h5 class="card-title">${product.name} <span class="info-icon">ℹ️
-                                            <span class="info-text">${product.description}</span>
-                                        </span></h5>
+                if (suggestedTrades.length > 0) {
+                    results += '<h3>Recommended Trades:</h3>';
+                    results += '<ul>';
+                    suggestedTrades.forEach(trade => {
+                        results += `<li>${trade.charAt(0).toUpperCase() + trade.slice(1)}</li>`;
+                    });
+                    results += '</ul>';
+
+                    results += '<h3>Recommended Insurance Products:</h3>';
+                    suggestedTrades.forEach(trade => {
+                        const matchedProducts = insuranceData.find(item => item.activity === trade);
+                        if (matchedProducts) {
+                            results += `<h4>${matchedProducts.activity.charAt(0).toUpperCase() + matchedProducts.activity.slice(1)}</h4>`;
+                            results += '<div class="card-deck">';
+                            matchedProducts.products.forEach(product => {
+                                results += `
+                                    <div class="card">
+                                        <div class="card-body">
+                                            <h5 class="card-title">${product.name} <span class="info-icon">ℹ️
+                                                <span class="info-text">${product.description}</span>
+                                            </span></h5>
+                                        </div>
                                     </div>
-                                </div>
-                            `;
-                        });
-                        results += '</div>';
-                    }
-                });
-            } else {
-                results += '<h3>No matching trades found. Please provide more details.</h3>';
-            }
+                                `;
+                            });
+                            results += '</div>';
+                        }
+                    });
+                } else {
+                    results += '<h3>No matching trades found. Please provide more details.</h3>';
+                }
 
-            document.getElementById('results').innerHTML = results;
+                document.getElementById('results').innerHTML = results;
+            } catch (error) {
+                console.error('Error fetching suggested trades:', error);
+                document.getElementById('results').innerHTML = '<h3>Error fetching suggested trades. Please try again later.</h3>';
+            }
         }
 
         async function getSuggestedTrades(activities) {
-            const response = await fetch('https://api.openai.com/v1/completions', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                    'Authorization': `Bearer sk-proj-z3kEUpSISik9bQPuQIX2Lu`
-                },
-                body: JSON.stringify({
-                    model: 'text-davinci-003',
-                    prompt: `Suggest trade options for the following business description: "${activities}"`,
-                    max_tokens: 50
-                })
-            });
-            const data = await response.json();
-            return data.choices[0].text.trim().split(',').map(trade => trade.trim());
+            try {
+                const response = await fetch('https://api.openai.com/v1/completions', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Authorization': `Bearer sk-proj-z3kEUpSISik9bQPuQIX2Lu`
+                    },
+                    body: JSON.stringify({
+                        model: 'text-davinci-003',
+                        prompt: `Suggest trade options for the following business description: "${activities}"`,
+                        max_tokens: 50
+                    })
+                });
+
+                if (!response.ok) {
+                    throw new Error(`API request failed with status ${response.status}`);
+                }
+
+                const data = await response.json();
+                console.log('API Response:', data); // Log the API response
+                return data.choices[0].text.trim().split(',').map(trade => trade.trim());
+            } catch (error) {
+                console.error('Error in getSuggestedTrades:', error);
+                return [];
+            }
         }
     </script>
 
