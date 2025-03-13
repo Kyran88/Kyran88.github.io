@@ -1,0 +1,161 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Trade Search Facility</title>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        .container {
+            margin-top: 50px;
+        }
+        .card {
+            margin-bottom: 20px;
+        }
+        .info-icon {
+            cursor: pointer;
+            color: #007bff;
+        }
+        .info-icon:hover .info-text {
+            display: block;
+        }
+        .info-text {
+            display: none;
+            position: absolute;
+            background-color: #f9f9f9;
+            border: 1px solid #ccc;
+            padding: 10px;
+            z-index: 1;
+            width: 200px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1 class="text-center">Insurance Search Facility</h1>
+        <div class="form-group">
+            <label for="businessActivities">Describe your business activities:</label>
+            <input type="text" class="form-control" id="businessActivities" placeholder="e.g., We run a bakery">
+        </div>
+        <button class="btn btn-primary" onclick="searchInsurance()">Search</button>
+        <div id="results" class="mt-4"></div>
+    </div>
+
+    <script>
+        const insuranceData = [
+            {
+                "activity": "bakery",
+                "products": [
+                    {"name": "Minifleet", "description": "Covers multiple vehicles used for business purposes."},
+                    {"name": "Commercial Combined", "description": "Comprehensive coverage for various business risks."},
+                    {"name": "Self Employed", "description": "Insurance tailored for self-employed individuals."}
+                ]
+            },
+            {
+                "activity": "it consulting",
+                "products": [
+                    {"name": "Professional Indemnity", "description": "Protects against claims of professional negligence."},
+                    {"name": "Cyber", "description": "Coverage for cyber threats and data breaches."},
+                    {"name": "Commercial Combined", "description": "Comprehensive coverage for various business risks."}
+                ]
+            },
+            {
+                "activity": "electronics manufacturing",
+                "products": [
+                    {"name": "Commercial Combined", "description": "Comprehensive coverage for various business risks."},
+                    {"name": "Minifleet", "description": "Covers multiple vehicles used for business purposes."},
+                    {"name": "Export", "description": "Insurance for products exported internationally."}
+                ]
+            },
+            {
+                "activity": "construction",
+                "products": [
+                    {"name": "Contractors All Risks", "description": "Coverage for construction projects and materials."},
+                    {"name": "Employers' Liability", "description": "Protects against claims from employees for work-related injuries."},
+                    {"name": "Minifleet", "description": "Covers multiple vehicles used for business purposes."}
+                ]
+            },
+            {
+                "activity": "retail",
+                "products": [
+                    {"name": "Shop Insurance", "description": "Coverage for retail shops including stock and premises."},
+                    {"name": "Public Liability", "description": "Protects against claims from the public for injuries or damages."},
+                    {"name": "Cyber", "description": "Coverage for cyber threats and data breaches."}
+                ]
+            },
+            {
+                "activity": "restaurant",
+                "products": [
+                    {"name": "Restaurant Insurance", "description": "Coverage for restaurants including equipment and premises."},
+                    {"name": "Public Liability", "description": "Protects against claims from the public for injuries or damages."},
+                    {"name": "Employers' Liability", "description": "Protects against claims from employees for work-related injuries."}
+                ]
+            }
+        ];
+
+        async function searchInsurance() {
+            const activities = document.getElementById('businessActivities').value.toLowerCase();
+            let results = '';
+
+            // Call the LLM API to get suggested trades
+            const suggestedTrades = await getSuggestedTrades(activities);
+
+            if (suggestedTrades.length > 0) {
+                results += '<h3>Recommended Trades:</h3>';
+                results += '<ul>';
+                suggestedTrades.forEach(trade => {
+                    results += `<li>${trade.charAt(0).toUpperCase() + trade.slice(1)}</li>`;
+                });
+                results += '</ul>';
+
+                results += '<h3>Recommended Insurance Products:</h3>';
+                suggestedTrades.forEach(trade => {
+                    const matchedProducts = insuranceData.find(item => item.activity === trade);
+                    if (matchedProducts) {
+                        results += `<h4>${matchedProducts.activity.charAt(0).toUpperCase() + matchedProducts.activity.slice(1)}</h4>`;
+                        results += '<div class="card-deck">';
+                        matchedProducts.products.forEach(product => {
+                            results += `
+                                <div class="card">
+                                    <div class="card-body">
+                                        <h5 class="card-title">${product.name} <span class="info-icon">ℹ️
+                                            <span class="info-text">${product.description}</span>
+                                        </span></h5>
+                                    </div>
+                                </div>
+                            `;
+                        });
+                        results += '</div>';
+                    }
+                });
+            } else {
+                results += '<h3>No matching trades found. Please provide more details.</h3>';
+            }
+
+            document.getElementById('results').innerHTML = results;
+        }
+
+        async function getSuggestedTrades(activities) {
+            const response = await fetch('https://api.openai.com/v1/completions', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': `Bearer sk-proj-z3kEUpSISik9bQPuQIX2Lu`
+                },
+                body: JSON.stringify({
+                    model: 'text-davinci-003',
+                    prompt: `Suggest trade options for the following business description: "${activities}"`,
+                    max_tokens: 50
+                })
+            });
+            const data = await response.json();
+            return data.choices[0].text.trim().split(',').map(trade => trade.trim());
+        }
+    </script>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>
