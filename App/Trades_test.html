@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Trade Search Facility</title>
+    <title>trade Search Facility</title>
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
     <style>
         .container {
@@ -93,82 +93,42 @@
             }
         ];
 
-        async function searchInsurance() {
+        function searchInsurance() {
             const activities = document.getElementById('businessActivities').value.toLowerCase();
             let results = '';
 
-            console.log('Activities:', activities); // Log the activities input
+            const matchedProducts = insuranceData.filter(item => activities.includes(item.activity));
 
-            try {
-                // Call the LLM API to get suggested trades
-                const suggestedTrades = await getSuggestedTrades(activities);
-                console.log('Suggested Trades:', suggestedTrades); // Log the suggested trades
-
-                if (suggestedTrades.length > 0) {
-                    results += '<h3>Recommended Trades:</h3>';
-                    results += '<ul>';
-                    suggestedTrades.forEach(trade => {
-                        results += `<li>${trade.charAt(0).toUpperCase() + trade.slice(1)}</li>`;
-                    });
-                    results += '</ul>';
-
-                    results += '<h3>Recommended Insurance Products:</h3>';
-                    suggestedTrades.forEach(trade => {
-                        const matchedProducts = insuranceData.find(item => item.activity === trade);
-                        if (matchedProducts) {
-                            results += `<h4>${matchedProducts.activity.charAt(0).toUpperCase() + matchedProducts.activity.slice(1)}</h4>`;
-                            results += '<div class="card-deck">';
-                            matchedProducts.products.forEach(product => {
-                                results += `
-                                    <div class="card">
-                                        <div class="card-body">
-                                            <h5 class="card-title">${product.name} <span class="info-icon">ℹ️
-                                                <span class="info-text">${product.description}</span>
-                                            </span></h5>
-                                        </div>
-                                    </div>
-                                `;
-                            });
-                            results += '</div>';
-                        }
-                    });
-                } else {
-                    results += '<h3>No matching trades found. Please provide more details.</h3>';
-                }
-
-                document.getElementById('results').innerHTML = results;
-            } catch (error) {
-                console.error('Error fetching suggested trades:', error);
-                document.getElementById('results').innerHTML = '<h3>Error fetching suggested trades. Please try again later.</h3>';
-            }
-        }
-
-        async function getSuggestedTrades(activities) {
-            try {
-                const response = await fetch('https://api.openai.com/v1/completions', {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json',
-                        'Authorization': `Bearer sk-proj-z3kEUpSISik9bQPuQIX2Lu`
-                    },
-                    body: JSON.stringify({
-                        model: 'text-davinci-003',
-                        prompt: `Suggest trade options for the following business description: "${activities}"`,
-                        max_tokens: 50
-                    })
+            if (matchedProducts.length > 0) {
+                results += '<h3>Recommended Trades:</h3>';
+                results += '<ul>';
+                matchedProducts.forEach(item => {
+                    results += `<li>${item.activity.charAt(0).toUpperCase() + item.activity.slice(1)}</li>`;
                 });
+                results += '</ul>';
 
-                if (!response.ok) {
-                    throw new Error(`API request failed with status ${response.status}`);
-                }
-
-                const data = await response.json();
-                console.log('API Response:', data); // Log the API response
-                return data.choices[0].text.trim().split(',').map(trade => trade.trim());
-            } catch (error) {
-                console.error('Error in getSuggestedTrades:', error);
-                return [];
+                results += '<h3>Recommended Insurance Products:</h3>';
+                matchedProducts.forEach(item => {
+                    results += `<h4>${item.activity.charAt(0).toUpperCase() + item.activity.slice(1)}</h4>`;
+                    results += '<div class="card-deck">';
+                    item.products.forEach(product => {
+                        results += `
+                            <div class="card">
+                                <div class="card-body">
+                                    <h5 class="card-title">${product.name} <span class="info-icon">ℹ️
+                                        <span class="info-text">${product.description}</span>
+                                    </span></h5>
+                                </div>
+                            </div>
+                        `;
+                    });
+                    results += '</div>';
+                });
+            } else {
+                results += '<h3>No matching trades found. Please provide more details.</h3>';
             }
+
+            document.getElementById('results').innerHTML = results;
         }
     </script>
 
