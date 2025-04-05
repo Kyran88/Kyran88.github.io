@@ -4,6 +4,13 @@ document.getElementById('power2').addEventListener('input', function() {
 });
 
 function calculate() {
+    // Helper: Convert seconds to mm:ss format
+    function formatTime(seconds) {
+        const mins = Math.floor(seconds / 60);
+        const secs = (seconds % 60).toFixed(0).padStart(2, '0');
+        return `${mins}:${secs}`;
+    }
+
     // Get inputs for Test 1
     const power1 = parseFloat(document.getElementById('power1').value);
     const cda1 = parseFloat(document.getElementById('cda1').value);
@@ -30,37 +37,22 @@ function calculate() {
     const speedImprovement = ((speed2 - speed1) / speed1) * 100;
     const powerSaving = power1 - power2;
 
-    // Calculate time savings over 10 miles (16.0934 km)
+    // Time savings over 10 miles
     const time1 = (16.0934 / speed1) * 3600;
     const time2 = (16.0934 / speed2) * 3600;
     const timeSaving = time1 - time2;
-    const minutes = Math.floor(timeSaving / 60);
-    const seconds = (timeSaving % 60).toFixed(2);
 
-    // Calculate performance breakdown at FTP
+    // Performance at FTP
     const speedAtFTP1 = (ftp / power1) * speed1;
     const speedAtFTP2 = (ftp / power2) * speed2;
     const timeAtFTP1 = (16.0934 / speedAtFTP1) * 3600;
     const timeAtFTP2 = (16.0934 / speedAtFTP2) * 3600;
-    const minutesAtFTP1 = Math.floor(timeAtFTP1 / 60);
-    const secondsAtFTP1 = (timeAtFTP1 % 60).toFixed(2);
-    const minutesAtFTP2 = Math.floor(timeAtFTP2 / 60);
-    const secondsAtFTP2 = (timeAtFTP2 % 60).toFixed(2);
     const timeSavingAtFTP = timeAtFTP1 - timeAtFTP2;
-    const minutesAtFTP = Math.floor(timeSavingAtFTP / 60);
-    const secondsAtFTP = (timeSavingAtFTP % 60).toFixed(2);
 
-    // Calculate equivalent savings over different distances
+    // Time savings over distances
     const timeSaving180km = (timeSavingAtFTP / 16.0934) * 180;
     const timeSaving90km = (timeSavingAtFTP / 16.0934) * 90;
     const timeSaving40km = (timeSavingAtFTP / 16.0934) * 40;
-
-    const minutes180km = Math.floor(timeSaving180km / 60);
-    const seconds180km = (timeSaving180km % 60).toFixed(2);
-    const minutes90km = Math.floor(timeSaving90km / 60);
-    const seconds90km = (timeSaving90km % 60).toFixed(2);
-    const minutes40km = Math.floor(timeSaving40km / 60);
-    const seconds40km = (timeSaving40km % 60).toFixed(2);
 
     // Display results
     const resultsHTML = `
@@ -73,48 +65,114 @@ function calculate() {
                 <p class="card-text">Cda Improvement: ${cdaImprovement.toFixed(2)}%</p>
                 <p class="card-text">Speed Improvement: ${speedImprovement.toFixed(2)}%</p>
                 <p class="card-text">Power Saving: ${powerSaving.toFixed(2)} W</p>
-                <p class="card-text">Time Saving over 10 miles: ${minutes} minutes ${seconds} seconds</p>
+                <p class="card-text">Time Saving over 10 miles: ${formatTime(timeSaving)}</p>
                 <br>
-                <h5 class="card-title">Performance Breakdown at FTP (${ftp} W) over 10 miles:</h5>
-                <p class="card-text">Position 1 Time: ${minutesAtFTP1} minutes ${secondsAtFTP1} seconds</p>
-                <p class="card-text">Position 2 Time: ${minutesAtFTP2} minutes ${secondsAtFTP2} seconds</p>
-                <p class="card-text">Time Saving: ${minutesAtFTP} minutes ${secondsAtFTP} seconds</p>
+                <h5 class="card-title">Performance Breakdown at FTP (${ftp} W) over 10 miles (mm:ss):</h5>
+                <p class="card-text">Position 1 Time: ${formatTime(timeAtFTP1)}</p>
+                <p class="card-text">Position 2 Time: ${formatTime(timeAtFTP2)}</p>
+                <p class="card-text">Time Saving: ${formatTime(timeSavingAtFTP)}</p>
                 <br>
                 <h5 class="card-title">This Improvement Means</h5>
                 <p class="card-text">${cdaImprovement.toFixed(2)}% better aerodynamic efficiency</p>
                 <p class="card-text">${speedImprovement.toFixed(2)}% increase in speed at the same power</p>
                 <br>
-                <h5 class="card-title">Equivalent Savings Over Distances</h5>
-                <p class="card-text">Time saving of ${minutes180km} minutes ${seconds180km} seconds over 180km</p>
-                <p class="card-text">Time saving of ${minutes90km} minutes ${seconds90km} seconds over 90km</p>
-                <p class="card-text">Time saving of ${minutes40km} minutes ${seconds40km} seconds over 40km</p>
+                <h5 class="card-title">Equivalent Savings Over Distances (mm:ss)</h5>
+                <p class="card-text">180km: ${formatTime(timeSaving180km)}</p>
+                <p class="card-text">90km: ${formatTime(timeSaving90km)}</p>
+                <p class="card-text">40km: ${formatTime(timeSaving40km)}</p>
             </div>
         </div>
     `;
     document.getElementById('results').innerHTML = resultsHTML;
 
-    // Create chart
-    const ctx = document.getElementById('chart').getContext('2d');
-    const chart = new Chart(ctx, {
+    // Chart 1: Aerodynamics & Power
+    const ctx1 = document.getElementById('chart1').getContext('2d');
+    new Chart(ctx1, {
         type: 'bar',
         data: {
-            labels: ['Cda Improvement (%)', 'Speed Improvement (%)', 'Power Saving (W)', 'Time Saving (s)', 'Time Saving at FTP (s)'],
+            labels: ['Cda Improvement (%)', 'Speed Improvement (%)', 'Power Saving (W)'],
             datasets: [{
-                label: 'Test Results',
-                data: [cdaImprovement, speedImprovement, powerSaving, timeSaving, timeSavingAtFTP],
-                backgroundColor: ['rgba(75, 192, 192, 0.2)'],
-                borderColor: ['rgba(75, 192, 192, 1)'],
+                label: 'Aerodynamics & Power',
+                data: [cdaImprovement, speedImprovement, powerSaving],
+                backgroundColor: 'rgba(255, 99, 132, 0.2)',
+                borderColor: 'rgba(255, 99, 132, 1)',
                 borderWidth: 1
             }]
         },
         options: {
+            responsive: true,
             scales: {
-                y: {
-                    beginAtZero: true
+                y: { beginAtZero: true }
+            }
+        }
+    });
+
+    // Chart 2: Time Savings and FTP Times (with mm:ss tooltips)
+    const ctx2 = document.getElementById('chart2').getContext('2d');
+    new Chart(ctx2, {
+        type: 'bar',
+        data: {
+            labels: [
+                'Time Saving (10mi)',
+                'Time at FTP Pos 1',
+                'Time at FTP Pos 2',
+                'Time Saving at FTP'
+            ],
+            datasets: [{
+                label: 'Time Metrics (mm:ss)',
+                data: [timeSaving, timeAtFTP1, timeAtFTP2, timeSavingAtFTP],
+                backgroundColor: 'rgba(54, 162, 235, 0.2)',
+                borderColor: 'rgba(54, 162, 235, 1)',
+                borderWidth: 1
+            }]
+        },
+        options: {
+            responsive: true,
+            scales: {
+                y: { beginAtZero: true }
+            },
+            plugins: {
+                tooltip: {
+                    callbacks: {
+                        label: function(context) {
+                            const val = context.parsed.y;
+                            return `${context.label}: ${formatTime(val)} (mm:ss)`;
+                        }
+                    }
                 }
             }
         }
     });
 
-    
+    // Chart 3: Time Savings over Distances (with mm:ss tooltips)
+    const ctx3 = document.getElementById('chart3').getContext('2d');
+    new Chart(ctx3, {
+        type: 'bar',
+        data: {
+            labels: ['40km', '90km', '180km'],
+            datasets: [{
+                label: 'Time Savings (mm:ss)',
+                data: [timeSaving40km, timeSaving90km, timeSaving180km],
+                backgroundColor: 'rgba(75, 192, 192, 0.2)',
+                borderColor: 'rgba(75, 192, 192, 1)',
+                borderWidth: 1
+            }]
+        },
+        options: {
+            responsive: true,
+            scales: {
+                y: { beginAtZero: true }
+            },
+            plugins: {
+                tooltip: {
+                    callbacks: {
+                        label: function(context) {
+                            const val = context.parsed.y;
+                            return `${context.label}: ${formatTime(val)} (mm:ss)`;
+                        }
+                    }
+                }
+            }
+        }
+    });
 }
