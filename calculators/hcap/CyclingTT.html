@@ -169,21 +169,55 @@
     renderTable();
   });
 
-  function renderTable() {
-    const tbody = document.querySelector('#resultsTable tbody');
-    tbody.innerHTML = '';
-    riders.forEach((r, i) => {
-      tbody.innerHTML += `<tr>
-        <td></td>
-        <td>${r.name}</td>
-        <td>"${r.times}"</td>
-        <td>${r.distance}</td>
-        <td>${formatMinutesToTime(r.handicap)}</td>
-        <td>${formatMinutesToTime(r.today)}</td>
-        <td>${formatMinutesToTime(r.netTime)}</td>
-      </tr>`;
+function renderTable() {
+  const tbody = document.querySelector('#resultsTable tbody');
+  tbody.innerHTML = '';
+
+  riders.forEach((r, i) => {
+    const tr = document.createElement('tr');
+
+    tr.innerHTML = `
+      <td>${i + 1}</td>
+      <td>${r.name}</td>
+      <td>"${r.times}"</td>
+      <td>${r.distance}</td>
+      <td>${formatMinutesToTime(r.handicap)}</td>
+      <td class="editable-today">${formatMinutesToTime(r.today)}</td>
+      <td>${formatMinutesToTime(r.netTime)}</td>
+    `;
+
+    // Add click event to make Today's Time editable
+    const todayCell = tr.querySelector('.editable-today');
+    todayCell.addEventListener('click', () => {
+      const currentValue = todayCell.textContent;
+      todayCell.innerHTML = `<input type="text" value="${currentValue}" class="form-control form-control-sm" />`;
+      const input = todayCell.querySelector('input');
+      input.focus();
+
+      input.addEventListener('blur', () => {
+        const newValue = input.value;
+        if (validateTodaysTimeFormat(newValue)) {
+          r.today = parseTimeToMinutes(newValue);
+          r.netTime = r.today - r.handicap;
+          renderTable();
+        } else {
+          alert("Please enter a valid time in hh:mm:ss format.");
+          todayCell.textContent = currentValue;
+        }
+      });
+
+      input.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter') {
+          input.blur();
+        }
+      });
     });
-  }
+
+    tbody.appendChild(tr);
+  });
+
+  updateRanks();
+}
 
   document.getElementById('calculateRankings').addEventListener('click', () => {
     riders.sort((a, b) => a.netTime - b.netTime);
