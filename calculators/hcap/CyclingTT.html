@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Cycling Handicap Calculator</title>
+  <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+  <style>
+    .container { max-width: 900px; margin-top: 50px; }
+    .result, .table-section { margin-top: 30px; }
+  </style>
+</head>
+<body>
+
+<div class="container">
+  <h2 class="text-center">Cycling Handicap Calculator</h2>
+
+  <form id="handicapForm">
+    <div class="form-group">
+      <label for="riderName">Rider's Name</label>
+      <input type="text" class="form-control" id="riderName" required>
+    </div>
+
+    <div class="form-group">
+      <label for="bestTimes">Best 3 Times (in minutes, separated by commas)</label>
+      <input type="text" class="form-control" id="bestTimes" required>
+    </div>
+
+    <div class="form-group">
+      <label for="eventDistance">Event Distance</label>
+      <select class="form-control" id="eventDistance">
+        <option value="10">10 Miles</option>
+        <option value="25">25 Miles</option>
+      </select>
+    </div>
+
+    <div class="form-group">
+      <label for="newMember">Is the Rider New?</label>
+      <select class="form-control" id="newMember">
+        <option value="yes">Yes</option>
+        <option value="no">No</option>
+      </select>
+    </div>
+
+    <div class="form-group">
+      <label for="previousTime">Has Rider ridden before?</label>
+      <select class="form-control" id="previousTime">
+        <option value="yes">Yes</option>
+        <option value="no">No</option>
+      </select>
+    </div>
+
+    <button type="submit" class="btn btn-primary">Add to Results</button>
+  </form>
+
+  <div class="result" id="result"></div>
+
+  <div class="table-section">
+    <h4>Event Handicaps</h4>
+    <table class="table table-bordered table-striped" id="resultsTable">
+      <thead>
+      <tr>
+        <th>Name</th>
+        <th>Times (mins)</th>
+        <th>Distance (miles)</th>
+        <th>New Member?</th>
+        <th>Previous Time?</th>
+        <th>Handicap (mins)</th>
+      </tr>
+      </thead>
+      <tbody>
+      <!-- Populated by JavaScript -->
+      </tbody>
+    </table>
+
+    <button id="downloadCsv" class="btn btn-success mt-2">Download CSV</button>
+  </div>
+</div>
+
+<!-- Bootstrap JS and dependencies -->
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+<script>
+  function calculateHandicap(riderName, bestTimes, eventDistance, isNewMember, hasPreviousTime) {
+    const bestTimesArray = bestTimes.split(',').map(time => parseFloat(time.trim()));
+    let avgTime = bestTimesArray.reduce((acc, time) => acc + time, 0) / bestTimesArray.length;
+
+    let mythicalTime = eventDistance === 10 ? 20 : 55;
+    if (eventDistance === 25 && !hasPreviousTime) {
+      avgTime = avgTime * 2.5;
+    }
+
+    let handicap = avgTime - mythicalTime;
+    handicap = handicap < 0 ? 0 : handicap;
+    handicap *= 1.02;
+
+    if (eventDistance === 10) {
+      handicap = Math.round(handicap * 10) / 10;
+    } else {
+      handicap = Math.round(handicap * 15) / 15;
+    }
+
+    return handicap;
+  }
+
+  document.getElementById('handicapForm').addEventListener('submit', function (event) {
+    event.preventDefault();
+
+    const riderName = document.getElementById('riderName').value;
+    const bestTimes = document.getElementById('bestTimes').value;
+    const eventDistance = parseInt(document.getElementById('eventDistance').value);
+    const isNewMember = document.getElementById('newMember').value === 'yes';
+    const hasPreviousTime = document.getElementById('previousTime').value === 'yes';
+
+    const handicap = calculateHandicap(riderName, bestTimes, eventDistance, isNewMember, hasPreviousTime);
+
+    document.getElementById('result').innerHTML = `
+      <div class="alert alert-info">
+        ${riderName}'s handicap: <strong>${handicap.toFixed(2)} minutes</strong>.
+      </div>
+    `;
+
+    const table = document.getElementById('resultsTable').getElementsByTagName('tbody')[0];
+    const newRow = table.insertRow();
+
+    newRow.innerHTML = `
+      <td>${riderName}</td>
+      <td>${bestTimes}</td>
+      <td>${eventDistance}</td>
+      <td>${isNewMember ? 'Yes' : 'No'}</td>
+      <td>${hasPreviousTime ? 'Yes' : 'No'}</td>
+      <td>${handicap.toFixed(2)}</td>
+    `;
+
+    document.getElementById('handicapForm').reset();
+  });
+
+  function downloadTableAsCSV(filename = 'handicap_results.csv') {
+    const table = document.getElementById('resultsTable');
+    const rows = table.querySelectorAll('tr');
+    let csv = [];
+
+    rows.forEach(row => {
+      const cols = row.querySelectorAll('td, th');
+      let rowData = [];
+      cols.forEach(col => rowData.push('"' + col.innerText.replace(/"/g, '""') + '"'));
+      csv.push(rowData.join(','));
+    });
+
+    const csvFile = new Blob([csv.join('\n')], { type: 'text/csv' });
+    const downloadLink = document.createElement('a');
+    downloadLink.download = filename;
+    downloadLink.href = window.URL.createObjectURL(csvFile);
+    downloadLink.style.display = 'none';
+
+    document.body.appendChild(downloadLink);
+    downloadLink.click();
+    document.body.removeChild(downloadLink);
+  }
+
+  document.getElementById('downloadCsv').addEventListener('click', function () {
+    downloadTableAsCSV();
+  });
+</script>
+
+</body>
+</html>
