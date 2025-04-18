@@ -10,6 +10,9 @@
     .container { max-width: 900px; margin-top: 50px; }
     .result, .table-section { margin-top: 30px; }
     .collapse-btn { cursor: pointer; font-size: 1.2em; }
+    .error-message { color: red; font-size: 0.9em; }
+    .sortable th { cursor: pointer; }
+    .sort-arrow { font-size: 1.2em; margin-left: 10px; }
   </style>
 </head>
 <body>
@@ -23,8 +26,9 @@
       <input type="text" class="form-control" id="riderName" required>
     </div>
     <div class="form-group">
-      <label for="bestTimes">Best 3 Times (mins, comma-separated)</label>
-      <input type="text" class="form-control" id="bestTimes" required>
+      <label for="bestTimes">Best 3 Times (hh:mm:ss, comma-separated)</label>
+      <input type="text" class="form-control" id="bestTimes" placeholder="e.g. 00:22:30, 00:23:00, 00:24:00">
+      <div id="errorMessage" class="error-message"></div>
     </div>
     <div class="form-group">
       <label for="eventDistance">Event Distance</label>
@@ -35,8 +39,9 @@
       </select>
     </div>
     <div class="form-group">
-      <label for="todaysTime">Today's Time (mm:ss)</label>
-      <input type="text" class="form-control" id="todaysTime" placeholder="e.g. 24:35" required>
+      <label for="todaysTime">Today's Time (hh:mm:ss)</label>
+      <input type="text" class="form-control" id="todaysTime" placeholder="e.g. 00:24:35" required>
+      <div id="todaysTimeError" class="error-message"></div>
     </div>
     <button type="submit" class="btn btn-primary">Add Rider</button>
   </form>
@@ -46,7 +51,7 @@
   <div class="table-section">
     <h4>Results</h4>
     <div class="table-responsive">
-      <table class="table table-bordered table-striped" id="resultsTable">
+      <table class="table table-bordered table-striped sortable" id="resultsTable">
         <thead>
           <tr>
             <th>Rank</th>
@@ -54,8 +59,8 @@
             <th>Times</th>
             <th>Distance</th>
             <th>Handicap</th>
-            <th>Today's Time</th>
-            <th>Net Time</th>
+            <th id="sortTodaysTime" class="sortable">Today's Time <span id="todaysArrow" class="sort-arrow">&#8597;</span></th>
+            <th id="sortNetTime" class="sortable">Net Time <span id="netArrow" class="sort-arrow">&#8597;</span></th>
           </tr>
         </thead>
         <tbody></tbody>
@@ -71,45 +76,87 @@
 
   function parseTimeToMinutes(timeStr) {
     const parts = timeStr.split(":");
-    const minutes = parseInt(parts[0], 10);
-    const seconds = parseInt(parts[1], 10);
-    return minutes + (seconds / 60);
+    const hours = parseInt(parts[0], 10);
+    const minutes = parseInt(parts[1], 10);
+    const seconds = parseInt(parts[2], 10);
+    return hours * 60 + minutes + seconds / 60;
   }
 
   function formatMinutesToTime(mins) {
     const totalSeconds = Math.round(mins * 60);
-    const m = Math.floor(totalSeconds / 60);
-    const s = totalSeconds % 60;
-    return `${m}:${s < 10 ? '0' : ''}${s}`;
+    const hours = Math.floor(totalSeconds / 3600);
+    const minutes = Math.floor((totalSeconds % 3600) / 60);
+    const seconds = totalSeconds % 60;
+    return `${hours}:${minutes < 10 ? '0' : ''}${minutes}:${seconds < 10 ? '0' : ''}${seconds}`;
   }
 
   function calculateHandicap(times, distance) {
-    const timesArray = times.split(',').map(t => parseFloat(t.trim()));
-    const avg = timesArray.reduce((a, b) => a + b, 0) / timesArray.length;
+    const timesArray = times.split(',').map(t => t.trim()).filter(t => t !== '');
+
+    if (timesArray.length === 0) {
+      return 0;
+    }
+
+    // Convert the times to minutes (hh:mm:ss format to minutes)
+    const timesInMinutes = timesArray.map(time => parseTimeToMinutes(time));
+
+    // Calculate average time in minutes
+    const avgTime = timesInMinutes.reduce((sum, time) => sum + time, 0) / timesInMinutes.length;
     
     let mythical;
     if (distance == 5) {
-      mythical = 10; // Assumed mythical time for 5 miles
+      mythical = 15; // Assumed mythical time for 5 miles
     } else if (distance == 10) {
       mythical = 20; // Assumed mythical time for 10 miles
     } else if (distance == 25) {
       mythical = 55; // Assumed mythical time for 25 miles
     }
 
-    let handicap = (avg - mythical) * 1.02;
+    // Calculate the handicap as the difference from the mythical time
+    let handicap = (avgTime - mythical) * 1.02;
+
+    // Round to the nearest time unit
     const roundUnit = distance == 10 ? 0.1667 : (distance == 25 ? 0.25 : 0.1667);
     handicap = Math.round(handicap / roundUnit) * roundUnit;
 
     return handicap < 0 ? 0 : handicap;
   }
 
+  // Function to validate if the time is in hh:mm:ss format
+  function validateTimeFormat(times) {
+    const timeRegex = /^(?:([01]?\d|2[0-3]):([0-5]?\d):([0-5]?\d))(?:, ?(?:([01]?\d|2[0-3]):([0-5]?\d):([0-5]?\d))){0,2}$/;
+    return timeRegex.test(times);
+  }
+
+  // Function to validate Today's Time format (hh:mm:ss)
+  function validateTodaysTimeFormat(todayStr) {
+    const timeRegex = /^([01]?\d|2[0-3]):([0-5]?\d):([0-5]?\d)$/;
+    return timeRegex.test(todayStr);
+  }
+
   document.getElementById('handicapForm').addEventListener('submit', e => {
     e.preventDefault();
-
+    
     const name = document.getElementById('riderName').value;
     const times = document.getElementById('bestTimes').value;
     const distance = parseInt(document.getElementById('eventDistance').value);
     const todayStr = document.getElementById('todaysTime').value;
+
+    // Validate Best 3 Times input format (hh:mm:ss, hh:mm:ss, hh:mm:ss)
+    if (times && !validateTimeFormat(times)) {
+      document.getElementById('errorMessage').textContent = "Please enter Best 3 Times in hh:mm:ss format, separated by commas (up to 3 times).";
+      return;
+    }
+
+    document.getElementById('errorMessage').textContent = ""; // Clear error message if format is correct
+
+    // Validate Today's Time format (hh:mm:ss)
+    if (!validateTodaysTimeFormat(todayStr)) {
+      document.getElementById('todaysTimeError').textContent = "Please enter Today's Time in hh:mm:ss format.";
+      return;
+    }
+
+    document.getElementById('todaysTimeError').textContent = ""; // Clear error message if format is correct
 
     const today = parseTimeToMinutes(todayStr);
     const handicap = calculateHandicap(times, distance);
@@ -173,6 +220,38 @@
     a.click();
     window.URL.revokeObjectURL(url);
   });
+
+  // Sorting functionality for Today's Time and Net Time columns
+  let sortTodaysTimeAsc = true;
+  let sortNetTimeAsc = true;
+
+  document.getElementById('sortTodaysTime').addEventListener('click', () => {
+    riders.sort((a, b) => sortTodaysTimeAsc ? a.today - b.today : b.today - a.today);
+    sortTodaysTimeAsc = !sortTodaysTimeAsc;
+
+    // Update arrows
+    document.getElementById('todaysArrow').innerHTML = sortTodaysTimeAsc ? '&#8593;' : '&#8595;';
+    
+    renderTable();
+    updateRanks();
+  });
+
+  document.getElementById('sortNetTime').addEventListener('click', () => {
+    riders.sort((a, b) => sortNetTimeAsc ? a.netTime - b.netTime : b.netTime - a.netTime);
+    sortNetTimeAsc = !sortNetTimeAsc;
+
+    // Update arrows
+    document.getElementById('netArrow').innerHTML = sortNetTimeAsc ? '&#8593;' : '&#8595;';
+    
+    renderTable();
+    updateRanks();
+  });
+
+  function updateRanks() {
+    document.querySelectorAll('#resultsTable tbody tr').forEach((row, i) => {
+      row.children[0].innerText = i + 1;
+    });
+  }
 </script>
 
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
