@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="theme-color" content="#009AB1">
-  <title>Cycling Handicap Calculator</title>
+  <title>Cycling Handicap Calculator with Rankings</title>
   <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
   <style>
     .container { max-width: 900px; margin-top: 50px; }
@@ -29,6 +29,7 @@
     <div class="form-group">
       <label for="eventDistance">Event Distance</label>
       <select class="form-control" id="eventDistance">
+        <option value="5">5 Miles</option>
         <option value="10">10 Miles</option>
         <option value="25">25 Miles</option>
       </select>
@@ -60,8 +61,8 @@
         <tbody></tbody>
       </table>
     </div>
-    <button id="calculateRankings" class="btn btn-success mt-2 mb-4">Calculate Rankings</button>
-    <button id="exportCsv" class="btn btn-info mt-2 mb-4">Export to CSV</button>
+    <button id="calculateRankings" class="btn btn-success mt-2">Calculate Rankings</button>
+    <button id="exportCsv" class="btn btn-info mt-2">Export to CSV</button>
   </div>
 </div>
 
@@ -85,10 +86,20 @@
   function calculateHandicap(times, distance) {
     const timesArray = times.split(',').map(t => parseFloat(t.trim()));
     const avg = timesArray.reduce((a, b) => a + b, 0) / timesArray.length;
-    const mythical = distance == 10 ? 20 : 55;
+    
+    let mythical;
+    if (distance == 5) {
+      mythical = 15; // Assumed mythical time for 5 miles
+    } else if (distance == 10) {
+      mythical = 20; // Assumed mythical time for 10 miles
+    } else if (distance == 25) {
+      mythical = 55; // Assumed mythical time for 25 miles
+    }
+
     let handicap = (avg - mythical) * 1.02;
-    const roundUnit = distance == 10 ? 0.1667 : 0.25;
+    const roundUnit = distance == 10 ? 0.1667 : (distance == 25 ? 0.25 : 0.1667);
     handicap = Math.round(handicap / roundUnit) * roundUnit;
+
     return handicap < 0 ? 0 : handicap;
   }
 
@@ -118,7 +129,7 @@
       tbody.innerHTML += `<tr>
         <td></td>
         <td>${r.name}</td>
-        <td>${r.times}</td>
+        <td>"${r.times}"</td>
         <td>${r.distance}</td>
         <td>${formatMinutesToTime(r.handicap)}</td>
         <td>${formatMinutesToTime(r.today)}</td>
@@ -141,18 +152,18 @@
     const headers = ['Rank', 'Name', 'Times', 'Distance', 'Handicap', 'Today\'s Time', 'Net Time'];
     csvRows.push(headers.join(','));
 
-  riders.forEach((r, i) => {
-    const row = [
-      i + 1,
-      r.name,
-      `"${r.times}"`, // Wrap the times in quotes to prevent breaking into multiple columns
-      r.distance,
-      formatMinutesToTime(r.handicap),
-      formatMinutesToTime(r.today),
-      formatMinutesToTime(r.netTime)
-    ];
-    csvRows.push(row.join(','));
-  });
+    riders.forEach((r, i) => {
+      const row = [
+        i + 1,
+        r.name,
+        `"${r.times}"`, // Wrap the times in quotes to prevent breaking into multiple columns
+        r.distance,
+        formatMinutesToTime(r.handicap),
+        formatMinutesToTime(r.today),
+        formatMinutesToTime(r.netTime)
+      ];
+      csvRows.push(row.join(','));
+    });
 
     const csvData = new Blob([csvRows.join('\n')], { type: 'text/csv' });
     const url = window.URL.createObjectURL(csvData);
